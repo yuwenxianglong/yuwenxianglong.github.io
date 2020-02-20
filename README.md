@@ -1,78 +1,254 @@
-# Jekyll-Bootstrap
+# Jekyll Material Theme
 
-The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages
+A Jekyll Theme based on [Material Design](https://material.io/) using [Materialize](http://materializecss.com/).
+
+[![CircleCI](https://circleci.com/gh/jameshamann/jekyll-material-theme/tree/master.svg?style=svg)](https://circleci.com/gh/jameshamann/jekyll-material-theme/tree/master)
+[![Gem Version](https://badge.fury.io/rb/jekyll-material-theme.svg)](https://badge.fury.io/rb/jekyll-material-theme)
+[![Gem](https://img.shields.io/gem/dt/jekyll-material-theme.svg)](https://img.shields.io/gem/dt/jekyll-material-theme.svg)
+
+
+## Examples
+
+<a href="https://imgur.com/D9DSyuk"><img src="https://i.imgur.com/D9DSyuk.gif" title="source: imgur.com" /></a>
+
+
+<a href="https://imgur.com/hlB1MOw"><img src="https://i.imgur.com/hlB1MOw.gif" title="source: imgur.com" /></a>
+
+<a href="https://imgur.com/qjhId2x"><img src="https://imgur.com/qjhId2x.gif" title="source: imgur.com" /></a>
+##### Cookie Policy
+
+If you use cookies on your site, or choose to use Google Analytics, you're able to notify visitors with this prompt. The ```Thanks!``` dialog message can be customised in your ```_config.yml``` file.
+
+<a href="https://imgur.com/O7sICnY"><img src="https://i.imgur.com/O7sICnY.gif" title="source: imgur.com" /></a>
+
+##### Tools and Experience Section
+
+If you'd like to display some of your skills and experience, you can do so through using the section below.
+
+<a href="https://imgur.com/DjtrH6s"><img src="https://imgur.com/DjtrH6s.png" title="source: imgur.com" /></a>
+
+
+### [Live Demo](https://jameshamann.com)
+
+## Installation
+
+Add this line to your Jekyll site's `Gemfile`:
+
+```ruby
+gem "jekyll-material-theme"
+```
+
+And add this line to your Jekyll site's `_config.yml`:
+
+```yaml
+theme: jekyll-material-theme
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install jekyll-material-theme
 
 ## Usage
 
-For all usage and documentation please see: <http://jekyllbootstrap.com>
+The ```_config.yml``` file has the following options.
 
-## Version
+Please ensure to copy this sample before serving up your site as some variables are required in order to make the site run correctly.
 
-0.3.0 - stable and versioned using [semantic versioning](http://semver.org/).
+```yaml
+title: Your awesome title
+name: Your Name
+email: your-email@example.com
+description: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 
-**NOTE:** 0.3.0 introduces a new theme which is not backwards compatible in the sense it won't _look_ like the old version.
-However, the actual API has not changed at all.
-You might want to run 0.3.0 in a branch to make sure you are ok with the theme design changes.
+display_footer: inital  #change this to 'none' if you want to hide the footer copyright text
 
-## Milestones
+theme: jekyll-material-theme
 
-[0.4.0](https://github.com/plusjade/jekyll-bootstrap/milestones/v%200.4.0) - next release [ETA 03/29/2015]
+parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
+parallax_image_two: assets/images/startup3.jpg
 
-### GOALS
+# Settings for the porfolio section
 
-* No open PRs against master branch.
-* Squash some bugs.
-* Add some new features (low-hanging fruit).
-* Establish social media presence.
+portfolio_heading: Portfolio
+portfolio_type: cards #cards or carousel
+
+project_one: "First Project"
+project_one_description: Describe your project!
+project_one_url: https://github.com/jameshamann/jekyll-material-theme
+project_one_icon: location_on # these are from materiailize css, the full collection is here: http://materializecss.com/icons.html
+
+project_two: Second Project
+project_two_description: Describe your project!
+project_two_url: https://github.com/jameshamann/jekyll-material-theme
+project_two_icon: photo_camera
 
 
-### Bugs
+project_three: Third Project
+project_three_description: Describe your project!
+project_three_url: https://github.com/jameshamann/jekyll-material-theme
+project_three_icon: hotel
 
-|Bug |Description
-|------|---------------
-|[#86](https://github.com/plusjade/jekyll-bootstrap/issues/86)  |&#x2611; Facebook Comments
-|[#113](https://github.com/plusjade/jekyll-bootstrap/issues/113)|&#x2611; ASSET_PATH w/ page & post
-|[#144](https://github.com/plusjade/jekyll-bootstrap/issues/144)|&#x2610; BASE_PATH w/ FQDN
-|[#227](https://github.com/plusjade/jekyll-bootstrap/issues/227)|&#x2611; Redundant JB/setup
 
-### Features
+project_four: Fourth Project
+project_four_description: Describe your project!
+project_four_url: https://github.com/jameshamann/jekyll-material-theme
+project_four_icon: restaurant
 
-|Bug |Description
-|------|---------------
-|[#98](https://github.com/plusjade/jekyll-bootstrap/issues/98)  |&#x2611; GIST Integration
-|[#244](https://github.com/plusjade/jekyll-bootstrap/issues/244)|&#x2611; JB/file_exists Helper
-|[#42](https://github.com/plusjade/jekyll-bootstrap/issues/42)  |&#x2611; Sort collections of Pages / Posts
-|[#84](https://github.com/plusjade/jekyll-bootstrap/issues/84)  |&#x2610; Detecting production mode
+# Skill icons from https://konpa.github.io/devicon/
 
-### TODOS
+skills:
+  - name: amazonwebservices
+  - name: android
+  - name: angularjs
+  - name: apache
+  - name: appcelerator
+  - name: apple
+  - name: atom
+  - name: babel
+  - name: backbonejs
+  - name: bitbucket
+  - name: bootstrap
+  - name: bower
+  - name: c
+  - name: chrome
+  - name: codeigniter
+  - name: coffescript
+  - name: confluence
+  - name: cplusplus
+  - name: csharp
+  - name: css3
+  - name: cucumber
+  - name: d3js
+  - name: debian
+  - name: devicon
+  - name: django
+  - name: docker
+  - name: doctrine
+  - name: dot-net
+  - name: drupal
+  - name: erlang
+  - name: facebook
+  - name: firefox
+  - name: foundation
+  - name: gatling
+  - name: gimp
+  - name: git
+  - name: github
+  - name: gitlab
+  - name: go
+  - name: google
+  - name: gradle
+  - name: grunt
+  - name: gulp
+  - name: heroku
+  - name: html5
+  - name: ie10
+  - name: illustrator
+  - name: inkscape
+  - name: itellij
+  - name: java
+  - name: jasmine
+  - name: javascript
+  - name: laravel
+  - name: less
+  - name: linux
+  - name: meteor
+  - name: mocha
+  - name: mongodb
+  - name: moodle
+  - name: mysql
+  - name: nginx
+  - name: nodejs
+  - name: nodewebkit
+  - name: oracle
+  - name: photoshop
+  - name: php
+  - name: phpstorm
+  - name: protractor
+  - name: postgresql
+  - name: python
+  - name: pycharm
+  - name: rails
+  - name: react
+  - name: redhat
+  - name: redis
+  - name: ruby
+  - name: rubymine
+  - name: safari
+  - name: sass
+  - name: sequelize
+  - name: slack
+  - name: sourcetree
+  - name: ssh
+  - name: swift
+  - name: symfony
+  - name: tomcat
+  - name: travis
+  - name: trello
+  - name: twitter
+  - name: typescript
+  - name: ubuntu
+  - name: vim
+  - name: visualstudio
+  - name: vuejs
+  - name: webpack
+  - name: webstorm
+  - name: windows8
+  - name: wordpress
+  - name: yii
+  - name: zend
+  - name: ansible
+    uri: https://upload.wikimedia.org/wikipedia/fr/thumb/4/4b/Ansible_logo.png/220px-Ansible_logo.png # Add external icon, for internal icon use uri: /assets/my_icon.jpg
 
-Review existing pull requests against plusjake/jekyll-bootstrap:master. Merge or close each.
+icon_size: 50 # font-size of icons in px
+colored: colored # Leave blank for black and white icons
 
-* Create twitter account. Add link / icon on jekyllbootstrap.com.
-* Create blog posts under plusjade/gh-pages, expose on jekyllbootstrap.com, feed to twitter account.
-* Announce state of project, announce roadmap(s), announce new versions as they’re released.
+project_button: Github
+
+github: https://github.com/jameshamann/jekyll-material-theme
+medium: https://medium.com
+
+baseurl: # If your site is located at /blog or /home, change it here, otherwise leave it empty
+url: http://localhost:4000/ # The URL of your site
+
+# Google tracking, if both are filled, tag manager will prevail. Set up GA through GTM in that case
+tag_manager_id: # This looks something like GTM-XXXXXXX
+google_analytics_tracking_id: # This looks something like UA-000000000-0 Head over to https://analytics.google.com/ to setup.
+
+cookie_accept_message: Thanks! # The pop-up dialog that appears after accepting the cookie notice.
+
+syntax_highlighting: true # include the css for syntax highlighting
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+plugins:
+  - jekyll-feed
+  - jekyll-assets
+  - jekyll-minifier
+
+```
 
 ## Contributing
 
+Bug reports and pull requests are welcome on GitHub at https://github.com/jameshamann/jekyll-material-theme. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-To contribute to the framework please make sure to checkout your branch based on `jb-development`!!
-This is very important as it allows me to accept your pull request without having to publish a public version release.
+## Development
 
-Small, atomic Features, bugs, etc.
-Use the `jb-development` branch but note it will likely change fast as pull requests are accepted.
-Please rebase as often as possible when working.
-Work on small, atomic features/bugs to avoid upstream commits affecting/breaking your development work.
+To set up your environment to develop and further customise this theme, fork the repo and explore the ```_assets``` directory, which includes all the ```css, js``` and ```font``` folders. If you're adding a feature, please add some tests in the ```spec``` directory to ensure everything works as intended.
 
-For Big Features or major API extensions/edits:
-This is the one case where I'll accept pull-requests based off the master branch.
-This allows you to work in isolation but it means I'll have to manually merge your work into the next public release.
-Translation : it might take a bit longer so please be patient! (but sincerely thank you).
+## Contributors
 
-**Jekyll-Bootstrap Documentation Website.**
-
-The documentation website at <http://jekyllbootstrap.com> is maintained at https://github.com/plusjade/jekyllbootstrap.com
-
+- [James Hamann](https://github.com/jameshamann)
+- [Jam Rizzer](https://github.com/jamrizzi)
+- [Kobes](https://github.com/Kobes)
+- [fe80](https://github.com/fe80)
+## [Changelog](https://github.com/jameshamann/jekyll-material-theme/blob/master/CHANGELOG.md)
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
