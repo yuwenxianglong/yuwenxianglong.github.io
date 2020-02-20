@@ -15,7 +15,7 @@ sass:
 
 permalink: /posts/:title/
 texture:
-  title: Adam Denisov
+  title: 随笔杂谈 By 赵旭山（Xu-Shan Zhao）
   tagline: Developer. Designer
   date_format: "%b %-d, %Y"
   style: black
