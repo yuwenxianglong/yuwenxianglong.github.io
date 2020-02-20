@@ -1,24 +1,40 @@
----
-layout: default
----
-  <div class="container">
-    <div class="col s10">
-    <div class="row" style="padding:10px;">
-      <a id="home" class="waves-effect waves-light btn white-text darken-2 grey z-depth-4" href="{{site.baseurl}}/#blog"><i class="material-icons">arrow_back</i></a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {%- include head.html -%}
+</head>
+<body>
+  <header class="texture-{{ site.texture.style }}">
+    <div class="container">
+      {%- include nav.html -%}
     </div>
-    <h3 class="post-title" itemprop="name headline" style="text-align:center">{{ page.title | escape }}</h3>
+    {%- include post_header.html -%}  
+  </header>
+  <main>
+    <div class="container">
+      <div class="post-container">
+          {{ content }}
+      </div>
 
-    <p class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        {{ page.date | date: date_format }}
-      </time>
-      {% if page.author %}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
-      {% endif %}</p>
-
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-</div>
-</div>
+        <!-- Configure Disqus -->
+      {%- if site.texture.disqus_shortname -%}
+        <div id="disqus_thread" style="margin-top:25px"></div>
+        <script>
+          var disqus_config = function () {
+            this.page.url = '{{ page.url | absolute_url }}';
+            this.page.identifier = '{{ page.url | absolute_url }}';
+          };
+          (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://{{ site.texture.disqus_shortname }}.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      {%- endif -%}
+    </div>
+  </main>
+  {%- include footer.html -%}
+</body>
+</html>

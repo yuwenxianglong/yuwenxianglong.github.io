@@ -1,47 +1,32 @@
-# Jekyll Material Theme
+# texture
 
-A Jekyll Theme based on [Material Design](https://material.io/) using [Materialize](http://materializecss.com/).
+A configurable jekyll theme for simply beautiful blogs.
 
-[![CircleCI](https://circleci.com/gh/jameshamann/jekyll-material-theme/tree/master.svg?style=svg)](https://circleci.com/gh/jameshamann/jekyll-material-theme/tree/master)
-[![Gem Version](https://badge.fury.io/rb/jekyll-material-theme.svg)](https://badge.fury.io/rb/jekyll-material-theme)
-[![Gem](https://img.shields.io/gem/dt/jekyll-material-theme.svg)](https://img.shields.io/gem/dt/jekyll-material-theme.svg)
+**Demo**: [thelehhman.com/texture](https://thelehhman.com/texture)
 
-
-## Examples
-
-<a href="https://imgur.com/D9DSyuk"><img src="https://i.imgur.com/D9DSyuk.gif" title="source: imgur.com" /></a>
+![texture theme preview](/screen1.png)
 
 
-<a href="https://imgur.com/hlB1MOw"><img src="https://i.imgur.com/hlB1MOw.gif" title="source: imgur.com" /></a>
+## Installation on Github Pages
 
-<a href="https://imgur.com/qjhId2x"><img src="https://imgur.com/qjhId2x.gif" title="source: imgur.com" /></a>
-##### Cookie Policy
+Add this line to your site's `_config.yml`:
+```yaml
+remote_theme: thelehhman/texture
+```
 
-If you use cookies on your site, or choose to use Google Analytics, you're able to notify visitors with this prompt. The ```Thanks!``` dialog message can be customised in your ```_config.yml``` file.
-
-<a href="https://imgur.com/O7sICnY"><img src="https://i.imgur.com/O7sICnY.gif" title="source: imgur.com" /></a>
-
-##### Tools and Experience Section
-
-If you'd like to display some of your skills and experience, you can do so through using the section below.
-
-<a href="https://imgur.com/DjtrH6s"><img src="https://imgur.com/DjtrH6s.png" title="source: imgur.com" /></a>
-
-
-### [Live Demo](https://jameshamann.com)
-
+**NOTE: If you are forking this repo, remove `base_url: /texture` in the `_config.yml` which is required to load the required website assets**
 ## Installation
 
 Add this line to your Jekyll site's `Gemfile`:
 
 ```ruby
-gem "jekyll-material-theme"
+gem "texture"
 ```
 
 And add this line to your Jekyll site's `_config.yml`:
 
 ```yaml
-theme: jekyll-material-theme
+theme: texture
 ```
 
 And then execute:
@@ -50,205 +35,96 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install jekyll-material-theme
+    $ gem install texture
 
 ## Usage
 
-The ```_config.yml``` file has the following options.
+The "texture" key in _config.yml is used to customize the theme data.
+```yaml
+texture:
+  title: Adam Denisov
+  tagline: Developer. Designer
+  date_format: "%b %-d, %Y"
 
-Please ensure to copy this sample before serving up your site as some variables are required in order to make the site run correctly.
+  social_links:
+    twitter: thelehhman
+    github:  thelehhman
+    linkedIn: in/thelehhman # format: locale/username
+```
+
+**Styling**
+
+Multiple header styles are supported using the "style" property under texture in `_config.yml`.
 
 ```yaml
-title: Your awesome title
-name: Your Name
-email: your-email@example.com
-description: Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-
-display_footer: inital  #change this to 'none' if you want to hide the footer copyright text
-
-theme: jekyll-material-theme
-
-parallax_image_one: assets/images/startup3.jpg # These are the images used for the parallax background
-parallax_image_two: assets/images/startup3.jpg
-
-# Settings for the porfolio section
-
-portfolio_heading: Portfolio
-portfolio_type: cards #cards or carousel
-
-project_one: "First Project"
-project_one_description: Describe your project!
-project_one_url: https://github.com/jameshamann/jekyll-material-theme
-project_one_icon: location_on # these are from materiailize css, the full collection is here: http://materializecss.com/icons.html
-
-project_two: Second Project
-project_two_description: Describe your project!
-project_two_url: https://github.com/jameshamann/jekyll-material-theme
-project_two_icon: photo_camera
-
-
-project_three: Third Project
-project_three_description: Describe your project!
-project_three_url: https://github.com/jameshamann/jekyll-material-theme
-project_three_icon: hotel
-
-
-project_four: Fourth Project
-project_four_description: Describe your project!
-project_four_url: https://github.com/jameshamann/jekyll-material-theme
-project_four_icon: restaurant
-
-# Skill icons from https://konpa.github.io/devicon/
-
-skills:
-  - name: amazonwebservices
-  - name: android
-  - name: angularjs
-  - name: apache
-  - name: appcelerator
-  - name: apple
-  - name: atom
-  - name: babel
-  - name: backbonejs
-  - name: bitbucket
-  - name: bootstrap
-  - name: bower
-  - name: c
-  - name: chrome
-  - name: codeigniter
-  - name: coffescript
-  - name: confluence
-  - name: cplusplus
-  - name: csharp
-  - name: css3
-  - name: cucumber
-  - name: d3js
-  - name: debian
-  - name: devicon
-  - name: django
-  - name: docker
-  - name: doctrine
-  - name: dot-net
-  - name: drupal
-  - name: erlang
-  - name: facebook
-  - name: firefox
-  - name: foundation
-  - name: gatling
-  - name: gimp
-  - name: git
-  - name: github
-  - name: gitlab
-  - name: go
-  - name: google
-  - name: gradle
-  - name: grunt
-  - name: gulp
-  - name: heroku
-  - name: html5
-  - name: ie10
-  - name: illustrator
-  - name: inkscape
-  - name: itellij
-  - name: java
-  - name: jasmine
-  - name: javascript
-  - name: laravel
-  - name: less
-  - name: linux
-  - name: meteor
-  - name: mocha
-  - name: mongodb
-  - name: moodle
-  - name: mysql
-  - name: nginx
-  - name: nodejs
-  - name: nodewebkit
-  - name: oracle
-  - name: photoshop
-  - name: php
-  - name: phpstorm
-  - name: protractor
-  - name: postgresql
-  - name: python
-  - name: pycharm
-  - name: rails
-  - name: react
-  - name: redhat
-  - name: redis
-  - name: ruby
-  - name: rubymine
-  - name: safari
-  - name: sass
-  - name: sequelize
-  - name: slack
-  - name: sourcetree
-  - name: ssh
-  - name: swift
-  - name: symfony
-  - name: tomcat
-  - name: travis
-  - name: trello
-  - name: twitter
-  - name: typescript
-  - name: ubuntu
-  - name: vim
-  - name: visualstudio
-  - name: vuejs
-  - name: webpack
-  - name: webstorm
-  - name: windows8
-  - name: wordpress
-  - name: yii
-  - name: zend
-  - name: ansible
-    uri: https://upload.wikimedia.org/wikipedia/fr/thumb/4/4b/Ansible_logo.png/220px-Ansible_logo.png # Add external icon, for internal icon use uri: /assets/my_icon.jpg
-
-icon_size: 50 # font-size of icons in px
-colored: colored # Leave blank for black and white icons
-
-project_button: Github
-
-github: https://github.com/jameshamann/jekyll-material-theme
-medium: https://medium.com
-
-baseurl: # If your site is located at /blog or /home, change it here, otherwise leave it empty
-url: http://localhost:4000/ # The URL of your site
-
-# Google tracking, if both are filled, tag manager will prevail. Set up GA through GTM in that case
-tag_manager_id: # This looks something like GTM-XXXXXXX
-google_analytics_tracking_id: # This looks something like UA-000000000-0 Head over to https://analytics.google.com/ to setup.
-
-cookie_accept_message: Thanks! # The pop-up dialog that appears after accepting the cookie notice.
-
-syntax_highlighting: true # include the css for syntax highlighting
-
-# Build settings
-markdown: kramdown
-permalink: pretty
-plugins:
-  - jekyll-feed
-  - jekyll-assets
-  - jekyll-minifier
-
+texture:
+  style: [yellow|red|black|blue|green|purple]
 ```
+
+For example, the blue style looks like this:
+
+![texture theme blue](/screen2.png)
+
+
+**Texture Picker**
+
+You can toggle the texture picker to show/experiment various textures on your site using the showPicker variable. Remember to make it `false` for production.
+
+```yaml
+texture:
+  showPicker: [false|true] # show the texture selector(development purposes)
+```
+
+**Comments (Disqus)**
+
+Comments on posts can be enabled by specifying your disqus_shortname under texture in `_config.yml`. For example,
+```yaml
+texture:
+  disqus_shortname: games
+```
+
+**Google Analytics**
+
+It can be enabled by specifying your analytics id under texture in `_config.yml`
+```yaml
+texture:
+  analytics_id: '< YOUR ID >'
+```
+
+**Excerpts**
+
+Excerpts can be enabled by adding the following line to your `_config.yml`
+```yaml
+show_excerpts: true
+```
+
+**Toggle Navbar**
+
+```yaml
+texture:
+  showNav: true
+```
+
+**Layouts**
+
+- Home
+- Page
+- Post
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jameshamann/jekyll-material-theme. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/thelehhman/texture. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Development
 
-To set up your environment to develop and further customise this theme, fork the repo and explore the ```_assets``` directory, which includes all the ```css, js``` and ```font``` folders. If you're adding a feature, please add some tests in the ```spec``` directory to ensure everything works as intended.
+To set up your environment to develop this theme, run `bundle install`.
 
-## Contributors
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
-- [James Hamann](https://github.com/jameshamann)
-- [Jam Rizzer](https://github.com/jamrizzi)
-- [Kobes](https://github.com/Kobes)
-- [fe80](https://github.com/fe80)
-## [Changelog](https://github.com/jameshamann/jekyll-material-theme/blob/master/CHANGELOG.md)
+When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
+To add a custom directory to your theme-gem, please edit the regexp in `texture.gemspec` accordingly.
 
 ## License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
