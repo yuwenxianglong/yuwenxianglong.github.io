@@ -1,7 +1,7 @@
 ---
 title: Github和Jekyll搭建博客
 author: 赵旭山
-tags: Tips
+tags: 杂谈
 
 ---
 
