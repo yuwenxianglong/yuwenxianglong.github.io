@@ -53,6 +53,7 @@ gem install bundler
 ```bash
 git clone -b master xxx.yourname.github.io.xxx
 git clone -b master https://github.com/kitian616/jekyll-TeXt-theme.git
+cd jekyll-TeXt-theme & bundle install & cd ..
 cp -rf yourname.github.io backup
 rm -rf yourname.github.io/*
 rm -rf yourname.github.io/.*
