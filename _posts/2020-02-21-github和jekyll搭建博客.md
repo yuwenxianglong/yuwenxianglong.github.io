@@ -31,5 +31,7 @@ Repositoy Name分为两部分，用户名部分建议与github账号用户名相
 
 #### 2. 结合Jekyll实现jekyll-TeXt-theme风格页面设计
 
+但笔者希望有一个文章的汇总列表，github模版中没找到，所以就想结合Jekyll做一点儿稍微那么高大上一点儿的事情🏋️‍♀️🏋️🏋️‍♂️！
+
 ##### 2.1 Jekyll安装和简单实用
 
