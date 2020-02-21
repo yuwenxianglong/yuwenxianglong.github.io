@@ -1,5 +1,6 @@
 ---
 title: Github和Jekyll搭建博客
+author: 赵旭山
 tags: Tips
 
 ---
@@ -10,7 +11,13 @@ tags: Tips
 
 
 
-#### 1. 建立github仓库
+#### 1. 建立博客用github仓库
+
+> Markdown语法插入相对路径，如`../assets/images/createNewRepository.png`，发布的网站是无法显示图片的。需转换为网站的绝对路径，此时`assets`目录为根目录下的目录，所以`/assets/images/createNewRepository.png`是工作的。
 
 ![](/assets/images/createNewRepository.png)
+
+Repositoy Name分为两部分，用户名部分建议与github账号用户名相同，否则`用户名.github.io`会无法访问。后缀部分采用**github.io**，网上有教程说使用`github.com`也会造成无法访问。
+
+![](/assets/images/repositoryName.png)
 
