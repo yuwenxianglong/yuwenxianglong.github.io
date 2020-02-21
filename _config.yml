@@ -23,7 +23,7 @@ baseurl : # does not include hostname
 # title   : Your Site Title
 title   : 随笔杂谈
 description: > # this means to ignore newlines until "Language & timezone"
-  Your Site Description
+  记录一些日常工作中的技巧和体会，并辅助治疗一下自己莫名袭来的懒惰情绪。
 
 
 ## => Language and Timezone
