@@ -35,3 +35,47 @@ Repositoy Name分为两部分，用户名部分建议与github账号用户名相
 
 ##### 2.1 Jekyll安装和简单实用
 
+安装Jekyll和bundler：
+
+```bash
+gem install jekyll
+gem install bundler
+```
+
+详细信息参考：[https://jekyllrb.com/](https://jekyllrb.com/)
+
+##### 2.2 使用jekyll-TeXt-theme风格页面
+
+> jekyll-TeXt-theme的github代码发布主页：[https://github.com/kitian616/jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme)
+
+拉取*yourname*.github.io，并替换为jekyll-TeXt-theme代码，但`.git`文件夹要保留。
+
+```bash
+git clone -b master xxx.yourname.github.io.xxx
+git clone -b master https://github.com/kitian616/jekyll-TeXt-theme.git
+cp -rf yourname.github.io backup
+rm -rf yourname.github.io/*
+rm -rf yourname.github.io/.*
+cp -rf jekyll-TeXt-theme/* ./yourname.github.io/
+cp -rf jekyll-TeXt-theme/.* ./yourname.github.io/
+rm -rf jekyll-TeXt-theme/.git
+cp -rf backup/.git ./yourname.github.io/
+rm -rf backup
+```
+
+##### 2.3 Push更改后的代码
+
+初始化本地`git repository`：
+
+```bash
+git init
+git config user.name "yuwenxianglong"
+git config user.email "yuwenxianglong@hotmail.com"
+git add .
+git commit -m "First commit."
+git push
+```
+
+#### 3. That's all ! 👯‍♀️👯‍♀️👯‍♀️👯‍♀️
+
+访问`yourname.github.io`，查看设计好的个人博客吧！
