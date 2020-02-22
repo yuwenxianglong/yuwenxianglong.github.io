@@ -2,6 +2,10 @@
 title: Github和Jekyll搭建博客
 author: 赵旭山
 tags: 杂谈
+article_header:
+  type: cover
+  image:
+    src: //assets/images/Tunnels_Beach_Kauai_Hawaii_US.jpg
 
 ---
 
