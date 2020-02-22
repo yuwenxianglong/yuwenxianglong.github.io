@@ -1,0 +1,75 @@
+---
+title: DeePMD-kit的安装和自我启蒙
+author: 赵旭山
+tags: 随笔
+
+
+
+
+---
+
+Pytorch是笔者目前比较喜欢的机器学习框架，因为觉得她好学习一些，大概是遇到了一本好书《深度学习入门之pytorch》，廖星宇先生编著。期待这本书的第二版！
+
+> 在Pytorch里面编写神经网络，所有的层结构和损失函数都来自于`torch.nn`，所有的模型构建都是从这个基类`nn.Module`继承的，于是有了下面这个模版。
+
+八股文模板如下：
+
+```python
+class net_name(nn.Module):
+  	def __init__(self, other_arguments):
+      	super(net_name, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size)
+        # other network layer
+        
+    def forward(self, x):
+    		x = self.conv1(x)
+        return x
+```
+
+不太看得懂`super(net_name, self).__init__()`这行的意思，先照搬，慢慢理解。
+
+作者廖先生下面一段话看得似懂非懂，抄下来吧，也许慢慢实践就深有体会了。
+
+> 这样就建立了一个计算图，并且这个结构可以复用多次，每次调用就相当于用该计算图定义的相同参数做一次前向传播，这得益于PyTorch的自动求导功能，所以我们不需要自己编写反向传播，而所有的网络都是由nn这个包得到的，比如线性层nn.Linear。
+
+##### 以下罗列一些定义网络的class的实例，用于参考吧。
+
+* 一个比较清晰的训练结构：
+
+```python
+class LinearRegression(nn.Module):
+		def __init__(self):
+      	super(LinearRegression, self).__init__()
+        self.linear = nn.Linear(1, 1) # input and output is 1 dimension
+        
+    def forward(self, x):
+      	out = self.linear(x)
+        return out
+      
+if torch.cuda.is_availabel():
+  	model = LinearRegression().cuda()
+else:
+  	model = LinearRegression()
+    
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=1e-3)
+
+num_epochs = 1000
+for epoch in range(epochs):
+  	if torch.cuda.is_availabel():
+      	inputs = Variable(x_train).cuda()
+        target = Variable(y_train).cuda()
+    else:
+      	inputs = Variable(x_train)
+        target = Variable(y_train)
+        
+    # forward
+    out = model(inputs)
+    loss = criterion(out, target)
+    
+    # backward
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+```
+
