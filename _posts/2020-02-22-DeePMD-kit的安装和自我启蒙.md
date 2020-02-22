@@ -117,5 +117,95 @@ To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriat
 # DEEPMD: saved checkpoint model.ckpt
 ```
 
+如果训练过程被中断，还可以用以下命令重启计算，大赞👍！
+
+```bash
+dp train --restart model.ckpt water_se_a.json
+```
+
+##### 2.2 保存训练好的模型
+
+```bash
+dp freeze -o graph.pb
+```
+
+屏幕打印信息为：
+
+```bash
+WARNING:tensorflow:From /usr/local/Caskroom/miniconda/base/lib/python3.7/site-packages/tensorflow_core/python/compat/v2_compat.py:65: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+WARNING:root:Environment variable KMP_BLOCKTIME is empty. Use the default value 0
+WARNING:root:Environment variable KMP_AFFINITY is empty. Use the default value granularity=fine,verbose,compact,1,0
+2020-02-22 19:53:52.174514: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-02-22 19:53:52.177828: I tensorflow/core/common_runtime/process_util.cc:115] Creating new thread pool with default inter op setting: 8. Tune using inter_op_parallelism_threads for best performance.
+The following nodes will be frozen: o_energy,o_force,o_virial,o_atom_energy,o_atom_virial,descrpt_attr/rcut,descrpt_attr/ntypes,fitting_attr/dfparam,fitting_attr/daparam,model_attr/tmap,model_attr/model_type
+WARNING:tensorflow:From /usr/local/Caskroom/miniconda/base/lib/python3.7/site-packages/deepmd/freeze.py:91: convert_variables_to_constants (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.convert_variables_to_constants`
+WARNING:tensorflow:From /usr/local/Caskroom/miniconda/base/lib/python3.7/site-packages/deepmd/freeze.py:91: convert_variables_to_constants (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.convert_variables_to_constants`
+WARNING:tensorflow:From /usr/local/Caskroom/miniconda/base/lib/python3.7/site-packages/tensorflow_core/python/framework/graph_util_impl.py:275: extract_sub_graph (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.extract_sub_graph`
+WARNING:tensorflow:From /usr/local/Caskroom/miniconda/base/lib/python3.7/site-packages/tensorflow_core/python/framework/graph_util_impl.py:275: extract_sub_graph (from tensorflow.python.framework.graph_util_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.graph_util.extract_sub_graph`
+1108 ops in the final graph.
+```
+
+
+
+##### 2.3 使用保存的多体势模型(lammps)
+
+lammps的`in`文件设置：
+
+```bash
+pair_style			deepmd	graph.pb
+```
+
+而后，启动lammps开始计算。
+
+```bash
+lmp: Relink `/home/zhaoxushan/miniconda3/bin/../lib/./libgfortran.so.4' with `/lib/x86_64-linux-gnu/librt.so.1' for IFUNC symbol `clock_gettime'
+LAMMPS (7 Aug 2019)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:93)
+  using 1 OpenMP thread(s) per MPI task
+Reading data file ...
+  triclinic box = (0 0 0) to (12.4447 12.4447 12.4447) with tilt (0 0 0)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  192 atoms
+  read_data CPU = 0.00268483 secs
+Summary of lammps deepmd module ...
+  >>> Info of deepmd-kit:
+  installed to:       /home/zhaoxushan/miniconda3
+  source:             v1.1.2-10-g984ef69
+  source brach:       HEAD
+  source commit:      984ef69
+  source commit at:   2020-01-23 22:36:57 +0800
+  build float prec:   float
+  build with tf inc:  /home/zhaoxushan/miniconda3/include
+  build with tf lib:  /home/zhaoxushan/miniconda3/lib/libtensorflow_cc.so;/home/zhaoxushan/miniconda3/lib/libtensorflow_framework.so
+  set tf intra_op_parallelism_threads: 0
+  set tf inter_op_parallelism_threads: 0
+  >>> Info of lammps module:
+  use deepmd-kit at:  /home/zhaoxushan/miniconda3
+  source:             v1.1.2-10-g984ef69
+  source branch:      HEAD
+  source commit:      984ef69
+  source commit at:   2020-01-23 22:36:57 +0800
+  build float prec:   float
+  build with tf inc:  /home/zhaoxushan/miniconda3/include
+  build with tf lib:  /home/zhaoxushan/miniconda3/lib/libtensorflow_cc.so;/home/zhaoxushan/miniconda3/lib/libtensorflow_framework.so
+2020-02-22 20:00:32.891793: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-02-22 20:00:32.929247: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2303980000 Hz
+2020-02-22 20:00:32.930590: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x564604199420 executing computations on platform Host. Devices:
+2020-02-22 20:00:32.930929: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+Invalid argument: Input 0 of node DescrptSeA was passed double from Reshape_2:0 incompatible with expected float.
+```
+
 
 
