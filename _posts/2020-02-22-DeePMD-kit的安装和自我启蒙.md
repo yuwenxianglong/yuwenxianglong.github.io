@@ -37,6 +37,8 @@ dpgen                          0.7.0            py_0  conda-forge
 
 故执行：`conda install deepmd-kit dpdata dpgen -c conda-forge`即可完成安装。
 
+自行编译deepmd-kit的lammps模块没成功🥵。
+
 ##### Ubuntu
 
 ubuntu下deepmd-kit安装比较简单，依照官方“Readme”文件即可。
