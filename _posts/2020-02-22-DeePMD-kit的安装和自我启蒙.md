@@ -27,7 +27,7 @@ conda提供了DeePMD-kit的安装Source，包括以下Packages。但遗憾的是
 
 ##### **MacOS**
 
-conda的“`conda forge`” channel 提供了
+conda的“`conda forge`” channel 提供了`deepmd-kit`、`dpdata`和`dpgen`软件包，但却没有提供lammps-dp，所以deepmd-kit所得的势函数（`xxxx.pb`），是无法被常规lammps程序（conda或brew安装）读取的。
 
 ```
 deepmd-kit                     1.1.3  py37h2af55cb_1  conda-forge
@@ -35,3 +35,12 @@ dpdata                        0.1.15            py_0  conda-forge
 dpgen                          0.7.0            py_0  conda-forge
 ```
 
+##### Ubuntu
+
+ubuntu下deepmd-kit安装比较简单，依照官方“Readme”文件即可。
+
+```bash
+conda install deepmd-kit lammps-dp dpdata dpgen -c deepmodeling
+```
+
+没有安装GPU版本，有机会以后试试。
