@@ -62,7 +62,7 @@ $ cd $deepmd_source_dir/examples/water/train/
 $ dp train water_se_a.json
 ```
 
-`water_se_a.json`为输入文件，文件中key的含义参见README.md说明。
+`water_se_a.json`为输入文件，文件中各key的含义参见README.md说明。
 
 屏幕打印的信息如下所示：
 
