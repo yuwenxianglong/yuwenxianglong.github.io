@@ -29,5 +29,7 @@ Experiment⟶Theory⟶Computation/Simulation⟶Data-driven science
 
 #### 3. Big Data characteristics known as the 'five V's'
 
+**Domain Knowledge** & **Five V's**
+
 ![](/assets/images/fromDFTtoMLFigure3_202002232300.png)
 
