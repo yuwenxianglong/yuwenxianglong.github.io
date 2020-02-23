@@ -26,3 +26,8 @@ DFT⟶High-throughput approach⟶Machine learning
 Experiment⟶Theory⟶Computation/Simulation⟶Data-driven science
 
 ![](/assets/images/fromDFTtoMLFigure2_202002232227.png)
+
+#### 3. Big Data characteristics known as the 'five V's'
+
+![](/assets/images/fromDFTtoMLFigure3_202002232300.png)
+
