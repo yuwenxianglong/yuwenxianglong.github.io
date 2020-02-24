@@ -31,11 +31,20 @@ Experiment➞Theory➞Computation/Simulation➞Data-driven science
 
 **Domain Knowledge** & **Five V's**
 
-**Related sixth V: Visualization**
+* Related sixth V: **Visualization**
 
 ![](/assets/images/fromDFTtoMLFigure3_202002232300.png)
 
-* Combination of mathematics and statistics, computer science and programming
+* Combination of **mathematics** and **statistics**, **computer science** and **programming**
 
-> It is largely interdisciplinary being a combination of **mathematics** and **statistics**, **computer science** and **programming**.
+  > It is largely interdisciplinary being a combination of **mathematics** and **statistics**, **computer science** and **programming**.
 
+* Whole process of data: **production**, **cleaning**, **preparation**, **analysis**
+
+  > Its objective is, roughly speaking, to deal with the whole process of data **production**, **cleaning**, **preparation**, and finally, **analysis**.
+
+* **Knowledge Discovery in Databases (KDD)**
+
+  > Data science encompasses areas such as Big Data, which deals with large volumes of data, and data mining, which relates to analysis processes to discover patterns and extract knowledge from data, part of the so-called ** Knowledge Discovery in Databases (KDD)**.
+
+  
