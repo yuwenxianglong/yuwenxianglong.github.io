@@ -47,4 +47,9 @@ Experiment➞Theory➞Computation/Simulation➞Data-driven science
 
   > Data science encompasses areas such as Big Data, which deals with large volumes of data, and data mining, which relates to analysis processes to discover patterns and extract knowledge from data, part of the so-called ** Knowledge Discovery in Databases (KDD)**.
 
-  
+#### 4. Three generation in computational materials science
+
+* **1st Generation**: The first generation is related to materials property attainment given its structure, using local optimization algorithms, usually based on DFT calculations performed one at a time.
+
+* **2nd Generation**: The second generation is related to crystal structure prediction given a  fixed composition, using global optimization tasks like genetic and evolutionary algorithms.
+* **3rd Generation**: The third generation is based on statistical learning. It also enables the discovery of novel compositions, besides much faster predictions of properties and crystalline structures given the vast amount of available physical and chemical data via ML algorithms.
