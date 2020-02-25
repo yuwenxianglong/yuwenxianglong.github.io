@@ -58,3 +58,7 @@ Experiment➞Theory➞Computation/Simulation➞Data-driven science
 #### 5. DFT calculations & Structure prediction: local minima & global optimization
 
 > Base on the Hellman-Feynman theorem, one can use DFT calculations to find a local structural minima of materials and molecules. However, a global optimization of such systems is much more involved process.
+
+#### 6. High-throughput (HT)
+
+![](/assets/images/fromDFTtoMLFigure6_202002252015.png)
