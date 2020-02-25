@@ -45,12 +45,16 @@ Experiment➞Theory➞Computation/Simulation➞Data-driven science
 
 * **Knowledge Discovery in Databases (KDD)**
 
-  > Data science encompasses areas such as Big Data, which deals with large volumes of data, and data mining, which relates to analysis processes to discover patterns and extract knowledge from data, part of the so-called ** Knowledge Discovery in Databases (KDD)**.
+  > Data science encompasses areas such as Big Data, which deals with large volumes of data, and data mining, which relates to analysis processes to discover patterns and extract knowledge from data, part of the so-called **Knowledge Discovery in Databases (KDD)**.
 
 #### 4. Three generation in computational materials science
 
-* **1st Generation**: The first generation is related to materials property attainment given its structure, using local optimization algorithms, usually based on DFT calculations performed one at a time.
+* **1st Generation**: The first generation is related to **materials property attainment given its structure**, using local optimization algorithms, usually based on DFT calculations performed one at a time.
 
-* **2nd Generation**: The second generation is related to crystal structure prediction given a  fixed composition, using global optimization tasks like genetic and evolutionary algorithms.
+* **2nd Generation**: The second generation is related to **crystal structure prediction given a  fixed composition**, using global optimization tasks like genetic and evolutionary algorithms.
 
-* **3rd Generation**: The third generation is based on statistical learning. It also enables the discovery of novel compositions, besides much faster predictions of properties and crystalline structures given the vast amount of available physical and chemical data via ML algorithms.
+* **3rd Generation**: The third generation is based on **statistical learning**. It also enables the discovery of novel compositions, besides much faster predictions of properties and crystalline structures given the vast amount of available physical and chemical data via ML algorithms.
+
+#### 5. DFT calculations & Structure prediction: local minima & global optimization
+
+> Base on the Hellman-Feynman theorem, one can use DFT calculations to find a local structural minima of materials and molecules. However, a global optimization of such systems is much more involved process.
