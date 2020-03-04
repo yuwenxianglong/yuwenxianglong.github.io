@@ -28,8 +28,8 @@ ytarget = ytarget.unsqueeze(1)
 
 input_size = xfts.shape[1]
 output_size = 1
-num_epochs = 5000
-learning_rate = 0.005
+num_epochs = 500
+learning_rate = 0.01
 
 
 class LinearRegression(nn.Module):
@@ -41,6 +41,7 @@ class LinearRegression(nn.Module):
         out = self.linear(x)
         return out
 
+
 try:
     model = torch.load('ccpplr.pth')
 except FileNotFoundError:
@@ -50,6 +51,9 @@ model.eval()
 
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+epoches = []
+losses = []
 
 plt.ion()
 plt.pause(5)
@@ -64,15 +68,25 @@ for epoch in range(num_epochs):
     optimizer.step()
     preds = model(xfts)
 
-    print('epoch [%d/%d], Loss: %.4f'
-          % (epoch + 1, num_epochs, loss.item()))
+    epoches.append(epoch + 1)
+    losses.append(loss.item())
+
+    print('epoch [%d/%d], Loss: %.4f, Learning Rate: %.8f'
+          % (epoch + 1, num_epochs, loss.item(), learning_rate))
+    plt.subplot(2, 1, 1)
     plt.cla()
     plt.plot(ytarget.data.numpy(), preds.data.numpy(), 'r*',
              ytarget.data.numpy(), ytarget.data.numpy(), 'b-')
     # plt.axis('scaled')
-    plt.axis('equal')
+    # plt.axis('equal')
+    plt.subplot(2, 1, 2)
+    plt.cla()
+    plt.plot(epoches, losses)
     plt.pause(0.0001)
-    if (epoch + 1) % 200 == 0:
+    if (epoch + 1) % 100 == 0:
         torch.save(model, './ccpplr.pth')
 plt.ioff()
 plt.show()
+
+for param in model.parameters():
+    print(param)
