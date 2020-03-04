@@ -28,8 +28,9 @@ ytarget = ytarget.unsqueeze(1)
 
 input_size = xfts.shape[1]
 output_size = 1
-num_epochs = 3000
-learning_rate = 2e-2
+num_epochs = 5000
+learning_rate = 0.005
+
 
 class LinearRegression(nn.Module):
     def __init__(self, input_size, output_size):
@@ -40,12 +41,18 @@ class LinearRegression(nn.Module):
         out = self.linear(x)
         return out
 
-model = LinearRegression(input_size, output_size)
+try:
+    model = torch.load('ccpplr.pth')
+except FileNotFoundError:
+    model = LinearRegression(input_size, output_size)
+
+model.eval()
 
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 plt.ion()
+plt.pause(5)
 
 for epoch in range(num_epochs):
     inputs = xfts
@@ -65,6 +72,7 @@ for epoch in range(num_epochs):
     # plt.axis('scaled')
     plt.axis('equal')
     plt.pause(0.0001)
-
+    if (epoch + 1) % 200 == 0:
+        torch.save(model, './ccpplr.pth')
 plt.ioff()
 plt.show()
