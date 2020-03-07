@@ -28,8 +28,8 @@ ytarget = ytarget.unsqueeze(1)
 
 input_size = xfts.shape[1]
 output_size = 1
-num_epochs = 500
-learning_rate = 0.01
+num_epochs = 5000
+learning_rate = 0.1
 
 
 class LinearRegression(nn.Module):
@@ -71,8 +71,8 @@ for epoch in range(num_epochs):
     epoches.append(epoch + 1)
     losses.append(loss.item())
 
-    print('epoch [%d/%d], Loss: %.4f, Learning Rate: %.8f' %
-          (epoch + 1, num_epochs, loss.item(), learning_rate))
+    print('epoch [%d/%d], Loss: %.4f, Learning Rate: %.8f'
+          % (epoch + 1, num_epochs, loss.item(), learning_rate))
     plt.subplot(2, 1, 1)
     plt.cla()
     plt.plot(ytarget.data.numpy(), preds.data.numpy(), 'r*',
