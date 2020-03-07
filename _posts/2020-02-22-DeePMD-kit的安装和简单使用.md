@@ -1,5 +1,5 @@
 ---
-title: DeePMD-kit的安装和自我启蒙
+title: DeePMD-kit的安装和简单使用
 author: 赵旭山
 tags: 随笔
 ---
