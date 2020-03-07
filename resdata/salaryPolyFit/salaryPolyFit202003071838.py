@@ -63,6 +63,8 @@ for epoch in range(epoches):
     preds = model(x_yearsExperience)
     if (epoch + 1) % 1000 == 0:
         print(epoch + 1, '\t', loss.item())
+        for param in model.parameters():
+            print(param)
 
         plt.cla()
         plt.plot(yearsExperience, salary, 'ro', yearsExperience, preds.data.numpy(), 'b-')
