@@ -1,16 +1,15 @@
----
+# -*- coding: utf-8 -*-
+"""
+@Project : classifyIris
+@Author  : Xu-Shan Zhao
+@Filename: classifyIris202003091150.py
+@IDE     : PyCharm
+@Time1   : 2020-03-09 11:50:44
+@Time2   : 2020/3/9 11:50 上午
+@Month1  : 3月
+@Month2  : 三月
+"""
 
-title: PyTorch数据分类
-author: 赵旭山
-tags: PyTorch
-
----
-
-
-
-
-
-```python
 import torch
 import pandas as pd
 from torch import nn, optim
@@ -93,5 +92,3 @@ for epoch in range(num_epoches):
 
 plt.ioff()
 plt.show()
-```
-
