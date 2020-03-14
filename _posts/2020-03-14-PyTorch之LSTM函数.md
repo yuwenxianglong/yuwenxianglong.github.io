@@ -37,6 +37,42 @@ $$ h_t = o_t \cdot tanh(C_t) $$
 
 ![](/assets/images/pytorchLSTMDescription202003141603.jpg)
 
+总结一下：
+
+**参数列表**：
+
+* `input_size`：输入向量`x`的特征维度；
+* `hidden_size`：隐藏层的特征维度；
+* `num_layers`：LSTM隐藏层的层数，默认为1；
+* `bias`：False则$b_i$和$b_h$均为0。默认为True；
+* `batch_first`：True则输入输出的数据为（batch, seq, feature)；
+* `dropout`：除最后一层，每一层的输出都进行dropout（如丢弃一半，0.5），默认为：0；
+* `bidirectional`：True则为双向LSTM，默认为False。
+
+**输入输出数据格式**：
+
+运行模型：
+
+```python
+output, (hn, cn) = model(input, (h0, c0))
+```
+
+输入数据格式：
+
+`input`：`(seq_len, batch, input_size)`
+
+`h0`：`(num_layers*num_directions, batch, hidden_size)`
+
+`c0`：`(num_layers*num_directions, batch, hidden_size)`
+
+输出数据格式：
+
+`output`：`(seq_len, batch, hidden_size*num_directions)`
+
+`h0`：`(num_layers*num_directions, batch, hidden_size)`
+
+`c0`：`(num_layers*num_directions, batch, hidden_size)`
+
 #### 3. 示例
 
 ```python
@@ -48,7 +84,7 @@ h0 = torch.randn(2, 3, 20)  # h0(num_layers * num_directions, batch, hidden_size
 
 c0 = torch.randn(2, 3, 20)  # 同上
 
-output, (hn, cn) = rnn(input, (h0, c0))
+output, (hn, cn) = rnn(input, (h0, c0))  # 运行模型
 ```
 
 
