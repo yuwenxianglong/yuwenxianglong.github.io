@@ -6,7 +6,7 @@ article_header:
   type: cover
   image:
     src: //assets/images/fromDFTtoMachineLearning202002232204.png
-
+typora-root-url: ..
 ---
 
 #### 1. From DFT to Machine Learning

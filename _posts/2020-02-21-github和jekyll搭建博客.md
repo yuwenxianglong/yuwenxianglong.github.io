@@ -6,6 +6,7 @@ article_header:
   type: cover
   image:
     src: //assets/images/Tunnels_Beach_Kauai_Hawaii_US.jpg
+typora-root-url: ..
 ---
 
 

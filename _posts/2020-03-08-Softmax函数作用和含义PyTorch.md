@@ -2,6 +2,7 @@
 title: Softmax函数作用和含义(PyTorch)
 author: 赵旭山
 tags: PyTorch
+typora-root-url: ..
 ---
 
 #### 1. Softmax函数的作用
