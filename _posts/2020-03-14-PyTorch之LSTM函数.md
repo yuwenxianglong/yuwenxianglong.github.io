@@ -5,7 +5,7 @@ tags: 随笔
 typora-root-url: ..
 ---
 
-
+LSTM是一种循环神经网络，适用于对序列化的输入建模。本文旨在学习PyTorch的LSTM函数，理解输入、输入各参数的意义。
 
 #### 1. LSTM简介
 
@@ -15,7 +15,29 @@ typora-root-url: ..
 
 Fig. source: [https://mp.weixin.qq.com/s/k_z8sNbO3sqqkTV8gvWaIw](https://mp.weixin.qq.com/s/k_z8sNbO3sqqkTV8gvWaIw)
 
+$ X_t $表示输入，上图中各参数有如下对应关系：
 
+$$ f_t = \sigma (W_f \cdot [h_{t-1}, x_t]  + b_f) $$
+
+$$ i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i) $$
+
+$$ \widetilde{C}_t = tanh(W_c \cdot [h_{t-1}, x_t] + b_c) $$
+
+$$ C_t = f_t \cdot C_{t-1} + i_t \cdot \widetilde{C}_t $$
+
+$$ o_t = \sigma (W_o [h_{t-1}, x_t] + b_o) $$
+
+$$ h_t = o_t \cdot tanh(C_t) $$
+
+
+
+
+
+
+
+#### 2. 输入输出参数及含义
+
+结合PyTorch官方文档中LSTM函数的说明理解各参数。
 
 ![](/assets/images/pytorchLSTMDescription202003141603.jpg)
 
@@ -27,3 +49,4 @@ Fig. source: [https://mp.weixin.qq.com/s/k_z8sNbO3sqqkTV8gvWaIw](https://mp.weix
 
 * [牛刀小试之用pytorch实现LSTM](https://mp.weixin.qq.com/s/k_z8sNbO3sqqkTV8gvWaIw)
 * [什么是 LSTM 循环神经网络](https://morvanzhou.github.io/tutorials/machine-learning/torch/4-02-B-LSTM/)
+* [LSTM:Pytorch实现](https://blog.ddlee.cn/posts/7b4533bb/)
