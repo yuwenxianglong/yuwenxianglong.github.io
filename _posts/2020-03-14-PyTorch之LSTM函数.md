@@ -75,6 +75,8 @@ output, (hn, cn) = model(input, (h0, c0))
 
 #### 3. 示例
 
+##### 3.1 简单示例
+
 ```python
 rnn = nn.LSTM(10, 20, 2)  # 输入向量维数input_size为10，隐藏元维度hidden_size为20，2个LSTM层num_layers串联（默认为1层）
 
@@ -97,4 +99,5 @@ output, (hn, cn) = rnn(input, (h0, c0))  # 运行模型
 * [什么是 LSTM 循环神经网络](https://morvanzhou.github.io/tutorials/machine-learning/torch/4-02-B-LSTM/)
 * [LSTM:Pytorch实现](https://blog.ddlee.cn/posts/7b4533bb/)
 * [总结PYTORCH中nn.lstm(自官方文档整理 包括参数、实例)](https://www.pianshen.com/article/9440379844/)
+* [Pytorch的LSTM的理解](https://zhuanlan.zhihu.com/p/41261640)
 
