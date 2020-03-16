@@ -1,7 +1,7 @@
 ---
 title: PyTorch之RNN拟合航班载客量
 author: 赵旭山
-tags: 随笔
+tags: PyTorch
 typora-root-url: ..
 ---
 
