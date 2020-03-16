@@ -62,21 +62,22 @@ class lstm(nn.Module):
 
     def forward(self, x):
         x, _ = self.layer1(x)
-        s, b, h = x.size()
-        x = x.view(s * b, h)
+        # s, b, h = x.size()
+        # x = x.view(s * b, h)
         x = self.layer2(x)
-        x = x.view(s, b, -1)
+        # x = x.view(s, b, -1)
         return x
 
 
 model = lstm(2, 4, 1, 2)
+
 if torch.cuda.is_available():
     model = model.cuda()
 
 criterion = nn.MSELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-2)
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-1)
 # 开始训练
-for e in range(1000):
+for e in range(5000):
     var_x = Variable(train_x)
     var_y = Variable(train_y)
     # 前向传播
@@ -88,8 +89,7 @@ for e in range(1000):
     optimizer.step()
 
     if (e + 1) % 100 == 0:  # 每 100 次输出结果
-        print('Epoch: {}, Loss: {:.5f}'.format(e + 1, loss.item()))
-
+        print('Epoch: {}, Loss: {:.9f}'.format(e + 1, loss.item()))
 
 model = model.eval()  # 转换成测试模式
 
