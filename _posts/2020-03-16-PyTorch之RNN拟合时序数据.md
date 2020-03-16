@@ -1,5 +1,5 @@
 ---
-title: PyTorch之RNN拟合航班载客量
+title: PyTorch之RNN拟合时序数据
 author: 赵旭山
 tags: PyTorch
 typora-root-url: ..
