@@ -89,6 +89,47 @@ optimizer.apply_gradients(grads_and_vars=zip(grads, [model.W, model.b]))
 # model.b.assign_sub(learning_rate * db)
 ```
 
+#### 5. `tf.GradientTape`
+
+`tf.GradientTape`函数实现自动求导功能。
+
+> “tensorflow 提供tf.GradientTape api来实现自动求导功能。只要在tf.GradientTape()上下文中执行的操作，都会被记录与“tape”中，然后tensorflow使用反向自动微分来计算相关操作的梯度。”
+
+官网文档上给出的示例：
+
+```python
+# 求一阶导数
+x = tf.constant(3.0)
+with tf.GradientTape() as g:
+  g.watch(x)
+  y = x * x
+dy_dx = g.gradient(y, x) # 函数y对自变量x求一阶导数，值为6.0
+```
+
+```python
+# 求二阶导数
+x = tf.constant(3.0)
+with tf.GradientTape() as g:
+  g.watch(x)
+  with tf.GradientTape() as gg:
+    gg.watch(x)
+    y = x * x
+  dy_dx = gg.gradient(y, x)     # Will compute to 6.0
+d2y_dx2 = g.gradient(dy_dx, x)  # Will compute to 2.0
+```
+
+```python
+# 隐函数求导
+x = tf.constant(3.0)
+with tf.GradientTape(persistent=True) as g:
+  g.watch(x)
+  y = x * x
+  z = y * y
+dz_dx = g.gradient(z, x)  # 108.0 (4*x^3 at x = 3)
+dy_dx = g.gradient(y, x)  # 6.0
+del g  # Drop the reference to the tape
+```
+
 
 
 
@@ -108,3 +149,6 @@ optimizer.apply_gradients(grads_and_vars=zip(grads, [model.W, model.b]))
 * [TensorFlow 2.0 实现线性回归](https://huhuhang.com/post/machine-learning/tensorflow-2-0-02)
 
 * [TensorFlow 2.0 基础：张量、自动求导与优化器](https://blog.csdn.net/zkbaba/article/details/100060157)
+* [tf.GradientTape](https://tensorflow.google.cn/api_docs/python/tf/GradientTape?hl=zh-CN)
+* [TensorFlow2.0教程-自动求导](https://zhuanlan.zhihu.com/p/69951925)
+
