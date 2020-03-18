@@ -147,7 +147,6 @@ del g  # Drop the reference to the tape
 #### References:
 
 * [TensorFlow 2.0 实现线性回归](https://huhuhang.com/post/machine-learning/tensorflow-2-0-02)
-
 * [TensorFlow 2.0 基础：张量、自动求导与优化器](https://blog.csdn.net/zkbaba/article/details/100060157)
 * [tf.GradientTape](https://tensorflow.google.cn/api_docs/python/tf/GradientTape?hl=zh-CN)
 * [TensorFlow2.0教程-自动求导](https://zhuanlan.zhihu.com/p/69951925)
