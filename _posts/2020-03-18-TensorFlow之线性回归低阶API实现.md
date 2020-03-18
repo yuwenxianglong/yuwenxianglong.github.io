@@ -5,7 +5,7 @@ tags: TensorFlow
 typora-root-url: ..
 ---
 
-
+本文利用[前文](https://yuwenxianglong.github.io/2020/03/02/Pandas%E8%AF%BB%E5%8F%96CSV%E6%95%B0%E6%8D%AE%E8%BD%AC%E5%8C%96%E4%B8%BAPyTorch%E5%BC%A0%E9%87%8F.html)中使用的发电厂运行数据集，使用TensorFlow 2.1.0版本，应用低阶API实现回归分析。代码主要参考《[TensorFlow 2.0 实现线性回归](https://huhuhang.com/post/machine-learning/tensorflow-2-0-02)》一文。
 
 ```python
 data_csv = pd.read_csv('Folds5x2_pp.csv')
