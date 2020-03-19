@@ -13,6 +13,7 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 data_csv = pd.read_csv('Folds5x2_pp.csv')
 fts = data_csv.iloc[:, 0: 4].to_numpy().astype('float32')
@@ -24,7 +25,7 @@ pe = data_csv.iloc[:, 4].to_numpy().astype('float32')
 
 class Model(object):
     def __init__(self):
-        self.W = tf.Variable(tf.random.uniform([4, 1]))
+        self.W = tf.Variable(tf.random.uniform([fts.shape[1], 1]))
         self.b = tf.Variable(tf.random.uniform([1]))
 
     def __call__(self, x):
@@ -34,7 +35,7 @@ class Model(object):
 model = Model()
 
 num_epoches = 1000
-learning_rate = 10
+learning_rate = 0.01
 
 optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
 

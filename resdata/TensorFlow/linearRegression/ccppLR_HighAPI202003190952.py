@@ -23,7 +23,7 @@ model = tf.keras.layers.Dense(units=1)
 # plt.scatter(pe, model(fts))
 # plt.show()
 
-num_epoches = 100
+num_epoches = 1000
 learning_rate = 0.1
 
 for epoch in range(num_epoches):
@@ -35,7 +35,9 @@ for epoch in range(num_epoches):
     optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
     optimizer.apply_gradients(zip(grads, model.variables))
 
-    print(epoch + 1, '/', num_epoches, loss.numpy())
+    if (epoch + 1) % 100 == 0:
+        print(epoch + 1, '/', num_epoches, loss.numpy())
 
 plt.scatter(pe, model(fts))
+plt.plot(pe, pe)
 plt.show()
