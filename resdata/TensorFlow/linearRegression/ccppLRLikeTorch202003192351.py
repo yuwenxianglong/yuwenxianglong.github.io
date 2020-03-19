@@ -13,10 +13,14 @@
 import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
+
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 csv_data = pd.read_csv('Folds5x2_pp.csv')
 fts = csv_data.iloc[:, : 4].astype('float32').to_numpy()
 pe = csv_data.iloc[:, 4].astype('float32').to_numpy()
+
 
 class Net(tf.keras.Model):
     def __init__(self):
@@ -24,8 +28,9 @@ class Net(tf.keras.Model):
         self.dense_1 = tf.keras.layers.Dense(units=1, input_dim=fts.shape[1])
 
     def call(self, x):
-        x =self.dense_1(x)
+        x = self.dense_1(x)
         return x
+
 
 model = Net()
 
