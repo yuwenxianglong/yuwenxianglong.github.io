@@ -17,7 +17,7 @@ data_stock = data_stock.sort_index(ascending=True)  # sort data by date
 data_stock = (data_stock - data_stock.mean()) / (data_stock.max() - data_stock.min())
 ```
 
-
+直接通过tushare的API获取的股票价格数据如下所示，按照日期倒序排列。采用`sort_index(ascending=True)`改为正序排列。
 
 ```bash
              open  high  ...      v_ma10      v_ma20
@@ -37,19 +37,10 @@ date                    ...
 [509 rows x 13 columns]
 ```
 
+#### 2. 数据预处理
 
-
-
-
-
-
-
-
-```python
+```
 window_size = 30
-column = 'high'
-
-
 def batch_dataset(dataset):
     dataset_batched = dataset.batch(window_size, drop_remainder=True)
     return dataset_batched
@@ -61,7 +52,17 @@ ds_data = tf.data.Dataset.from_tensor_slices(ds_data).window(window_size, shift=
 ds_label = tf.constant(data_stock.values[window_size:], dtype=tf.float32)
 ds_label = tf.data.Dataset.from_tensor_slices(ds_label)
 ds_train = tf.data.Dataset.zip((ds_data, ds_label)).batch(128).repeat()
+```
 
+
+
+
+
+
+
+
+
+```python
 model = tf.keras.Sequential(
     [
         tf.keras.layers.LSTM(60, return_sequences=True),
