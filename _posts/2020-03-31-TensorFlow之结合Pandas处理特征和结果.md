@@ -1,5 +1,5 @@
 ---
-title: TensorFlow之结合Pandas特征和数据处理
+title: TensorFlow之结合Pandas处理特征和结果
 author: 赵旭山
 tags: TensorFlow
 typora-root-url: ..
