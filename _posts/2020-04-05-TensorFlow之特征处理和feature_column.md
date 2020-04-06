@@ -309,7 +309,7 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.binary_crossentropy,
               metrics=['accuracy'])
 
-model.fit(train_ds, validation_data=val_ds, epochs=10)
+model.fit(train_ds, validation_data=val_ds, epochs=10, steps_per_epoch=10)
 
 loss, accuracy = model.evaluate(test_ds)
 print(loss, accuracy)
