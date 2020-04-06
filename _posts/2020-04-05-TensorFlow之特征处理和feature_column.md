@@ -12,6 +12,19 @@ typora-root-url: ..
 
 本文主要参考《[TensorFlow 2 中文文档 - 特征工程结构化数据分类 ](https://geektutu.com/post/tf2doc-ml-basic-structured-data.html)》。
 
+#### 1. 数据来源
+
+数据集来自克利夫兰诊所心脏病基金会（Cleveland Clinic Foundation）提供的[303行14列心脏病数据](https://storage.googleapis.com/applied-dl/heart.csv)，每行描述一个患者，每列代表一个属性，详细的列描述参见[`heart.names`](https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/heart-disease.names)。
+
+以下为本文用到的数据集中各列的说明。
+
+| Column   | Description                                                  | Feature Type | Data Type |
+| -------- | ------------------------------------------------------------ | ------------ | --------- |
+| Age      | Age in years                                                 | Numerical    | integer   |
+| Sex      | (1 = male; 0 = female)                                       | Categorical  | integer   |
+| CP       | Chest pain type (0, 1, 2, 3, 4)                              | Categorical  | integer   |
+| Trestbpd | Resting blood pressure (in mm Hg on admission to the hospital) |              |           |
+
 
 
 
