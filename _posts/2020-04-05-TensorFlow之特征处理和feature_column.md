@@ -200,21 +200,55 @@ demo(thal_embedding)
 
 `dimension=8`，故输出为8列数据。
 
+##### 4.5 Hashed feature columns：哈希特征列
 
+> 另一种表示类别很多的 categorical column 的方式是使用 categorical_column_with_hash_bucket。这个特征列会计算输入的哈希值，然后根据哈希值对字符串进行编码。哈希桶(bucket)个数即参数`hash_bucket_size`。哈希桶(hash_buckets)的个数应明显小于实际的类别个数，以节省空间。
+>
+> 注意：哈希的一大副作用是可能存在冲突，不同的字符串可能映射到相同的哈希桶中。不过，在某些数据集，这个方式还是非常有效的。
+
+```python
+thal_hashed = tf.feature_column.categorical_column_with_hash_bucket(
+    'thal', hash_bucket_size=20
+)
+demo(tf.feature_column.indicator_column(thal_hashed))
+```
+
+输出为：
+
+```python
+[[0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+```
+
+`hash_bucket_size=20`，故输出为20列。
+
+##### 4.6 Crossed feature columns：交叉特征列
+
+> 将几个特征组合成一个特征，即 feature crosses，模型可以对每一个特征组合学习独立的权重。接下来，我们将组合 `age` 和 `thal` 列创建一个新的特征。注意：`crossed_column`不会创建所有可能的组合，因为组合可能性会非常多。背后是通过`hashed_column`处理的，可以设置哈希桶的大小。
+
+```python
+crossed_feature = tf.feature_column.crossed_column([age_buckets, thal], hash_bucket_size=16)
+demo(tf.feature_column.indicator_column(crossed_feature))
+```
+
+输出如下，共计16列。
+
+```python
+[[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0.]]
+```
 
 
 
 
 
 ```python
-thal_embedding = feature_column.embedding_column(thal, dimension=8)
-demo(thal_embedding)
-
-thal_hashed = feature_column.categorical_column_with_hash_bucket(
-    'thal', hash_bucket_size=1000
-)
-demo(feature_column.indicator_column(thal_hashed))
-
 crossed_feature = feature_column.crossed_column([age_buckets, thal], hash_bucket_size=1000)
 demo(feature_column.indicator_column(crossed_feature))
 
