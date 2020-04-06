@@ -35,6 +35,239 @@ typora-root-url: ..
 | Thal     | 3 = normal; 6 = fixed defect; 7 = reversible defect          | Categorical    | string    |
 | Target   | Diagnosis of heart disease (1 = true; 0 = false)             | Classification | integer   |
 
+#### 2. 读入数据分割数据集
+
+使用scimitar-learn的`train_test_split`把数据集分割为：**训练集**、**验证集**和**测试集**。
+
+```python
+df = pd.read_csv('heart.csv')
+
+from sklearn.model_selection import train_test_split
+train, test = train_test_split(df, test_size=0.2)
+train, val = train_test_split(train, test_size=0.2)
+```
+
+#### 3. 数据输入管道
+
+之前文中也曾用到`tf.data`创建训练数据集，原来还有这么个“高大上”的包装词，形象的把训练数据包装为“数据帧”。
+
+##### 3.1 创建输入通道
+
+> 《[结构化数据分类实战：心脏病预测(tensorflow2.0官方教程翻译)](https://www.jianshu.com/p/2f08f77593e2)》：
+>
+> 我们将使用tf.data包装数据帧，这将使我们能够使用特征列作为桥梁从Pandas数据框中的列映射到用于训练模型的特征。如果我们使用非常大的CSV文件（如此之大以至于它不适合内存），我们将使用tf.data直接从磁盘读取它。
+
+> 《[TensorFlow 2 中文文档 - 特征工程结构化数据分类 ](https://geektutu.com/post/tf2doc-ml-basic-structured-data.html)》：
+>
+> 使用 tf.data ，我们可以使用特征工程(feature columns)将 Pandas DataFrame  中的列映射为特征值(features)。如果是一个非常大的 CSV 文件，不能直接放在内存中，就必须直接使用 tf.data  从磁盘中直接读取数据了。
+
+```python
+def df_to_dataset(dataframe, shuffle=True, batch_size=32):
+    dataframe = df.copy()
+    labels = dataframe.pop('target')
+    ds = tf.data.Dataset.from_tensor_slices(
+        (dict(dataframe), labels)
+    )
+    if shuffle:
+        ds = ds.shuffle(buffer_size=len(dataframe))
+    ds = ds.batch(batch_size)
+    return ds
+
+
+batch_size = 5
+train_ds = df_to_dataset(train, batch_size=batch_size)
+tf.print(list(train_ds))
+val_ds = df_to_dataset(val, shuffle=False, batch_size=batch_size)
+test_ds = df_to_dataset(test, shuffle=False, batch_size=batch_size)
+```
+
+与[前文](https://yuwenxianglong.github.io/2020/03/30/TensorFlow%E4%B9%8BRNN%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E6%95%B0%E6%8D%AE.html)中`tf.data.Dataset.from_tensor_batch(tf.constant(df.values, dtype=tf.float32))`方式创建训练数据集的方式不同，本文中采用：
+
+```python
+    ds = tf.data.Dataset.from_tensor_slices(
+        (dict(dataframe), labels)
+    )
+```
+
+的方式，使用了[`dict`函数](https://www.runoob.com/python/python-dictionary.html)。
+
+##### 3.2 理解输入通道
+
+通过`dict`字典方式创建了一个“数据帧”，可以用以下方式查看输入通道返回的数据格式。
+
+```python
+for feature_batch, label_batch in train_ds.take(1):
+    tf.print(list(feature_batch.keys()))
+    tf.print(list(feature_batch['age']))
+    tf.print(list(label_batch))
+```
+
+#### 4. `tf.feature_column`中几种特征列处理方法
+
+`tf.feature_column`提供了多种特征列处理方法，本节将采用该函数创建几种常用的特征列，以及如何从dataframe中转换。首先定义一个**example_batch**用于后续特征处理。
+
+```python
+# fetch one example data
+example_ds = next(iter(train_ds))  # using iter and next function, see also reference
+example_batch = example_ds[0]  # feature columns
+example_label = example_ds[1]  # target column
+```
+
+`DenseFeatures`将原始数据转换为特征数据。定义`demo`函数转换特征列并输出数值结果。
+
+```python
+def demo(feature_column):
+    feature_layer = tf.keras.layers.DenseFeatures(feature_column)
+    print(feature_layer(example_batch).numpy())
+    # tf.print(feature_layer(example_batch))
+```
+
+##### 4.1 Numerical columns：数字列
+
+就是数值类型，输出为特征真实的数值。
+
+```python
+age = tf.feature_column.numeric_column('age')
+demo(age)
+```
+
+#### 4.2 Bucketized columns：桶列
+
+> 有时候，并不想直接将数值传给模型，而是希望基于数值的范围离散成几个种类。比如人的年龄，0-10归为一类，用0表示；11-20归为一类，用1表示。我们可以用 bucketized column 将年龄划分到不同的 bucket  中。用中文比喻，就好像提供了不同的桶，在某一范围内的扔进A桶，另一范围的数据扔进B桶，以此类推。下面的例子使用独热编码来表示不同的  bucket。
+
+```python
+age_buckets = tf.feature_column.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
+demo(age_buckets)
+```
+
+输出为：
+
+```python
+[[0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0.]]
+```
+
+`boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65]`通过**10**个边界值把年龄划分为**11**个区间，故输出了“one-hot”编码的11列数据。
+
+##### 4.3 Categorical columns：分类列
+
+> 在这个数据集中，`thal`列使用字符串表示(e.g. ‘fixed’, ‘normal’,  ‘reversible’)。字符串不能直接传给模型。所以我们要先将字符串映射为数值。可以使用categorical_column_with_vocabulary_list 和 categorical_column_with_vocabulary_file 来转换，前者接受一个列表作为输入，后者可以传入一个文件。
+
+```python
+thal = tf.feature_column.categorical_column_with_vocabulary_list(
+    'thal', ['fixed', 'normal', 'reversible']
+)
+thal_one_hot = tf.feature_column.indicator_column(thal)
+demo(thal_one_hot)
+```
+
+输出为：
+
+```python
+[[0. 0. 1.]
+ [0. 0. 1.]
+ [1. 0. 0.]
+ [1. 0. 0.]
+ [0. 1. 0.]]
+```
+
+把`'fixed', 'normal', 'reversible'`采用“one-hot”编码映射为三列数据。
+
+##### 4.4 Embedding columns：嵌入列
+
+> 假设某一列有上千种类别，用独热编码来表示就不太合适了。这时候，可以使用 embedding column。embedding column 可以压缩维度，因此向量中的值不再只由0或1组成，可以包含任何数字。
+>
+> 在有很多种类别时使用 embedding column 是最合适的。接下来只是一个示例，不管输入有多少种可能性，最终的输出向量定长为8。
+
+```python
+# embedding_column的输入是categorical column
+thal_embedding = tf.feature_column.embedding_column(thal, dimension=8)
+demo(thal_embedding)
+```
+
+输出为：
+
+```python
+[[-0.50364065  0.31687912  0.39927942 -0.09272859 -0.3881978  -0.0743672
+   0.49849313  0.18120211]
+ [-0.38887915 -0.4781439  -0.11650152 -0.10219061  0.63685566  0.58923686
+  -0.283267   -0.13921945]
+ [-0.50364065  0.31687912  0.39927942 -0.09272859 -0.3881978  -0.0743672
+   0.49849313  0.18120211]
+ [-0.50364065  0.31687912  0.39927942 -0.09272859 -0.3881978  -0.0743672
+   0.49849313  0.18120211]
+ [-0.50364065  0.31687912  0.39927942 -0.09272859 -0.3881978  -0.0743672
+   0.49849313  0.18120211]]
+```
+
+`dimension=8`，故输出为8列数据。
+
+
+
+
+
+
+
+```python
+thal_embedding = feature_column.embedding_column(thal, dimension=8)
+demo(thal_embedding)
+
+thal_hashed = feature_column.categorical_column_with_hash_bucket(
+    'thal', hash_bucket_size=1000
+)
+demo(feature_column.indicator_column(thal_hashed))
+
+crossed_feature = feature_column.crossed_column([age_buckets, thal], hash_bucket_size=1000)
+demo(feature_column.indicator_column(crossed_feature))
+
+# Select columns to be used
+feature_columns = []
+# numeric cols
+for header in ['age', 'trestbps', 'chol', 'thalach', 'oldpeak', 'slope', 'ca']:
+    feature_columns.append(feature_column.numeric_column(header))
+
+# bucketized cols
+age_buckets = feature_column.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
+feature_columns.append(age_buckets)
+
+# indicator cols
+thal = feature_column.categorical_column_with_vocabulary_list(
+    'thal', ['fixed', 'normal', 'reversible']
+)
+thal_one_hot = feature_column.indicator_column(thal)
+feature_columns.append(thal_one_hot)
+
+# embedding cols
+thal_embedding = feature_column.embedding_column(thal, dimension=8)
+feature_columns.append(thal_embedding)
+
+# crossed cols
+crossed_feature = feature_column.crossed_column([age_buckets, thal], hash_bucket_size=1000)
+crossed_feature = feature_column.indicator_column(crossed_feature)
+feature_columns.append(crossed_feature)
+
+# Define Net sturcture
+model = tf.keras.Sequential([
+    tf.keras.layers.DenseFeatures(feature_columns),
+    tf.keras.layers.Dense(128, activation=tf.keras.activations.relu),
+    tf.keras.layers.Dense(128, activation=tf.keras.activations.relu),
+    tf.keras.layers.Dense(1, activation=tf.keras.activations.sigmoid)
+])
+model.compile(optimizer='adam',
+              loss=tf.keras.losses.binary_crossentropy,
+              metrics=['accuracy'],
+              run_eagerly=True)
+model.fit(train_ds,
+          validation_data=val_ds,
+          epochs=5
+          )
+loss, accuracy = model.evaluate(test_ds)
+print(loss, accuracy)
+```
+
 
 
 
@@ -43,4 +276,7 @@ typora-root-url: ..
 
 * [TensorFlow 2 中文文档 - 特征工程结构化数据分类 ](https://geektutu.com/post/tf2doc-ml-basic-structured-data.html)
 * [结构化数据分类实战：心脏病预测(tensorflow2.0官方教程翻译)](https://www.jianshu.com/p/2f08f77593e2)
+* [Python  字典(Dictionary)](https://www.runoob.com/python/python-dictionary.html)
+* [tf.data.Dataset](https://tensorflow.google.cn/api_docs/python/tf/data/Dataset?hl=en)
+* [对python中的iter()函数与next()函数详解](https://www.jb51.net/article/149090.htm)
 
