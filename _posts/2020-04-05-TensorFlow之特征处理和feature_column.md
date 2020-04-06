@@ -244,57 +244,103 @@ demo(tf.feature_column.indicator_column(crossed_feature))
  [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0.]]
 ```
 
+#### 5. 选择训练使用列
 
+##### 5.1 构建特征列
 
-
+本文选用一些列，应用上述特征处理方法构建特征列。参考两文中均说明，“大数据集、选取有意义的列、数据的展示方式”对训练出准确率高的模型非常重要。本例中选取并处理的特征列仅用于测试，并不见得合理。
 
 ```python
-crossed_feature = feature_column.crossed_column([age_buckets, thal], hash_bucket_size=1000)
-demo(feature_column.indicator_column(crossed_feature))
-
-# Select columns to be used
+# Select columns using for features
 feature_columns = []
+
 # numeric cols
 for header in ['age', 'trestbps', 'chol', 'thalach', 'oldpeak', 'slope', 'ca']:
-    feature_columns.append(feature_column.numeric_column(header))
+    feature_columns.append(tf.feature_column.numeric_column(header))
 
 # bucketized cols
-age_buckets = feature_column.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
+age_buckets = tf.feature_column.bucketized_column(age, boundaries=[18, 25, 30, 35,
+                                                                   40, 45, 50, 55,
+                                                                   60, 65])
 feature_columns.append(age_buckets)
 
 # indicator cols
-thal = feature_column.categorical_column_with_vocabulary_list(
+thal = tf.feature_column.categorical_column_with_vocabulary_list(
     'thal', ['fixed', 'normal', 'reversible']
 )
-thal_one_hot = feature_column.indicator_column(thal)
+thal_one_hot = tf.feature_column.indicator_column(thal)
 feature_columns.append(thal_one_hot)
 
 # embedding cols
-thal_embedding = feature_column.embedding_column(thal, dimension=8)
+thal_embedding = tf.feature_column.embedding_column(thal, dimension=8)
 feature_columns.append(thal_embedding)
 
 # crossed cols
-crossed_feature = feature_column.crossed_column([age_buckets, thal], hash_bucket_size=1000)
-crossed_feature = feature_column.indicator_column(crossed_feature)
+crossed_feature = tf.feature_column.crossed_column(
+    [age_buckets, thal], hash_bucket_size=1000
+)
+crossed_feature = tf.feature_column.indicator_column(crossed_feature)
 feature_columns.append(crossed_feature)
+```
 
-# Define Net sturcture
-model = tf.keras.Sequential([
-    tf.keras.layers.DenseFeatures(feature_columns),
-    tf.keras.layers.Dense(128, activation=tf.keras.activations.relu),
-    tf.keras.layers.Dense(128, activation=tf.keras.activations.relu),
-    tf.keras.layers.Dense(1, activation=tf.keras.activations.sigmoid)
-])
+##### 5.2 创建特征层
+
+通过`DenseFeatures`将创建的特征列`feature_columns`传入到模型中。
+
+```python
+feature_layer = tf.keras.layers.DenseFeatures(feature_columns)
+```
+
+#### 6. 定义模型结构并训练
+
+在`Sequential`模型中加入之前定义的`feature_layer`。
+
+```python
+model = tf.keras.Sequential(
+    [
+        feature_layer,
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dense(1, activation='sigmoid')
+    ]
+)
+
 model.compile(optimizer='adam',
               loss=tf.keras.losses.binary_crossentropy,
-              metrics=['accuracy'],
-              run_eagerly=True)
-model.fit(train_ds,
-          validation_data=val_ds,
-          epochs=5
-          )
+              metrics=['accuracy'])
+
+model.fit(train_ds, validation_data=val_ds, epochs=10)
+
 loss, accuracy = model.evaluate(test_ds)
 print(loss, accuracy)
+```
+
+训练过程如下：
+
+```python
+Train for 10 steps, validate for 10 steps
+Epoch 1/10
+10/10 [==============================] - 2s 229ms/step - loss: 1.0193 - accuracy: 0.6469 - val_loss: 1.0011 - val_accuracy: 0.4521
+Epoch 2/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.6926 - accuracy: 0.6733 - val_loss: 0.7716 - val_accuracy: 0.5743
+Epoch 3/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.6139 - accuracy: 0.7063 - val_loss: 0.6171 - val_accuracy: 0.6667
+Epoch 4/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.5086 - accuracy: 0.7096 - val_loss: 0.4567 - val_accuracy: 0.7888
+Epoch 5/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.4759 - accuracy: 0.7657 - val_loss: 0.4424 - val_accuracy: 0.7855
+Epoch 6/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.4179 - accuracy: 0.7921 - val_loss: 0.4473 - val_accuracy: 0.7756
+Epoch 7/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.4341 - accuracy: 0.7723 - val_loss: 0.4150 - val_accuracy: 0.8152
+Epoch 8/10
+10/10 [==============================] - 0s 13ms/step - loss: 0.4352 - accuracy: 0.7888 - val_loss: 0.4068 - val_accuracy: 0.8152
+Epoch 9/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.3951 - accuracy: 0.8086 - val_loss: 0.3931 - val_accuracy: 0.8350
+Epoch 10/10
+10/10 [==============================] - 0s 14ms/step - loss: 0.4261 - accuracy: 0.7888 - val_loss: 0.3936 - val_accuracy: 0.8053
+10/10 [==============================] - 0s 5ms/step - loss: 0.3936 - accuracy: 0.8053
+0.39355802834033965 0.8052805  # loss, accuracy
 ```
 
 
