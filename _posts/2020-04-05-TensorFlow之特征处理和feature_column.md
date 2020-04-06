@@ -343,7 +343,7 @@ Epoch 10/10
 0.39355802834033965 0.8052805  # loss, accuracy
 ```
 
-模型训练参数更改为`epochs=1000`，即`model.fit(train_ds, validation_data=val_ds, epochs=1000, steps_per_epoch=10)`，准确率可以达到100%，是否过拟合了，还不会判断。
+模型训练参数更改为`epochs=1000`，即`model.fit(train_ds, validation_data=val_ds, epochs=1000, steps_per_epoch=10)`，准确率可以达到100%。
 
 ```python
 Epoch 990/1000
