@@ -1,5 +1,5 @@
 ---
-title: TensorFlow之特征工程和feature_column
+title: TensorFlow之特征处理和feature_column
 author: 赵旭山
 tags: TensorFlow
 typora-root-url: ..
@@ -19,3 +19,4 @@ typora-root-url: ..
 #### References:
 
 * [TensorFlow 2 中文文档 - 特征工程结构化数据分类 ](https://geektutu.com/post/tf2doc-ml-basic-structured-data.html)
+
