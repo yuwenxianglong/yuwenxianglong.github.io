@@ -343,6 +343,35 @@ Epoch 10/10
 0.39355802834033965 0.8052805  # loss, accuracy
 ```
 
+模型训练参数更改为`epochs=1000`，即`model.fit(train_ds, validation_data=val_ds, epochs=1000, steps_per_epoch=10)`，准确率可以达到100%，是否过拟合了，还不会判断。
+
+```python
+Epoch 990/1000
+10/10 [==============================] - 0s 21ms/step - loss: 0.0156 - accuracy: 0.9967 - val_loss: 0.0139 - val_accuracy: 1.0000
+Epoch 991/1000
+10/10 [==============================] - 0s 19ms/step - loss: 0.0164 - accuracy: 1.0000 - val_loss: 0.0138 - val_accuracy: 1.0000
+Epoch 992/1000
+10/10 [==============================] - 0s 19ms/step - loss: 0.0171 - accuracy: 0.9967 - val_loss: 0.0187 - val_accuracy: 0.9967
+Epoch 993/1000
+10/10 [==============================] - 0s 19ms/step - loss: 0.0177 - accuracy: 0.9967 - val_loss: 0.0150 - val_accuracy: 1.0000
+Epoch 994/1000
+10/10 [==============================] - 0s 18ms/step - loss: 0.0143 - accuracy: 1.0000 - val_loss: 0.0134 - val_accuracy: 1.0000
+Epoch 995/1000
+10/10 [==============================] - 0s 19ms/step - loss: 0.0154 - accuracy: 1.0000 - val_loss: 0.0133 - val_accuracy: 1.0000
+Epoch 996/1000
+10/10 [==============================] - 0s 17ms/step - loss: 0.0164 - accuracy: 0.9967 - val_loss: 0.0170 - val_accuracy: 0.9967
+Epoch 997/1000
+10/10 [==============================] - 0s 17ms/step - loss: 0.0230 - accuracy: 0.9901 - val_loss: 0.0160 - val_accuracy: 1.0000
+Epoch 998/1000
+10/10 [==============================] - 0s 20ms/step - loss: 0.0297 - accuracy: 0.9901 - val_loss: 0.0284 - val_accuracy: 0.9934
+Epoch 999/1000
+10/10 [==============================] - 0s 19ms/step - loss: 0.0237 - accuracy: 0.9967 - val_loss: 0.0298 - val_accuracy: 0.9901
+Epoch 1000/1000
+10/10 [==============================] - 0s 17ms/step - loss: 0.0271 - accuracy: 0.9901 - val_loss: 0.0205 - val_accuracy: 1.0000
+10/10 [==============================] - 0s 6ms/step - loss: 0.0205 - accuracy: 1.0000
+0.020499406522139905 1.0  # loss, accuracy
+```
+
 
 
 
