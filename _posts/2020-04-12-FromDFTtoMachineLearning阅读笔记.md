@@ -55,10 +55,54 @@ Experiment➞Theory➞Computation/Simulation➞Data-driven science
 
 * **3rd Generation**: The third generation is based on **statistical learning**. It also enables the discovery of novel compositions, besides much faster predictions of properties and crystalline structures given the vast amount of available physical and chemical data via ML algorithms.
 
-#### 5. DFT calculations & Structure prediction: local minima & global optimization
+#### 5. Historical development of DFT
+
+In 1964 Hohenberg and Kohn published an article that became the paradigm for the understanding of materials properties, today known as Density Functional Theory (DFT). 
+
+$$ E[n]=T_s[n]+U_H[n]+V_{ext}[n]+E_{xc}[n] $$
+
+$ E_{xc}[n] $ is  exchange-correlation term to the energy, $ T_s[n] $ is kinetic energy, $ U_H $ is the Hartree potential, $ V_{ext} $ is an external potential.
+
+##### 5.1 All-electron treatment
+
+First, one needs to select the exchange-correlation term contained in equation.
+
+In the early days of DFT, only the so-called **all-electron treatment** was available, and its drawback was the restriction of systems that could be simulated at that time. 
+
+##### 5.2 Pseudopotential & PAW
+
+The pseudopotential method led to the possibility of simulation. Some popular approaches are the projector augmented waves (PAW), norm-conserving and ultrasoft pseudopotentials as developed by Troullier and Martins and Vanderbilt.
+
+##### 5.3 Bloch's theorem
+
+Another important advance in DFT was the treatment of materials imposing links on translational symmetry, via Bloch’s theorem.
+
+##### 5.4 LDA & GGA
+
+The pursuit of the ‘exact’ functional is still a subject of research. In its first implementation, DFT codes employed the Local Spin Density approximation (LSDA or simply LDA) for the exchange-correlation functional.
+
+On the other hand, the chemistry community did not embrace LDA due to a few systematic errors, such as overestimation of molecular atomization energies and overestimation of bond lengths. Such shortcomings were alleviated in great part when the generalized gradient approximation (GGA) was introduced in the 1980s. 
+
+A number of flavours of exchange-correlation functionals within this approximation are available, namely the Perdew- Burke-Ernzerhof (PBE), Perdew-Wang (PW91), and Becke-Lee-Yang-Parr (BLYP) are some examples of very successful functionals.
+
+##### 5.5 meta-GGA
+
+The next step in the complexity of exchange-correlation functionals is usually referred to as the advent of the meta-GGA approximation. Their new ingredient is the introduction of the so-called Kohn–Sham kinetic energy density $ \tau_{\uparrow / \downarrow}(r) $. opular functionals within this approximation comprise the Tao–Perdew–Staroverov–Scuseria functional (TPSS), and the more recent proposal of the non-empirical strongly constrained and appropriately normed (SCAN) functional of Sun et al. Successful attempts of semilocal functionals for improved bandgaps of different materials include the Tran–Blaha modified Becke–Johnson (mBJ) and ACBN0 functionals.
+
+##### 5.6 HSE
+
+Hybrid functional inspired by the Hartree–Fock formulation introduced non-locality in DFT by mixing a fraction of the exact exchange term into the exchange-correlation energy within the GGA. Examples are the PBE0 and the Coulomb interaction screened Heyd–Scuseria–Ernzerhof (HSE) hybrid functionals based on the PBE $ E_{xc} $ and the B3LYP functional, which introduced mixing as well as other empirical parameters into its precursor BLYP.
+
+##### 5.7 RPA
+
+Finally, by considering both occupied and unoccupied orbitals in the theory. Random Phase Approximation (RPA) can successfully account for electronic correlation.
+
+
+
+#### 6. DFT calculations & Structure prediction: local minima & global optimization
 
 > Base on the Hellman-Feynman theorem, one can use DFT calculations to find a local structural minima of materials and molecules. However, a global optimization of such systems is much more involved process.
 
-#### 6. High-throughput (HT)
+#### 7. High-throughput (HT)
 
 ![](/assets/images/fromDFTtoMLFigure6_202002252015.png)
