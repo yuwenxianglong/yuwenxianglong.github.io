@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
 import pandas as pd
+import os
 
 (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.cifar10.load_data()
 print(train_images.shape)
@@ -57,11 +58,20 @@ model.compile(
     metrics=['accuracy']
 )
 
+checkpoint_path = 'train\cp-{epoch:04d}.ckpt'
+checkpoint_dir = os.path.dirname(checkpoint_path)
+cp_callback = tf.keras.callbacks.ModelCheckpoint(
+    checkpoint_path, verbose=1, period=10
+)
+
+model.save(checkpoint_path.format(epoch=0))
+
 history = model.fit(
     train_images, train_labels,
     epochs=100,
     batch_size=512,
-    validation_split=0.2
+    validation_split=0.2,
+    callbacks=[cp_callback]
 )
 
 hist = pd.DataFrame(history.history, index=history.epoch)
@@ -80,3 +90,10 @@ print(preds[0])
 
 print(np.argmax(preds[0]))
 print(test_labels[0])
+
+model.save('cifar10CNN.h5')
+
+model = tf.keras.models.load_model('cifar10CNN.h5')
+model.evaluate(train_images, train_labels)
+model.evaluate(test_images, test_labels)
+print(model.predict(test_images))
