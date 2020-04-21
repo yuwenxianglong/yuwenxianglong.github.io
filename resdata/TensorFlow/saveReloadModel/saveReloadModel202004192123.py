@@ -47,7 +47,8 @@ checkpoint_dir = os.path.dirname(checkpoint_path)
 model.save(checkpoint_path.format(epoch=0))
 
 checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
-    checkpoint_path, verbose=1, save_freq=10,
+    checkpoint_path, verbose=1, save_freq=400000,
+    # save_freq='epoch',
     # save_weights_only=True
 )
 
@@ -80,3 +81,9 @@ print('\nLoad model from fully saved HDF5 file.')
 model.save('cifar10CNN.h5')
 model_fromHDF5 = tf.keras.models.load_model('cifar10CNN.h5')
 model_fromHDF5.evaluate(train_images, train_labels)
+
+print('\nOnly save weight.')
+model.save_weights('weight\manual_weight')
+model_fromWeight = create_model()
+model_fromWeight.load_weights('weight\manual_weight')
+model_fromWeight.evaluate(train_images, train_labels)

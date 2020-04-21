@@ -52,7 +52,7 @@ checkpoint_path = 'train\cp-{epoch:04d}.ckpt'  # Used to save checkpoint, point 
 checkpoint_dir = os.path.dirname(checkpoint_path)  # Used for reloading latest checkpoint, point to a directory.
 ```
 
-#### 2.1 保存模型初始状态
+##### 2.1 保存模型初始状态
 
 `epoch=0`传入**chekpoint_path**格式化为待保存的文件名。
 
@@ -67,11 +67,13 @@ Out[2]: 'train\\cp-0000.ckpt'
 model.save(checkpoint_path.format(epoch=0))
 ```
 
+##### 2.2 训练过程中保存checkpoint
+
 通过`callbacks.ModelCheckpoint`定义`fit`过程中保存checkpoint。
 
 ```python
 checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
-    checkpoint_path, verbose=1, save_freq=10,
+    checkpoint_path, verbose=1, save_freq=400000,  # save_freq='epoch', or period=10,
     # save_weights_only=True
 )
 
@@ -84,4 +86,64 @@ history = model.fit(
 )
 ```
 
-`save_freq=10`设定保存频率，`save_weights_only=True`设定只保存权重（True）或保存整个模型。
+`save_freq=400000`设定保存频率，`save_weights_only=True`设定只保存权重（True）或保存整个模型。
+
+##### 2.3 谈谈`period=10`和`save_freq=400000`
+
+TensorFlow 2.1.0版本提示`period`马上要被废弃，需要用`save_freq`去代替，但其实两个设定的用法是不同的。
+
+`period=10`的含义其实挺明了的，就是每10个`epoch`保存一次。（其实挺通俗易懂的，搞不懂为什么要废弃。）
+
+`save_freq`有两类取值，‘epoch’和整数。‘epoch’比较好懂，就是每一个‘epoch’保存一次。整数则有些费解，测试几次，应该是与样本数量有关系，如`save_freq=40000`似乎是每40,000个样本被送入训练后保存一次，本例中等价于`epoch=10`。
+
+##### 2.4 从checkpoint中加载模型
+
+用到了`tf.train.latest_checkpoint`函数，从保存checkpoint的目录中找到最后一次保存的checkpoint。
+
+```python
+latest = tf.train.latest_checkpoint(checkpoint_dir)
+# model = create_model()
+# model.load_weights(latest)
+model_fromCP = tf.keras.models.load_model(latest)
+model_fromCP.evaluate(train_images, train_labels)
+```
+
+其他的无需赘述，如果保存`check_point`时选择了`save_weights_only=True`，那么再加载时：
+
+```python
+model = create_model()
+model.load_weights(latest)
+```
+
+即：先构建出来网络结构模型，再把保存的权重加载进来。
+
+#### 3. 保存和重载整个模型
+
+此处以HDF5文件格式保存模型，可以用HDFView查看。
+
+```python
+model.save('cifar10CNN.h5')
+model_fromHDF5 = tf.keras.models.load_model('cifar10CNN.h5')
+model_fromHDF5.evaluate(train_images, train_labels)
+```
+
+#### 4. 仅保存权重
+
+仅保存权重，需要先构建模型。
+
+```python
+model.save_weights('weight\manual_weight')
+model_fromWeight = create_model()
+model_fromWeight.load_weights('weight\manual_weight')
+model.evaluate(train_images, train_labels)
+```
+
+#### 5. save_model方式保存加载模型
+
+save_model方式保存的模型，重载后可以直接使用`model.predict`进行预测，但是不能`evaluate`，需要进行`compile`。如此看，save_model仅保存了模型结构和权重，但没有保存优化器、损失函数、metrics等信息。详见：《[TensorFlow 2 中文文档 - 保存与加载模型 ](https://geektutu.com/post/tf2doc-ml-basic-save-model.html)》。
+
+
+
+#### References:
+
+* [TensorFlow 2 中文文档 - 保存与加载模型 ](https://geektutu.com/post/tf2doc-ml-basic-save-model.html)
