@@ -62,16 +62,19 @@ xd = Xdatcar('NaCl_800K_MD_XDATCAR')
 
 rdf_nana_800K = RadialDistributionFunction.from_species_strings(
     structures=xd.structures,
-    species_i='Na'
+    species_i='Na',
+    r_max=20
 )
 rdf_clcl_800K = RadialDistributionFunction.from_species_strings(
     structures=xd.structures,
-    species_i='Cl'
+    species_i='Cl',
+    r_max=20
 )
 rdf_nacl_800K = RadialDistributionFunction.from_species_strings(
     structures=xd.structures,
     species_i='Na',
-    species_j='Cl'
+    species_j='Cl',
+    r_max=20
 )
 
 plt.plot(rdf_nana_800K.r, rdf_nana_800K.rdf, 'k', label='Na-Na')
@@ -80,6 +83,7 @@ plt.plot(rdf_nacl_800K.r, rdf_nacl_800K.rdf, 'g--', label='Na-Cl')
 plt.legend(loc='best', fontsize=20)
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
+plt.xlim(0, 20)
 plt.show()
 
 struct_1 = struct_2 = struct_3 = structure
