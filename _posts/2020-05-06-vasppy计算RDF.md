@@ -205,6 +205,7 @@ rdf_nana_800K = RadialDistributionFunction.from_species_strings(
     structures=xd.structures,
     species_i='Na',
     r_max=20
+)
 ```
 
 
