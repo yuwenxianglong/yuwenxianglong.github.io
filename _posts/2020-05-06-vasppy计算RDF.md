@@ -198,6 +198,15 @@ plt.show()
 
 ![](/assets/images/vasppyRDF_4_202005071325.jpeg)
 
+可以通过`r_min`和`r_max`参数设定计算多大范围内的RDF。
+
+```python
+rdf_nana_800K = RadialDistributionFunction.from_species_strings(
+    structures=xd.structures,
+    species_i='Na',
+    r_max=20
+```
+
 
 
 #### References:
