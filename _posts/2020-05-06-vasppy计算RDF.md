@@ -196,7 +196,7 @@ plt.show()
 
 “1.2 通过Pymatgen接口读入结构”中从XDATACAR中读入的一系列结构通过此方式计算的RDF如下：
 
-![](/assets/images/vasppyRDF_4_202005071121.jpeg)
+![](/assets/images/vasppyRDF_4_202005071325.jpeg)
 
 
 
