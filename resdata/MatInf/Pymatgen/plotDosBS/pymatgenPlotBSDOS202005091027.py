@@ -13,7 +13,7 @@
 from pymatgen.electronic_structure.plotter import DosPlotter, BSPlotter, BSDOSPlotter
 from pymatgen.io.vasp import Vasprun, BSVasprun
 
-vasprun_file = 'AlEuO3_Perovskite_DOS/vasprun.xml'
+vasprun_file = './AlEuO3_Perovskite_DOS/vasprun.xml'
 vasprun = Vasprun(vasprun_file)
 tdos = vasprun.tdos
 plotter = DosPlotter()
@@ -25,6 +25,7 @@ completeDos = vasprun.complete_dos
 element_dos = completeDos.get_element_dos()
 plotter = DosPlotter()
 plotter.add_dos_dict(element_dos)
+plotter.add_dos('Total DOS', tdos)
 plotter.show()
 
 spd_dos = completeDos.get_spd_dos()
@@ -33,8 +34,8 @@ plotter.add_dos_dict(spd_dos)
 plotter.add_dos('Total DOS', tdos)
 plotter.show()
 
-bsvasprun_file = 'AlEuO3_Perovskite_BS/vasprun.xml'
-kpoint_file = 'AlEuO3_Perovskite_BS/KPOINTS'
+bsvasprun_file = './AlEuO3_Perovskite_BS/vasprun.xml'
+kpoint_file = './AlEuO3_Perovskite_BS/KPOINTS'
 bsvasprun = BSVasprun(bsvasprun_file, parse_projected_eigen=True)
 bs = bsvasprun.get_band_structure(kpoints_filename=kpoint_file, line_mode=True)
 plotter = BSPlotter(bs)
