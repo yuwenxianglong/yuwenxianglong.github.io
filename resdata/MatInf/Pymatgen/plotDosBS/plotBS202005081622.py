@@ -17,11 +17,11 @@ import plotly.graph_objs as go
 import chart_studio.plotly as pltly
 import chart_studio.tools as tls
 
-dosrun = Vasprun('BS\\vasprun.xml')
+dosrun = Vasprun('AlEuO3_Perovskite_BS/vasprun.xml')
 
-run = BSVasprun("BS\\vasprun.xml",
+run = BSVasprun("AlEuO3_Perovskite_BS/vasprun.xml",
                 parse_projected_eigen=True)  # 读取vasprun.xml
-bands = run.get_band_structure(kpoints_filename="BS\\KPOINTS",
+bands = run.get_band_structure(kpoints_filename="AlEuO3_Perovskite_BS/KPOINTS",
                                line_mode=True, efermi=dosrun.efermi)
 
 emin = 1e100
@@ -90,7 +90,7 @@ bandxaxis = go.layout.XAxis(
 bandyaxis = go.layout.YAxis(
     title="$ E - E_f \quad / \quad \\text{eV} $",  # 费米能级对其
     titlefont=dict(size=20),
-    range=[emin - 0.1 * abs(emin), emax + 0.1 * abs(emax)],
+    range=[emin, emax],
     showgrid=True,
     showline=True,
     zeroline=True,
@@ -116,11 +116,10 @@ bandlayout = go.Layout(
     annotations=annotations
 )
 
-# bandfig = go.Figure(data=bandTraces + vlines, layout=bandlayout)
-# plot_url = pltly.plot(bandfig, filename="Bands_Al", auto_open=True)
-# print(tls.get_embed(plot_url))
-
 bandfig = go.Figure(data=bandTraces + vlines, layout=bandlayout)
+plot_url = pltly.plot(bandfig, filename="Bands_Al", auto_open=True)
+print(tls.get_embed(plot_url))
+
 # plotly.offline.iplot(bandfig, filename='Bands_Al', image='jpeg')
 # plotly.offline.iplot(bandfig, filename='Bands_Al')
 

@@ -22,7 +22,7 @@ import plotly.graph_objs as go
 
 # chart_studio.tools.set_credentials_file(username='yuwenxianglong', api_key='YbYbBzHWn0IVxHZyLM73')
 
-dosrun = Vasprun('DOS\\vasprun.xml')
+dosrun = Vasprun('AlEuO3_Perovskite_DOS/vasprun.xml')
 spd_dos = dosrun.complete_dos.get_spd_dos()
 
 trace_tdos = go.Scatter(
@@ -61,7 +61,7 @@ dosxaxis = go.layout.XAxis(
     title="Density of states",
     showgrid=True,
     showline=True,
-    range=[.01, 3],
+    # range=[.01, 3],
     mirror="ticks",
     ticks="inside",
     linewidth=2,
