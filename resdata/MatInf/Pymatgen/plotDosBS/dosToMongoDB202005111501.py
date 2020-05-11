@@ -14,10 +14,10 @@ import pymongo
 from pymatgen.io.vasp import Vasprun
 import hashlib
 
-dosvasprun = Vasprun('./DOS/vasprun.xml')
+dosvasprun = Vasprun('./AlEuO3_Perovskite_DOS/vasprun.xml')
 complete_dos = dosvasprun.complete_dos.as_dict()
 
-hashvalue = hashlib.sha256(complete_dos).hexdigest()
+hashvalue = hashlib.sha256(str(complete_dos).encode('utf-8')).hexdigest()
 print(hashvalue)
 complete_dos.update(hashvalue=hashvalue)
 
