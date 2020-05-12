@@ -22,46 +22,86 @@ import plotly.graph_objs as go
 dosrun = Vasprun('AlEuO3_Perovskite_DOS/vasprun.xml')
 spd_dos = dosrun.complete_dos.get_spd_dos()
 
-trace_tdos = go.Scatter(
+trace_tdos_up = go.Scatter(
     y=dosrun.tdos.densities[Spin.up],
     x=dosrun.tdos.energies - dosrun.efermi,
     mode='lines',
-    name='Total DOS',
+    name='TDOS up',
     line=dict(
         color='#444444'
     ),
     fill='tozeroy'
 )
 
+trace_tdos_down = go.Scatter(
+    y=-1 * dosrun.tdos.densities[Spin.down],
+    x=dosrun.tdos.energies - dosrun.efermi,
+    mode='lines',
+    name='TDOS down',
+    line=dict(
+        color='#444444',
+        dash='dot'
+    ),
+    fill='tozeroy',
+)
+
 # 3s contribution to the total DOS
-trace_3s = go.Scatter(
+trace_3s_up = go.Scatter(
     y=spd_dos[OrbitalType.s].densities[Spin.up],
     x=dosrun.tdos.energies - dosrun.efermi,
     mode="lines",
-    name="3s",
+    name="3s up",
     line=dict(color="red")
 )
 
+# 3s down contribution to the total DOS
+trace_3s_down = go.Scatter(
+    y=-1 * spd_dos[OrbitalType.s].densities[Spin.down],
+    x=dosrun.tdos.energies - dosrun.efermi,
+    mode="lines",
+    name="3s down",
+    line=dict(color="red", dash='dot')
+)
+
 # 3p contribution to the total DOS
-trace_3p = go.Scatter(
+trace_3p_up = go.Scatter(
     y=spd_dos[OrbitalType.p].densities[Spin.up],
     x=dosrun.tdos.energies - dosrun.efermi,
     mode="lines",
-    name="3p",
+    name="3p up",
     line=dict(color="green")
 )
 
+# 3p contribution to the total DOS
+trace_3p_down = go.Scatter(
+    y=-1*spd_dos[OrbitalType.p].densities[Spin.down],
+    x=dosrun.tdos.energies - dosrun.efermi,
+    mode="lines",
+    name="3p down",
+    line=dict(color="green", dash='dot')
+)
+
 # 3d contribution to the total DOS
-trace_3d = go.Scatter(
+trace_3d_up = go.Scatter(
     y=spd_dos[OrbitalType.d].densities[Spin.up],
     x=dosrun.tdos.energies - dosrun.efermi,
     mode="lines",
-    name="3d",
+    name="3d up",
     line=dict(color="blue")
 )
 
+# 3d contribution to the total DOS
+trace_3d_down = go.Scatter(
+    y=-1*spd_dos[OrbitalType.d].densities[Spin.down],
+    x=dosrun.tdos.energies - dosrun.efermi,
+    mode="lines",
+    name="3d down",
+    line=dict(color="blue", dash='dot')
+)
+
 # dosdata = go.Data([trace_tdos, trace_3s, trace_3p])
-dosdata = [trace_tdos, trace_3s, trace_3p, trace_3d]
+dosdata = [trace_tdos_up, trace_3s_up, trace_3p_up, trace_3d_up,
+           trace_tdos_down, trace_3s_down, trace_3p_down, trace_3d_down]
 
 dosyaxis = go.layout.YAxis(
     title="<b> Density of states <b>",
@@ -71,7 +111,7 @@ dosyaxis = go.layout.YAxis(
     ),
     showgrid=True,
     showline=True,
-    # range=[.01, 3],
+    # range=[-10, 10],
     mirror="ticks",
     ticks="inside",
     tickfont=dict(
@@ -97,7 +137,7 @@ dosxaxis = go.layout.XAxis(
     mirror='ticks',
     linewidth=2,
     tickwidth=2,
-    zerolinewidth=2
+    zerolinewidth=2,
 )
 doslayout = go.Layout(
     title="<b> Density of states of AlEuO3 <b>",
@@ -108,13 +148,13 @@ doslayout = go.Layout(
     xaxis=dosxaxis,
     yaxis=dosyaxis,
     width=900,
-    height=400
+    height=600
 )
 
 dosfig = go.Figure(data=dosdata, layout=doslayout)
 dosfig.update_layout(legend=dict(
-    x=0.3,
-    y=0.95,
+    x=0.287,
+    y=0.76,
     traceorder="normal",
     font=dict(
         family="Times New Roman",
@@ -129,4 +169,5 @@ plot_url = pltly.plot(dosfig, filename="DOS_AlEuO3", auto_open=True)
 print(tls.get_embed(plot_url))
 
 import plotly
+
 plotly.io.write_image(dosfig, 'DOS_AlEuO3.jpeg')
