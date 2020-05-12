@@ -107,18 +107,18 @@ doslayout = go.Layout(
     ),
     xaxis=dosxaxis,
     yaxis=dosyaxis,
-    width=1920,
-    height=600
+    width=900,
+    height=400
 )
 
 dosfig = go.Figure(data=dosdata, layout=doslayout)
 dosfig.update_layout(legend=dict(
-    x=0.88,
-    y=0.88,
+    x=0.3,
+    y=0.95,
     traceorder="normal",
     font=dict(
         family="Times New Roman",
-        size=22,
+        size=18,
         color='black'
     ),
     bgcolor='LightSteelBlue',  # set backgroud color
