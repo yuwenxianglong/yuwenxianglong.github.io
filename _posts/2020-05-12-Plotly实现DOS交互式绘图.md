@@ -77,7 +77,7 @@ trace_3s_down = go.Scatter(
 
 #### 4. 设置绘图区格式
 
-##### 4.1 设置X、Y坐标轴
+设置坐标轴名称、字体，刻度标签、字体，绘图网格等。
 
 ```python
 dosxaxis = go.layout.XAxis(
@@ -118,33 +118,54 @@ dosyaxis = go.layout.YAxis(
 )
 ```
 
+#### 5. 在线绘图并获取链接
 
+通过`Figure`函数初始化绘图，`update_layout`增加绘图区格式设置。
 
+```python
+dosdata = [trace_tdos_up, trace_3s_up, trace_3p_up, trace_3d_up,
+           trace_tdos_down, trace_3s_down, trace_3p_down, trace_3d_down]
 
+dosfig = go.Figure(data=dosdata, layout=doslayout)
+dosfig.update_layout(legend=dict(
+    x=0.287,
+    y=0.76,
+    traceorder="normal",
+    font=dict(
+        family="Times New Roman",
+        size=18,
+        color='black'
+    ),
+    bgcolor='LightSteelBlue',  # set backgroud color
+    bordercolor='yellow',  # set border color 框线颜色
+    borderwidth=2,
+))
+plot_url = pltly.plot(dosfig, filename="DOS_AlEuO3", auto_open=True)
+print(tls.get_embed(plot_url))
+```
 
+在线绘图，并获取链接：
 
+```python
+# print(plot_url)
+https://plotly.com/~yuwenxianglong/228/
+# tls.get_embed(plot_url)
+'<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plotly.com/~yuwenxianglong/228.embed" height="525" width="100%"></iframe>'
+```
 
-
-
-
-
-
+上述代码块中，第一个是访问链接，第二个为可以插入到网页中的Embed格式链接。
 
  <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plotly.com/~yuwenxianglong/228.embed" height="525" width="100%"></iframe>
+
+通过`write_image`函数也可以保存本地图片：
+
+```python
+plotly.io.write_image(dosfig, 'DOS_AlEuO3.jpeg')
+```
 
 
 
 ![](/assets/images/plotlyDOS202005121709.jpeg)
-
-
-
-
-
-
-
-
-
-
 
 
 
