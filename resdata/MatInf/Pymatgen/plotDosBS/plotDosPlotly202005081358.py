@@ -10,14 +10,18 @@
 @Month2  : 五月
 """
 
-from pymatgen.io.vasp import Vasprun, BSVasprun
+from pymatgen.io.vasp import Vasprun
 from pymatgen.electronic_structure.core import Spin, OrbitalType
 
+import chart_studio
 import chart_studio.plotly as pltly
 import chart_studio.tools as tls
 import plotly.graph_objs as go
+import re
 
-# chart_studio.tools.set_credentials_file(username='yuwenxianglong', api_key='YbYbBzHWn0IVxHZyLM73')
+username = 'yuwenxianglong'
+api_key = 'YbYbBzHWn0IVxHZyLM73'
+chart_studio.tools.set_credentials_file(username=username, api_key=api_key)
 
 dosrun = Vasprun('AlEuO3_Perovskite_DOS/vasprun.xml')
 spd_dos = dosrun.complete_dos.get_spd_dos()
@@ -25,7 +29,7 @@ spd_dos = dosrun.complete_dos.get_spd_dos()
 trace_tdos_up = go.Scatter(
     y=dosrun.tdos.densities[Spin.up],
     x=dosrun.tdos.energies - dosrun.efermi,
-    mode='lines',
+    mode='none',
     name='TDOS up',
     line=dict(
         color='#444444'
@@ -36,11 +40,13 @@ trace_tdos_up = go.Scatter(
 trace_tdos_down = go.Scatter(
     y=-1 * dosrun.tdos.densities[Spin.down],
     x=dosrun.tdos.energies - dosrun.efermi,
-    mode='lines',
+    # text='Spin down',
+    # mode='text',
+    mode='none',
     name='TDOS down',
     line=dict(
-        color='#444444',
-        dash='dot'
+        color='#DAA520',
+        dash='dot'  # dash options include 'dash', 'dot', and 'dashdot'
     ),
     fill='tozeroy',
 )
@@ -74,7 +80,7 @@ trace_3p_up = go.Scatter(
 
 # 3p contribution to the total DOS
 trace_3p_down = go.Scatter(
-    y=-1*spd_dos[OrbitalType.p].densities[Spin.down],
+    y=-1 * spd_dos[OrbitalType.p].densities[Spin.down],
     x=dosrun.tdos.energies - dosrun.efermi,
     mode="lines",
     name="3p down",
@@ -92,7 +98,7 @@ trace_3d_up = go.Scatter(
 
 # 3d contribution to the total DOS
 trace_3d_down = go.Scatter(
-    y=-1*spd_dos[OrbitalType.d].densities[Spin.down],
+    y=-1 * spd_dos[OrbitalType.d].densities[Spin.down],
     x=dosrun.tdos.energies - dosrun.efermi,
     mode="lines",
     name="3d down",
@@ -103,24 +109,6 @@ trace_3d_down = go.Scatter(
 dosdata = [trace_tdos_up, trace_3s_up, trace_3p_up, trace_3d_up,
            trace_tdos_down, trace_3s_down, trace_3p_down, trace_3d_down]
 
-dosyaxis = go.layout.YAxis(
-    title="<b> Density of states <b>",
-    titlefont=dict(
-        size=22,
-        family="Times New Roman"
-    ),
-    showgrid=True,
-    showline=True,
-    # range=[-10, 10],
-    mirror="ticks",
-    ticks="inside",
-    tickfont=dict(
-        size=22,
-        family='Times New Roman'
-    ),
-    linewidth=2,
-    tickwidth=2
-)
 dosxaxis = go.layout.XAxis(
     title="$E - E_f \quad / \quad \\text{eV}$",
     titlefont=dict(
@@ -139,6 +127,25 @@ dosxaxis = go.layout.XAxis(
     tickwidth=2,
     zerolinewidth=2,
 )
+dosyaxis = go.layout.YAxis(
+    title="<b> Density of states <b>",
+    titlefont=dict(
+        size=22,
+        family="Times New Roman"
+    ),
+    showgrid=True,
+    showline=True,
+    # range=[-10, 10],
+    mirror="ticks",
+    ticks="inside",
+    tickfont=dict(
+        size=22,
+        family='Times New Roman'
+    ),
+    linewidth=2,
+    tickwidth=2
+)
+
 doslayout = go.Layout(
     title="<b> Density of states of AlEuO3 <b>",
     titlefont=dict(
@@ -171,3 +178,7 @@ print(tls.get_embed(plot_url))
 import plotly
 
 plotly.io.write_image(dosfig, 'DOS_AlEuO3.jpeg')
+
+id_fmt = re.compile((r'\d+'))
+plot_id = id_fmt.findall(plot_url)[0]  # findall return a list, get the value use slice [0]
+print(plot_id)
