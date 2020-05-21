@@ -21,13 +21,15 @@ stock_catl = stock_catl.sort_index(ascending=True)
 stock_catl = (stock_catl - stock_catl.mean()) / \
              (stock_catl.max() - stock_catl.min())
 
-train, val = train_test_split(stock_catl, test_size=0.5)
-train = train.sort_index(ascending=True)
-val = val.sort_index(ascending=True)
+# train, val = train_test_split(stock_catl, test_size=0.5)
+# train = train.sort_index(ascending=True)
+# val = val.sort_index(ascending=True)
+train = stock_catl.iloc[:-60, :]
+val = stock_catl.iloc[-60:, :]
 
-window_size = 7
+window_size = 30
 column = 'high'
-epoches = 10
+epoches = 300
 
 
 def batch_dataset(dataset):
@@ -50,8 +52,8 @@ ds_val = zip_ds(val)
 
 model = tf.keras.Sequential(
     [
-        tf.keras.layers.LSTM(60, return_sequences=True),
-        tf.keras.layers.LSTM(60),
+        tf.keras.layers.LSTM(128, return_sequences=True, activation='relu'),
+        tf.keras.layers.LSTM(128, activation='relu'),
         tf.keras.layers.Dense(13)
     ]
 )
