@@ -22,6 +22,8 @@ df = pd.DataFrame(collection.find())
 for i in range(len(df)):
     df['structure'][i] = pymatgen.Structure.from_dict(df['structure'][i])
     df['elastic_tensor'][i] = np.array(df['elastic_tensor'][i]['data'])
+    df['compliance_tensor'][i] = np.array(df['compliance_tensor'][i]['data'])
+    df['elastic_tensor_original'][i] = np.array(df['elastic_tensor_original'][i]['data'])
 
 """
 ['_id', 'material_id', 'formula', 'nsites', 'space_group', 'volume',
@@ -89,6 +91,27 @@ r2_scores = cross_val_score(lr, X_train, y_train, scoring='r2', cv=crossvalidati
 print(rmse_scores)
 print(r2_scores)
 
+from matminer.figrecipes.plot import PlotlyFig
+from sklearn.model_selection import cross_val_predict
+
+pf = PlotlyFig(
+    x_title='DFT (MP) bulk modulus (GPa)',
+    y_title='Predicted bulk modulus (GPa)',
+    title='Linear Regression',
+    mode='offline',
+    filename='lr_regression.html'
+)
+pf.xy(
+    xy_pairs=[
+        (y, cross_val_predict(lr, X, y, cv=crossvalidation)),
+        ([0, 400], [0, 400])
+    ],
+    labels=df['formula'],
+    modes=['markers', 'lines'],
+    lines=[{}, {'color': 'black', 'dash': 'dash'}],
+    showlegends=False
+)
+
 from sklearn.ensemble import RandomForestRegressor
 
 rf = RandomForestRegressor(n_estimators=88, random_state=1)
@@ -98,21 +121,40 @@ print(np.sqrt(mean_squared_error(y_true=y_train, y_pred=rf.predict(X_train))))
 print(rf.score(X_test, y_test))
 print(np.sqrt(mean_squared_error(y_true=y_test, y_pred=rf.predict(X_test))))
 
-import tensorflow as tf
-
-model = tf.keras.Sequential(
-    [
-        tf.keras.layers.Dense(
-            units=128,
-            input_dim=len(X_train.columns)
-        ),
-        tf.keras.layers.Dense(1)
-     ]
+pf = PlotlyFig(
+    x_title='DFT (MP) bulk modulus (GPa)',
+    y_title='Random forest bulk modulus (GPa)',
+    title='Random forest Regression',
+    mode='offline',
+    filename='rf_regression.html'
 )
-model.compile(optimizer='adam',
-              loss='mse',
-              )
-history = model.fit(X.values, y, epochs=500, validation_data=(
-    X_test.values,
-    y_test
-))
+pf.xy(
+    xy_pairs=[
+        (y, cross_val_predict(rf, X, y, cv=crossvalidation)),
+        ([0, 400], [0, 400])
+    ],
+    labels=df['formula'],
+    modes=['markers', 'lines'],
+    lines=[{}, {'color': 'black', 'dash': 'dash'}],
+    showlegends=False
+)
+df.to_csv('elastic_tensor.csv')
+
+# import tensorflow as tf
+#
+# model = tf.keras.Sequential(
+#     [
+#         tf.keras.layers.Dense(
+#             units=128,
+#             input_dim=len(X_train.columns)
+#         ),
+#         tf.keras.layers.Dense(1)
+#      ]
+# )
+# model.compile(optimizer='adam',
+#               loss='mse',
+#               )
+# history = model.fit(X.values, y, epochs=500, validation_data=(
+#     X_test.values,
+#     y_test
+# ))
