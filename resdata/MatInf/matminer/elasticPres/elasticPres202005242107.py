@@ -80,8 +80,8 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 lr = LinearRegression()
 lr.fit(X_train, y_train)
-print(lr.score(X_train, y_train))
-print(np.sqrt(mean_squared_error(y_true=y_test, y_pred=lr.predict(X_test))))
+print(lr.score(X_train, y_train))  # 0.9377025076652824
+print(np.sqrt(mean_squared_error(y_true=y_test, y_pred=lr.predict(X_test))))  # 26.888809975185058
 
 crossvalidation = KFold(n_splits=10, shuffle=False, random_state=1)
 scores = cross_val_score(lr, X_train, y_train, scoring='neg_mean_squared_error', cv=crossvalidation,
@@ -90,6 +90,13 @@ rmse_scores = [np.sqrt(abs(s)) for s in scores]
 r2_scores = cross_val_score(lr, X_train, y_train, scoring='r2', cv=crossvalidation, n_jobs=-1)
 print(rmse_scores)
 print(r2_scores)
+"""
+[24.203757209180235, 30.412087252477434, 23.272840526605627, 23.28069316986555,
+ 21.720553965141224, 18.69205713590509, 21.47183327803488, 21.53727751980417,
+ 17.069404335219055, 17.367188969254546]
+[0.89543795 0.85131643 0.88792746 0.90262337 0.88328682 0.93601341
+ 0.90234611 0.92147782 0.94717506 0.94403039]
+"""
 
 from matminer.figrecipes.plot import PlotlyFig
 from sklearn.model_selection import cross_val_predict
@@ -116,10 +123,10 @@ from sklearn.ensemble import RandomForestRegressor
 
 rf = RandomForestRegressor(n_estimators=88, random_state=1)
 rf.fit(X_train, y_train)
-print(rf.score(X_train, y_train))
-print(np.sqrt(mean_squared_error(y_true=y_train, y_pred=rf.predict(X_train))))
-print(rf.score(X_test, y_test))
-print(np.sqrt(mean_squared_error(y_true=y_test, y_pred=rf.predict(X_test))))
+print(rf.score(X_train, y_train))  # 0.9911721196040466
+print(np.sqrt(mean_squared_error(y_true=y_train, y_pred=rf.predict(X_train))))  # 6.922715570417474
+print(rf.score(X_test, y_test))  # 0.8541283927852926
+print(np.sqrt(mean_squared_error(y_true=y_test, y_pred=rf.predict(X_test))))  # 26.536032358708777
 
 pf = PlotlyFig(
     x_title='DFT (MP) bulk modulus (GPa)',

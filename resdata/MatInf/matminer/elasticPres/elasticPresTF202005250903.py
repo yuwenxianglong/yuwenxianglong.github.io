@@ -28,7 +28,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 try:
     model = tf.keras.models.load_model('elasticPres.h5')
-except:
+except OSError:
     model = tf.keras.Sequential(
         [
             tf.keras.layers.Dense(units=60, input_dim=len(X_train.columns), activation='relu'),
