@@ -18,13 +18,17 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('elastic_tensor.csv', index_col=0)
 # df = df.sort_values(by='K_VRH', ascending=True)
 y = df['K_VRH'].values
-excluded = ["G_VRH", "K_VRH", "elastic_anisotropy", "formula",
+excluded = ["G_VRH", "K_VRH", "elastic_anisotropy",
             "poisson_ratio", "structure", "composition", "composition_oxid",
             'G_Reuss', 'G_Voigt', 'K_Reuss', 'K_Voigt', 'compliance_tensor',
             'elastic_tensor', 'elastic_tensor_original']
 X = df.drop(excluded, axis=1)
 print("There are {} possible descriptors:\n\n{}".format(X.shape[1], X.columns.values))
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+X_train_formula = X_train['formula']
+X_train = X_train.drop('formula', axis=1)
+X_test_formula = X_test['formula']
+X_test = X_test.drop('formula', axis=1)
 
 try:
     model = tf.keras.models.load_model('elasticPres.h5')
@@ -86,7 +90,9 @@ fig1.add_trace(
         x=y_train,
         y=m.reshape(len(m)),
         mode='markers',
-        name='Bulk Prediction of Training Data'
+        name='Bulk Prediction of Training Data',
+        hovertext=X_train_formula,
+        hoverinfo='x+y+text'
     )
 )
 fig1.add_trace(go.Scatter(
@@ -122,7 +128,9 @@ fig2.add_trace(
         x=y_test,
         y=m.reshape(len(m)),
         mode='markers',
-        name='Bulk Prediction of Training Data'
+        name='Bulk Prediction of Training Data',
+        hovertext=X_test_formula,
+        hoverinfo='x+y+text'
     )
 )
 fig2.add_trace(go.Scatter(

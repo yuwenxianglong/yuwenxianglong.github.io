@@ -154,8 +154,8 @@ pf = PlotlyFig(
     y_title='Importance (%)',
     title='Feature by importances',
     mode='offline',
-    fontsize=20,
-    ticksize=15,
+    fontsize=12,
+    ticksize=12,
     fontfamily='Times New Roman',
     filename='FeatureImportances.html'
 )
