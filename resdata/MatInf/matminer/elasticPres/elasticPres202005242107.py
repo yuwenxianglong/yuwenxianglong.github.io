@@ -145,6 +145,23 @@ pf.xy(
     lines=[{}, {'color': 'black', 'dash': 'dash'}],
     showlegends=False
 )
+
+importances = rf.feature_importances_
+included = X.columns.values
+indices = np.argsort(importances)[::-1]
+
+pf = PlotlyFig(
+    y_title='Importance (%)',
+    title='Feature by importances',
+    mode='offline',
+    fontsize=20,
+    ticksize=15,
+    fontfamily='Times New Roman',
+    filename='FeatureImportances.html'
+)
+pf.bar(x=included[indices][0:10],
+       y=importances[indices][0:10])
+
 df.to_csv('elastic_tensor.csv')
 
 # import tensorflow as tf

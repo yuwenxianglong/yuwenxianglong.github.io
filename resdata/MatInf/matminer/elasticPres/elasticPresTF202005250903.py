@@ -43,7 +43,7 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
 model.compile(optimizer=optimizer, loss='mse',
               metrics=['mae', 'mse'])
 
-history = model.fit(X_train, y_train, epochs=5000,
+history = model.fit(X_train, y_train, epochs=500,
                     batch_size=128, validation_split=0.2)
 model.save('elasticPres.h5')
 
