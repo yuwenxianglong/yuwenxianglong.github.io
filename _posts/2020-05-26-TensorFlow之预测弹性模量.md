@@ -105,12 +105,13 @@ Epoch 5000/5000
 
 损失函数收敛情况如下图：
 
-![](/assets/images/bulkModulusTFLoss202005261111.png)
+ <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="/resdata/MatInf/matminer/elasticPres/Loss.html" height="525" width="100%"></iframe>
 
 模型在训练数据集上的表现，横坐标为真实体弹性模量值，纵坐标为预测值。
 
-![](/assets/images/bulkModulusTFTrain202005261112.png)
+ <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="/resdata/MatInf/matminer/elasticPres/BulkPredictionOfTrainingData.html" height="525" width="100%"></iframe>
 
 模型在测试数据集上的表现：
 
-![](/assets/images/bulkModulusTFTest202005261112.png)
+ <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="/resdata/MatInf/matminer/elasticPres/BulkPredictionOfTestData.html" height="525" width="100%"></iframe>
+
