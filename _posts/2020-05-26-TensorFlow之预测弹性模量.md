@@ -52,18 +52,6 @@ history = model.fit(X_train, y_train, epochs=1000,
 model.save('elasticPres.h5')
 
 hist = pd.DataFrame(history.history, index=history.epoch)
-hist['loss'].plot(legend=True, style='-')
-hist['val_loss'].plot(legend=True, style=":")
-plt.show()
-
-plt.plot(y_train, model.predict(X_train), 'ro')
-plt.plot(y_train, y_train, 'k-')
-plt.axis('equal')
-plt.show()
-plt.plot(y_test, model.predict(X_test), 'ro')
-plt.plot(y_test, y_test, 'k-')
-plt.axis('equal')
-plt.show()
 ```
 
 TensorFlow 2.0.0会报如下Warning：
