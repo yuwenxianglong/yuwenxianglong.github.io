@@ -103,8 +103,8 @@ fig1.update_layout(
         size=20,
         color='#8B0A50'
     ),
-    height=1000,
-    width=1000,
+    height=750,
+    width=750,
     legend=dict(
         x=0.1,
         y=0.9,
@@ -139,8 +139,8 @@ fig2.update_layout(
         size=20,
         color='#8B658B'
     ),
-    height=1000,
-    width=1000,
+    height=750,
+    width=750,
     legend=dict(
         x=0.1,
         y=0.9,
