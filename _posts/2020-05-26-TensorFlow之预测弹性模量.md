@@ -95,7 +95,7 @@ Epoch 5000/5000
 
  <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="/resdata/MatInf/matminer/elasticPres/Loss.html" height="525" width="100%"></iframe>
 
-模型在训练数据集上的表现，横坐标为真实体弹性模量值，纵坐标为预测值。
+模型在训练数据集上的表现，横坐标为DFT计算的体弹性模量值，纵坐标为预测值。
 
  <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="/resdata/MatInf/matminer/elasticPres/BulkPredictionOfTrainingData.html" height="800" width="100%"></iframe>
 
