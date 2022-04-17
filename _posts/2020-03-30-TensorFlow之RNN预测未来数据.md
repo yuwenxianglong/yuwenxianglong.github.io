@@ -57,11 +57,11 @@ ds_train = tf.data.Dataset.zip((ds_data, ds_label)).batch(128).repeat()
 ```
 
 本文代码用到了`tf.constant`、`from_tensor_slice`、`zip`、`.window`、`.batch`、`repeat`。
-
+ 
 `.batch`函数除将数据集分为多个批次（batch）送入训练外，本位还有将**ds_train**数据增加一个维度的作用：`(batch_size, seq_lenth, input_size)`。
-
+ 
 `.batch`函数将数据集分为多个批次（batch）后，最后一个`batch`的数据可能凑不足`batch_size`，导致报错：
-
+ 
 ```python
 W tensorflow/core/common_runtime/base_collective_executor.cc:217] BaseCollectiveExecutor::StartAbort Out of range: End of sequence
          [[{{node IteratorGetNext}}]]
