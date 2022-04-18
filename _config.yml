@@ -20,10 +20,10 @@ text_skin: forest # "default" (default), "dark", "forest", "ocean", "chocolate",
 highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : https://yuwenxianglong.github.io # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-# title   : Your Site Title
 title   : 随笔杂谈
 description: > # this means to ignore newlines until "Language & timezone"
-  记录一些日常工作中的技巧和体会，并辅助治疗一下自己莫名袭来的懒惰情绪。
+  乱中求序，灵光乍现
+  Chaos to order, confusion to clarity
 
 
 ## => Language and Timezone
@@ -36,7 +36,7 @@ timezone: Asia/Shanghai # see https://en.wikipedia.org/wiki/List_of_tz_database_
 ##############################
 author:
   type      : # "person" (default), "organization"
-  name      : 赵旭山（Xu-Shan Zhao)
+  name      : Chaos Clarity
   url       :
   avatar    : # path or url of avatar image (square)
   bio       : I am an amazing person.
@@ -85,14 +85,14 @@ toc:
 ## => Markdown Enhancements
 ##############################
 ## Mathjax
-mathjax: true # false (default), true
-mathjax_autoNumber: true # false (default), true
+mathjax: # false (default), true
+mathjax_autoNumber: # false (default), true
 
 ## Mermaid
-mermaid: true # false (default), true
+mermaid: # false (default), true
 
 ## Chart
-chart: true # false (default), true
+chart: # false (default), true
 
 
 ## => Paginate
