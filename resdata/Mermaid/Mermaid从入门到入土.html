@@ -1,0 +1,888 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
+
+
+:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit; background-repeat: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; border: none !important; background-position: 0px 0px !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background-position: 0px 0px; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background-color: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* meyer reset -- http://meyerweb.com/eric/tools/css/reset/ , v2.0 | 20110126 | License: none (public domain) */
+
+@include-when-export url(https://fonts.loli.net/css?family=PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext);
+
+/* =========== */
+
+/* pt-serif-regular - latin */
+/* pt-serif-italic - latin */
+/* pt-serif-700 - latin */
+/* pt-serif-700italic - latin */
+:root {
+	--active-file-bg-color: #dadada;
+	--active-file-bg-color: rgba(32, 43, 51, 0.63);
+	--active-file-text-color: white;
+	--bg-color: #f3f2ee;
+	--text-color: #1f0909;
+	--control-text-color: #444;
+	--rawblock-edit-panel-bd: #e5e5e5;
+
+	--select-text-bg-color: rgba(32, 43, 51, 0.63);
+  --select-text-font-color: white;
+}
+
+pre {
+	--select-text-bg-color: #36284e;
+	--select-text-font-color: #fff;
+}
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+}
+
+html, body {
+	background-color: #f3f2ee;
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+	color: #1f0909;
+	line-height: 1.5em;
+}
+
+/*#write {
+	overflow-x: auto;
+    max-width: initial;
+	padding-left: calc(50% - 17em);
+    padding-right: calc(50% - 17em);
+}
+
+@media (max-width: 36em) {
+ 	#write {
+ 		padding-left: 1em;
+    	padding-right: 1em;
+ 	}
+}*/
+
+#write {
+	max-width: 40em;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+			max-width: 914px;
+	}
+}
+
+ol li {
+	list-style-type: decimal;
+	list-style-position: outside;
+}
+ul li {
+	list-style-type: disc;
+	list-style-position: outside;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* styles */
+
+/* ====== */
+
+/* headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+h1 {
+	font-size: 1.875em;
+	/*30 / 16*/
+	line-height: 1.6em;
+	/* 48 / 30*/
+	margin-top: 2em;
+}
+h2,
+h3 {
+	font-size: 1.3125em;
+	/*21 / 16*/
+	line-height: 1.15;
+	/*24 / 21*/
+	margin-top: 2.285714em;
+	/*48 / 21*/
+	margin-bottom: 1.15em;
+	/*24 / 21*/
+}
+h3 {
+	font-weight: normal;
+}
+h4 {
+	font-size: 1.125em;
+	/*18 / 16*/
+	margin-top: 2.67em;
+	/*48 / 18*/
+}
+h5,
+h6 {
+	font-size: 1em;
+	/*16*/
+}
+h1 {
+	border-bottom: 1px solid;
+	margin-bottom: 1.875em;
+	padding-bottom: 0.8125em;
+}
+/* links */
+
+a {
+	text-decoration: none;
+	color: #065588;
+}
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+/* block spacing */
+
+p,
+blockquote,
+.md-fences {
+	margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: 1.5em;
+}
+/* blockquote */
+
+blockquote {
+	font-style: italic;
+	border-left: 5px solid;
+	margin-left: 2em;
+	padding-left: 1em;
+}
+/* lists */
+
+ul,
+ol {
+	margin: 0 0 1.5em 1.5em;
+}
+/* tables */
+.md-meta,.md-before, .md-after {
+	color:#999;
+}
+
+table {
+	margin-bottom: 1.5em;
+	/*24 / 16*/
+	font-size: 1em;
+	/* width: 100%; */
+}
+thead th,
+tfoot th {
+	padding: .25em .25em .25em .4em;
+	text-transform: uppercase;
+}
+th {
+	text-align: left;
+}
+td {
+	vertical-align: top;
+	padding: .25em .25em .25em .4em;
+}
+
+code,
+.md-fences {
+	background-color: #dadada;
+}
+
+code {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.md-fences {
+	margin-left: 2em;
+	margin-bottom: 3em;
+	padding-left: 1ch;
+	padding-right: 1ch;
+}
+
+pre,
+code,
+tt {
+	font-size: .875em;
+	line-height: 1.714285em;
+}
+/* some fixes */
+
+h1 {
+	line-height: 1.3em;
+	font-weight: normal;
+	margin-bottom: 0.5em;
+}
+
+p + ul,
+p + ol{
+	margin-top: .5em;
+}
+
+h3 + ul,
+h4 + ul,
+h5 + ul,
+h6 + ul,
+h3 + ol,
+h4 + ol,
+h5 + ol,
+h6 + ol {
+	margin-top: .5em;
+}
+
+li > ul,
+li > ol {
+	margin-top: inherit;
+	margin-bottom: 0;
+}
+
+li ol>li {
+	list-style-type: lower-alpha;
+}
+
+li li ol>li{
+	list-style-type: lower-roman;
+}
+
+h2,
+h3 {
+	margin-bottom: .75em;
+}
+hr {
+	border-top: none;
+	border-right: none;
+	border-bottom: 1px solid;
+	border-left: none;
+}
+h1 {
+	border-color: #c5c5c5;
+}
+blockquote {
+	border-color: #bababa;
+	color: #656565;
+}
+
+blockquote ul,
+blockquote ol {
+	margin-left:0;
+}
+
+.ty-table-edit {
+	background-color: transparent;
+}
+thead {
+	background-color: #dadada;
+}
+tr:nth-child(even) {
+	background: #e8e7e7;
+}
+hr {
+	border-color: #c5c5c5;
+}
+.task-list{
+	padding-left: 1rem;
+}
+
+.md-task-list-item {
+	padding-left: 1.5rem;
+	list-style-type: none;
+}
+
+.md-task-list-item > input:before {
+	content: '\221A';
+	display: inline-block;
+	width: 1.25rem;
+  	height: 1.6rem;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	background-color: #F3F2EE;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before{
+	color: inherit;
+}
+
+#write pre.md-meta-block {
+	min-height: 1.875rem;
+	color: #555;
+	border: 0px;
+	background: transparent;
+	margin-top: -4px;
+	margin-left: 1em;
+	margin-top: 1em;
+}
+
+.md-image>.md-meta {
+	color: #9B5146;
+}
+
+.md-image>.md-meta{
+	font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', serif;
+}
+
+
+#write>h3.md-focus:before{
+	left: -1.5rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h4.md-focus:before{
+	left: -1.5rem;
+	top: .25rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h5.md-focus:before{
+	left: -1.5rem;
+	top: .0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+#write>h6.md-focus:before{
+	left: -1.5rem;
+	top: 0.3125rem;
+	color:#999;
+	border-color:#999;
+}
+
+.md-toc:focus .md-toc-content{
+	margin-top: 19px;
+}
+
+.md-toc-content:empty:before{
+	color: #065588;
+}
+.md-toc-item {
+	color: #065588;
+}
+#write div.md-toc-tooltip {
+	background-color: #f3f2ee;
+}
+
+#typora-sidebar {
+	background-color: #f3f2ee;
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.375);
+}
+
+.pin-outline #typora-sidebar {
+	background: inherit;
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+.pin-outline #typora-sidebar:hover .outline-title-wrapper {
+	border-left:1px dashed;
+}
+
+.outline-item:hover {
+  background-color: #dadada;
+  border-left: 28px solid #dadada;
+  border-right: 18px solid #dadada;
+}
+
+.typora-node .outline-item:hover {
+  	border-right: 28px solid #dadada;
+}
+
+.outline-expander:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size:14px;
+  top: 1px;
+}
+
+.outline-expander:hover:before,
+.outline-item-open>.outline-item>.outline-expander:before {
+  content: "\f0d7";
+}
+
+.modal-content {
+	background-color: #f3f2ee;
+}
+
+.auto-suggest-container ul li {
+	list-style-type: none;
+}
+
+/** UI for electron */
+
+.megamenu-menu,
+#top-titlebar, #top-titlebar *,
+.megamenu-content {
+	background: #f3f2ee;
+	color: #1f0909;
+}
+
+.megamenu-menu-header {
+	border-bottom: 1px dashed #202B33;
+}
+
+.megamenu-menu {
+	box-shadow: none;
+	border-right: 1px dashed;
+}
+
+header, .context-menu, .megamenu-content, footer {
+	font-family: "PT Serif", 'Times New Roman', Times, serif;
+    color: #1f0909;
+}
+
+#megamenu-back-btn {
+	color: #1f0909;
+	border-color: #1f0909;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title:before {
+	color: #1f0909;
+}
+
+.megamenu-menu-list li a:hover, .megamenu-menu-list li a.active {
+	color: inherit;
+	background-color: #e8e7df;
+}
+
+.long-btn:hover {
+	background-color: #e8e7df;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+	background-color: #D2D1D1;
+}
+
+.btn-default {
+	background-color: transparent;
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+.ty-show-word-count #footer-word-count {
+	background: #c7c5c5;
+}
+
+#typora-quick-open {
+    background-color: inherit;
+}
+
+.md-diagram-panel {
+	margin-top: 8px;
+}
+
+.file-list-item-file-name {
+	font-weight: initial;
+}
+
+.file-list-item-summary {
+	opacity: 1;
+}
+
+.file-list-item {
+	color: #777;
+}
+
+.file-list-item.active {
+	background-color: inherit;
+	color: black;
+}
+
+.ty-side-sort-btn.active {
+	background-color: inherit;
+}
+
+.file-list-item.active .file-list-item-file-name  {
+	font-weight: bold;
+}
+
+.file-list-item{
+    opacity:1 !important;
+}
+
+.file-library-node.active>.file-node-background{
+	background-color: rgba(32, 43, 51, 0.63);
+	background-color: var(--active-file-bg-color);
+}
+
+.file-tree-node.active>.file-node-content{
+	color: white;
+	color: var(--active-file-text-color);
+}
+
+.md-task-list-item>input {
+	margin-left: -1.7em;
+	margin-top: calc(1rem - 12px);
+	-webkit-appearance: button;
+}
+
+input {
+	border: 1px solid #aaa;
+}
+
+.megamenu-menu-header #megamenu-menu-header-title,
+.megamenu-menu-header:hover, 
+.megamenu-menu-header:focus {
+	color: inherit;
+}
+
+.dropdown-menu .divider {
+	border-color: #e5e5e5;
+	opacity: 1;
+}
+
+/* https://github.com/typora/typora-issues/issues/2046 */
+.os-windows-7 strong,
+.os-windows-7 strong  {
+	font-weight: 760;
+}
+
+.ty-preferences .btn-default {
+	background: transparent;
+}
+
+.ty-preferences .window-header {
+	border-bottom: 1px dashed #202B33;
+	box-shadow: none;
+}
+
+#sidebar-loading-template, #sidebar-loading-template.file-list-item {
+	color: #777;
+}
+
+.searchpanel-search-option-btn.active {
+	background: #777;
+	color: white;
+}
+
+.export-detail, .light .export-detail, 
+.light .export-item.active, 
+.light .export-items-list-control {
+	background: #e0e0e0;
+	border-radius: 2px;
+	font-weight: 700;
+	color: inherit
+}
+
+ @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}} .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style><title>Mermaid从入门到入土</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='概述'><span>概述</span></h1><ul><li><p><span>什么是Mermaid？</span></p><ul><li><span>Mermaid是一种基于Javascript的绘图工具，使用类似于Markdown的语法，使用户可以方便快捷地通过代码创建图表。</span></li><li><span>项目地址：</span><a href='https://github.com/mermaid-js/mermaid' target='_blank' class='url'>https://github.com/mermaid-js/mermaid</a><span>（需要将梯子设置成全局模式才能访问）</span></li></ul></li></ul><ul><li><p><span>怎么使用Mermaid？</span></p><ul><li><span>使用特定的Mermaid渲染器；</span></li><li><strong><span>使用集成了Mermaid渲染功能的Markdown编辑器，如</span><a href='https://www.typora.io/'><span>Typora</span></a><span>。</span></strong><span>使用时，需要将代码块的语言选择为Mermaid。</span></li></ul><blockquote><p><span>Typora是宇宙第一笔记软件，不接受反驳</span></p></blockquote></li><li><p><span>Mermaid能绘制哪些图？</span></p><ul><li><span>饼状图：使用</span><code>pie</code><span>关键字，具体用法后文将详细介绍</span></li><li><span>流程图：使用</span><code>graph</code><span>关键字，具体用法后文将详细介绍</span></li><li><span>序列图：使用</span><code>sequenceDiagram</code><span>关键字</span></li><li><span>甘特图：使用</span><code>gantt</code><span>关键字</span></li><li><span>类图：使用</span><code>classDiagram</code><span>关键字</span></li><li><span>状态图：使用</span><code>stateDiagram</code><span>关键字</span></li><li><span>用户旅程图：使用</span><code>journey</code><span>关键字</span></li></ul></li><li><p><span>实例：朱元璋家谱简图，圆圈代表皇帝</span></p></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="411" style="max-width: 770px;" viewBox="0 0 770 411"><style>#mermaidChart0 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;stroke:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .label{font-family:sans-serif;color:#333;}#mermaidChart0 .cluster-label text{fill:#333;}#mermaidChart0 .cluster-label span{color:#333;}#mermaidChart0 .label text,#mermaidChart0 span{fill:#333;color:#333;}#mermaidChart0 .node rect,#mermaidChart0 .node circle,#mermaidChart0 .node ellipse,#mermaidChart0 .node polygon,#mermaidChart0 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart0 .node .label{text-align:center;}#mermaidChart0 .node.clickable{cursor:pointer;}#mermaidChart0 .arrowheadPath{fill:#333333;}#mermaidChart0 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart0 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart0 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart0 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart0 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart0 .cluster text{fill:#333;}#mermaidChart0 .cluster span{color:#333;}#mermaidChart0 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart0 :root{--mermaid-font-family:sans-serif;}#mermaidChart0 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-emperor LE-father" id="L-emperor-father" style="opacity: 1;"><path class="path" d="M360,224L393,224L426,224" marker-end="url(#arrowhead42)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead42" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-father LE-朱四九" id="L-father-朱四九" style="opacity: 1;"><path class="path" d="M494,224L527,224L560,224" marker-end="url(#arrowhead43)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead43" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-朱四九 LE-朱百六" id="L-朱四九-朱百六" style="opacity: 1;"><path class="path" d="M628,224L661,224L694,224" marker-end="url(#arrowhead44)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead44" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-朱雄英 LE-朱标" id="L-朱雄英-朱标" style="opacity: 1;"><path class="path" d="M76,30L117,30L158,62.43283582089552" marker-end="url(#arrowhead45)" style="fill:none"></path><defs><marker id="arrowhead45" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-朱标 LE-emperor" id="L-朱标-emperor" style="opacity: 1;"><path class="path" d="M210,83L251,83L310.03315891873643,193.9823387672245" marker-end="url(#arrowhead46)" style="fill:none"></path><defs><marker id="arrowhead46" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-emperor2 LE-朱标" id="L-emperor2-朱标" style="opacity: 1;"><path class="path" d="M76,167L117,167L166.45238095238096,105" marker-end="url(#arrowhead47)" style="fill:none"></path><defs><marker id="arrowhead47" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-朱樉 LE-emperor" id="L-朱樉-emperor" style="opacity: 1;"><path class="path" d="M210,177L251,177L297.18965911970133,205.94551971501284" marker-end="url(#arrowhead48)" style="fill:none"></path><defs><marker id="arrowhead48" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-朱棡 LE-emperor" id="L-朱棡-emperor" style="opacity: 1;"><path class="path" d="M210,271L251,271L297.18965911970133,242.05448028498716" marker-end="url(#arrowhead49)" style="fill:none"></path><defs><marker id="arrowhead49" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-emperor3 LE-emperor" id="L-emperor3-emperor" style="opacity: 1;"><path class="path" d="M210,369L251,369L310.37962075829194,254.19939986730225" marker-end="url(#arrowhead50)" style="fill:none"></path><defs><marker id="arrowhead50" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-emperor4 LE-emperor3" id="L-emperor4-emperor3" style="opacity: 1;"><path class="path" d="M76,369L117,369L158,369" marker-end="url(#arrowhead51)" style="fill:none"></path><defs><marker id="arrowhead51" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(393,224)" style="opacity: 1;"><g transform="translate(-8,-12)" class="label"><rect rx="0" ry="0" width="16" height="24"></rect><foreignObject width="16" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-emperor-father" class="edgeLabel L-LS-emperor' L-LE-father">子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(527,224)" style="opacity: 1;"><g transform="translate(-8,-12)" class="label"><rect rx="0" ry="0" width="16" height="24"></rect><foreignObject width="16" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-father-朱四九" class="edgeLabel L-LS-father' L-LE-朱四九">子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(661,224)" style="opacity: 1;"><g transform="translate(-8,-12)" class="label"><rect rx="0" ry="0" width="16" height="24"></rect><foreignObject width="16" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-朱四九-朱百六" class="edgeLabel L-LS-朱四九' L-LE-朱百六">子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(117,30)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-朱雄英-朱标" class="edgeLabel L-LS-朱雄英' L-LE-朱标">长子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(251,83)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-朱标-emperor" class="edgeLabel L-LS-朱标' L-LE-emperor">长子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(117,167)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-emperor2-朱标" class="edgeLabel L-LS-emperor2' L-LE-朱标">次子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(251,177)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-朱樉-emperor" class="edgeLabel L-LS-朱樉' L-LE-emperor">次子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(251,271)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-朱棡-emperor" class="edgeLabel L-LS-朱棡' L-LE-emperor">三子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(251,369)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-emperor3-emperor" class="edgeLabel L-LS-emperor3' L-LE-emperor">四子</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(117,369)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-emperor4-emperor3" class="edgeLabel L-LS-emperor4' L-LE-emperor3">长子</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-emperor-17" transform="translate(326,224)" style="opacity: 1;"><circle x="-34" y="-22" r="34" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱八八</div></foreignObject></g></g></g><g class="node default" id="flowchart-father-18" transform="translate(460,224)" style="opacity: 1;"><rect rx="5" ry="5" x="-34" y="-22" width="68" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱五四</div></foreignObject></g></g></g><g class="node default" id="flowchart-朱四九-19" transform="translate(594,224)" style="opacity: 1;"><rect rx="0" ry="0" x="-34" y="-22" width="68" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱四九</div></foreignObject></g></g></g><g class="node default" id="flowchart-朱百六-20" transform="translate(728,224)" style="opacity: 1;"><rect rx="0" ry="0" x="-34" y="-22" width="68" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱百六</div></foreignObject></g></g></g><g class="node default" id="flowchart-朱雄英-21" transform="translate(42,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-34" y="-22" width="68" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱雄英</div></foreignObject></g></g></g><g class="node default" id="flowchart-朱标-22" transform="translate(184,83)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22" width="52" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱标</div></foreignObject></g></g></g><g class="node default" id="flowchart-emperor2-24" transform="translate(42,167)" style="opacity: 1;"><circle x="-34" y="-22" r="34" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱允炆</div></foreignObject></g></g></g><g class="node default" id="flowchart-朱樉-26" transform="translate(184,177)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22" width="52" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱樉</div></foreignObject></g></g></g><g class="node default" id="flowchart-朱棡-28" transform="translate(184,271)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22" width="52" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱棡</div></foreignObject></g></g></g><g class="node default" id="flowchart-emperor3-30" transform="translate(184,369)" style="opacity: 1;"><circle x="-26" y="-22" r="26" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱棣</div></foreignObject></g></g></g><g class="node default" id="flowchart-emperor4-32" transform="translate(42,369)" style="opacity: 1;"><circle x="-34" y="-22" r="34" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">朱高炽</div></foreignObject></g></g></g></g></g></g></svg></div><p><span>以上是概述，下面详细介绍饼状图和流程图的语法。其他图的语法可访问上文给出的项目地址，自行学习。（记得挂梯子）</span></p><h1 id='饼状图'><span>饼状图</span></h1><ul><li><p><span>在线渲染器：</span><a href='https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoicGllXG5cIkRvZ3NcIiA6IDQyLjk2XG5cIkNhdHNcIiA6IDUwLjA1XG5cIlJhdHNcIiA6IDEwLjAxIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifX0'><span>Online FlowChart &amp; Diagrams Editor</span></a><span>（需要梯子）</span></p></li><li><p><span>语法</span></p><ul><li><p><span>从</span><code>pie</code><span>关键字开始图表</span></p></li><li><p><span>然后使用</span><code>title</code><span>关键字及其在字符串中的值，为饼图赋予标题。（这是</span><strong><span>可选的</span></strong><span>）</span></p></li><li><p><span>数据部分</span></p><ul><li><span>在</span><code>&quot; &quot;</code><span>内写上分区名。</span></li><li><span>分区名后使用</span><code>:</code><span>作为分隔符</span></li><li><span>分隔符后写上数值，最多支持2位小数——数据会以百分比的形式展示</span></li></ul></li></ul></li></ul><ul><li><span>实例</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart1" width="100%" xmlns="http://www.w3.org/2000/svg" height="450" style="max-width: 825px;" viewBox="0 0 825 450"><style>#mermaidChart1 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart1 .error-icon{fill:#552222;}#mermaidChart1 .error-text{fill:#552222;stroke:#552222;}#mermaidChart1 .edge-thickness-normal{stroke-width:2px;}#mermaidChart1 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart1 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart1 .marker{fill:#333333;stroke:#333333;}#mermaidChart1 .marker.cross{stroke:#333333;}#mermaidChart1 svg{font-family:sans-serif;font-size:16px;}#mermaidChart1 .pieCircle{stroke:black;stroke-width:2px;opacity:0.7;}#mermaidChart1 .pieTitleText{text-anchor:middle;font-size:25px;fill:black;font-family:sans-serif;}#mermaidChart1 .slice{font-family:sans-serif;fill:#333;font-size:17px;}#mermaidChart1 .legend text{fill:black;font-family:sans-serif;font-size:17px;}#mermaidChart1 :root{--mermaid-font-family:sans-serif;}#mermaidChart1 :root{--mermaid-alt-font-family:sans-serif;}</style><g></g><g transform="translate(412.5,225)"><path d="M-32.42204808336372,-182.13679144555076A185,185,0,0,1,-1.982969563208622e-13,-185L0,0Z" fill="#ECECFF" class="pieCircle"></path><path d="M-73.92075194924413,-169.58986535538708A185,185,0,0,1,-32.42204808336372,-182.13679144555076L0,0Z" fill="#ffffde" class="pieCircle"></path><path d="M1.1327982892113017e-14,-185A185,185,0,1,1,-73.92075194924413,-169.58986535538708L0,0Z" fill="hsl(80, 100%, 56.2745098039%)" class="pieCircle"></path><text transform="translate(-8.137057073760772,-92.14140384310606)" class="slice" style="text-anchor: middle;">3%</text><text transform="translate(-26.770105146748172,-88.54158046043705)" class="slice" style="text-anchor: middle;">4%</text><text transform="translate(18.877482979906873,90.55324751958555)" class="slice" style="text-anchor: middle;">93%</text><text x="0" y="-200" class="pieTitleText">为什么总是宅在家里？</text><g class="legend" transform="translate(216,-33)"><rect width="18" height="18" style="fill: rgb(236, 236, 255); stroke: rgb(236, 236, 255);"></rect><text x="22" y="14">喜欢宅</text></g><g class="legend" transform="translate(216,-11)"><rect width="18" height="18" style="fill: rgb(255, 255, 222); stroke: rgb(255, 255, 222);"></rect><text x="22" y="14">天气太热或太冷</text></g><g class="legend" transform="translate(216,11)"><rect width="18" height="18" style="fill: rgb(181, 255, 32); stroke: rgb(181, 255, 32);"></rect><text x="22" y="14">穷</text></g></g></svg></div><h1 id='流程图'><span>流程图</span></h1><ul><li><span>在线渲染器：</span><a href='https://mermaidjs.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW0hhcmRdIC0tPnxUZXh0fCBCKFJvdW5kKVxuICAgIEIgLS0-IEN7RGVjaXNpb259XG4gICAgQyAtLT58T25lfCBEW1Jlc3VsdCAxXVxuICAgIEMgLS0-fFR3b3wgRVtSZXN1bHQgMl0iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ'><span>Online FlowChart &amp; Diagrams Editor</span></a><span>（需要挂梯子）</span></li></ul><h2 id='实例'><span>实例</span></h2><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart2" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="169.5" style="max-width: 578.2203369140625px;" viewBox="-8 -8 578.2203369140625 169.5"><style>#mermaidChart2 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart2 .error-icon{fill:#552222;}#mermaidChart2 .error-text{fill:#552222;stroke:#552222;}#mermaidChart2 .edge-thickness-normal{stroke-width:2px;}#mermaidChart2 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart2 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart2 .marker{fill:#333333;stroke:#333333;}#mermaidChart2 .marker.cross{stroke:#333333;}#mermaidChart2 svg{font-family:sans-serif;font-size:16px;}#mermaidChart2 .label{font-family:sans-serif;color:#333;}#mermaidChart2 .cluster-label text{fill:#333;}#mermaidChart2 .cluster-label span{color:#333;}#mermaidChart2 .label text,#mermaidChart2 span{fill:#333;color:#333;}#mermaidChart2 .node rect,#mermaidChart2 .node circle,#mermaidChart2 .node ellipse,#mermaidChart2 .node polygon,#mermaidChart2 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart2 .node .label{text-align:center;}#mermaidChart2 .node.clickable{cursor:pointer;}#mermaidChart2 .arrowheadPath{fill:#333333;}#mermaidChart2 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart2 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart2 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart2 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart2 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart2 .cluster text{fill:#333;}#mermaidChart2 .cluster span{color:#333;}#mermaidChart2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart2 :root{--mermaid-font-family:sans-serif;}#mermaidChart2 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M61.796875,87L86.796875,87L112.29687576293942,87.49999999999999" marker-end="url(#arrowhead83)" style="fill:none"></path><defs><marker id="arrowhead83" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-C" id="L-B-C" style="opacity: 1;"><path class="path" d="M182.27558604997827,69.46152278703883L237.8687515258789,30L275.9234390258789,30" marker-end="url(#arrowhead84)" style="fill:none"></path><defs><marker id="arrowhead84" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M319.0484390258789,30L354.2750015258789,30L389.5015640258789,43.876093294460645" marker-end="url(#arrowhead85)" style="fill:none"></path><defs><marker id="arrowhead85" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-D LE-B" id="L-D-B" style="opacity: 1;"><path class="path" d="M389.5015640258789,73.12390670553935L354.2750015258789,87L297.4859390258789,87L237.8687515258789,87L200.31406173706054,87.49999999999999" marker-end="url(#arrowhead86)" style="fill:none"></path><defs><marker id="arrowhead86" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-E" id="L-B-E" style="opacity: 1;"><path class="path" d="M184.84051899365122,102.97354274340935L237.8687515258789,131.5L297.4859390258789,131.5L354.2750015258789,131.5L426.6265640258789,131.5L488.7515640258789,131.5L513.7515640258789,131.5" marker-end="url(#arrowhead87)" style="fill:none"></path><defs><marker id="arrowhead87" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(237.8687515258789,30)" style="opacity: 1;"><g transform="translate(-13.0546875,-12)" class="label"><rect rx="0" ry="0" width="26.109375" height="24"></rect><foreignObject width="26.109375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-C" class="edgeLabel L-LS-B' L-LE-C">Yes</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-D-B" class="edgeLabel L-LS-D' L-LE-B"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(354.2750015258789,131.5)" style="opacity: 1;"><g transform="translate(-10.2265625,-12)" class="label"><rect rx="0" ry="0" width="20.453125" height="24"></rect><foreignObject width="20.453125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-E" class="edgeLabel L-LS-B' L-LE-E">No</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-44" transform="translate(34.8984375,87)" style="opacity: 1;"><rect rx="0" ry="0" x="-26.8984375" y="-22" width="53.796875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16.8984375,-12)"><foreignObject width="33.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Start</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-45" transform="translate(155.80546951293945,87)" style="opacity: 1;"><polygon points="44.00859375,0 88.0171875,-44.00859375 44.00859375,-88.0171875 0,-44.00859375" transform="translate(-44.00859375,44.00859375)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-16.8984375,-12)"><foreignObject width="33.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Is it?</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-47" transform="translate(297.4859390258789,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-21.5625" y="-22" width="43.125" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-11.5625,-12)"><foreignObject width="23.125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">OK</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-49" transform="translate(426.6265640258789,58.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-37.125" y="-22" width="74.25" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-27.125,-12)"><foreignObject width="54.25" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rethink</div></foreignObject></g></g></g><g class="node default" id="flowchart-E-53" transform="translate(537.9859390258789,131.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-24.234375" y="-22" width="48.46875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-14.234375,-12)"><foreignObject width="28.46875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">End</div></foreignObject></g></g></g></g></g></g></svg></div><h2 id='方向'><span>方向</span></h2><p><span>用于开头，声明流程图的方向。</span></p><ul><li><code>graph</code><span>或</span><code>graph TB</code><span>或</span><code>graph TD</code><span>：从上往下</span></li><li><code>graph BT</code><span>：从下往上</span></li><li><code>graph LR</code><span>：从左往右</span></li><li><code>graph RL</code><span>：从右往左</span></li></ul><h2 id='结点'><span>结点</span></h2><ul><li><span>无名字的结点：直接写内容，此时结点边框为方形；节点内容不能有空格</span></li><li><span>有名字的结点：节点名后书写内容，内容左右有特定符号，结点边框由符号决定；节点内容可以有空格</span></li></ul><blockquote><p><span>下面的实例中，没有为graph指定方向，因此默认是从上往下的。但是由于各个结点之前没有箭头，所以他们都处于同一排。</span></p></blockquote><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart3" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="86.42486572265625" style="max-width: 851px;" viewBox="0 -0.000003814697265625 851 86.42486572265625"><style>#mermaidChart3 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart3 .error-icon{fill:#552222;}#mermaidChart3 .error-text{fill:#552222;stroke:#552222;}#mermaidChart3 .edge-thickness-normal{stroke-width:2px;}#mermaidChart3 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart3 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart3 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart3 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart3 .marker{fill:#333333;stroke:#333333;}#mermaidChart3 .marker.cross{stroke:#333333;}#mermaidChart3 svg{font-family:sans-serif;font-size:16px;}#mermaidChart3 .label{font-family:sans-serif;color:#333;}#mermaidChart3 .cluster-label text{fill:#333;}#mermaidChart3 .cluster-label span{color:#333;}#mermaidChart3 .label text,#mermaidChart3 span{fill:#333;color:#333;}#mermaidChart3 .node rect,#mermaidChart3 .node circle,#mermaidChart3 .node ellipse,#mermaidChart3 .node polygon,#mermaidChart3 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart3 .node .label{text-align:center;}#mermaidChart3 .node.clickable{cursor:pointer;}#mermaidChart3 .arrowheadPath{fill:#333333;}#mermaidChart3 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart3 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart3 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart3 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart3 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart3 .cluster text{fill:#333;}#mermaidChart3 .cluster span{color:#333;}#mermaidChart3 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart3 :root{--mermaid-font-family:sans-serif;}#mermaidChart3 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g class="node default" id="flowchart-默认方形-61" transform="translate(50,43.212432861328125)" style="opacity: 1;"><rect rx="0" ry="0" x="-42" y="-22" width="84" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12)"><foreignObject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">默认方形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id1-62" transform="translate(168,43.212432861328125)" style="opacity: 1;"><rect rx="0" ry="0" x="-26" y="-22" width="52" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">方形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id2-63" transform="translate(286,43.212432861328125)" style="opacity: 1;"><rect rx="5" ry="5" x="-42" y="-22" width="84" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12)"><foreignObject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">圆边矩形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id3-64" transform="translate(425.5,43.212432861328125)" style="opacity: 1;"><rect rx="22" ry="22" x="-47.5" y="-22" width="95" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12)"><foreignObject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">体育场形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id4-65" transform="translate(573,43.212432861328125)" style="opacity: 1;"><polygon points="0,0 84,0 84,-44 0,-44 0,0 -8,0 92,0 92,-44 -8,-44 -8,0" transform="translate(-42,22)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12)"><foreignObject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">子程序形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id5-66" label-offset-y="8.808290155440414" transform="translate(707,43.212432861328125)" style="opacity: 1;"><path d="M 0,8.808290155440414 a 34,8.808290155440414 0,0,0 68 0 a 34,8.808290155440414 0,0,0 -68 0 l 0,52.80829015544042 a 34,8.808290155440414 0,0,0 68 0 l 0,-52.80829015544042" transform="translate(-34,-35.21243523316062)" class="label-container"></path><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">圆柱形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id6-67" transform="translate(817,43.212432861328125)" style="opacity: 1;"><circle x="-26" y="-22" r="26" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">圆形</div></foreignObject></g></g></g></g></g></g></svg></div><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart4" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="102.4000015258789" style="max-width: 913.0665893554688px;" viewBox="0 0 913.0665893554688 102.4000015258789"><style>#mermaidChart4 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart4 .error-icon{fill:#552222;}#mermaidChart4 .error-text{fill:#552222;stroke:#552222;}#mermaidChart4 .edge-thickness-normal{stroke-width:2px;}#mermaidChart4 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart4 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart4 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart4 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart4 .marker{fill:#333333;stroke:#333333;}#mermaidChart4 .marker.cross{stroke:#333333;}#mermaidChart4 svg{font-family:sans-serif;font-size:16px;}#mermaidChart4 .label{font-family:sans-serif;color:#333;}#mermaidChart4 .cluster-label text{fill:#333;}#mermaidChart4 .cluster-label span{color:#333;}#mermaidChart4 .label text,#mermaidChart4 span{fill:#333;color:#333;}#mermaidChart4 .node rect,#mermaidChart4 .node circle,#mermaidChart4 .node ellipse,#mermaidChart4 .node polygon,#mermaidChart4 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart4 .node .label{text-align:center;}#mermaidChart4 .node.clickable{cursor:pointer;}#mermaidChart4 .arrowheadPath{fill:#333333;}#mermaidChart4 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart4 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart4 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart4 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart4 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart4 .cluster text{fill:#333;}#mermaidChart4 .cluster span{color:#333;}#mermaidChart4 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart4 :root{--mermaid-font-family:sans-serif;}#mermaidChart4 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g class="node default" id="flowchart-id1-74" transform="translate(51.20000076293945,51.20000076293945)" style="opacity: 1;"><polygon points="43.2,0 86.4,-43.2 43.2,-86.4 0,-43.2" transform="translate(-43.2,43.2)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">菱形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id2-75" transform="translate(189.4000015258789,51.20000076293945)" style="opacity: 1;"><polygon points="11,0 79,0 90,-22 79,-44 11,-44 0,-22" transform="translate(-45,22)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-24,-12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">六角形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id3-76" transform="translate(349.06666564941406,51.20000076293945)" style="opacity: 1;"><polygon points="-14.666666666666666,0 92.66666666666667,0 114.66666666666667,-44 7.333333333333333,-44" transform="translate(-50,22)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-40,-12)"><foreignObject width="80" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">平行四边形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id4-77" transform="translate(537.0666580200195,51.20000076293945)" style="opacity: 1;"><polygon points="14.666666666666666,0 139.33333333333334,0 117.33333333333333,-44 -7.333333333333333,-44" transform="translate(-66,22)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-56,-12)"><foreignObject width="112" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">反向平行四边形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id5-78" transform="translate(701.066650390625,51.20000076293945)" style="opacity: 1;"><polygon points="-14.666666666666666,0 66.66666666666667,0 44.666666666666664,-44 7.333333333333333,-44" transform="translate(-26,22)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-16,-12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">梯形</div></foreignObject></g></g></g><g class="node default" id="flowchart-id6-79" transform="translate(848.3999786376953,51.20000076293945)" style="opacity: 1;"><polygon points="7.333333333333333,0 76.66666666666667,0 98.66666666666667,-44 -14.666666666666666,-44" transform="translate(-42,22)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32,-12)"><foreignObject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">反向梯形</div></foreignObject></g></g></g></g></g></g></svg></div><h2 id='连线样式'><span>连线样式</span></h2><ul><li><span>实线箭头：分为无文本箭头和有文本箭头，有文本箭头有2种书写格式</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart5" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="68" style="max-width: 370.53125px;" viewBox="-8 -8 370.53125 68"><style>#mermaidChart5 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart5 .error-icon{fill:#552222;}#mermaidChart5 .error-text{fill:#552222;stroke:#552222;}#mermaidChart5 .edge-thickness-normal{stroke-width:2px;}#mermaidChart5 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart5 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart5 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart5 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart5 .marker{fill:#333333;stroke:#333333;}#mermaidChart5 .marker.cross{stroke:#333333;}#mermaidChart5 svg{font-family:sans-serif;font-size:16px;}#mermaidChart5 .label{font-family:sans-serif;color:#333;}#mermaidChart5 .cluster-label text{fill:#333;}#mermaidChart5 .cluster-label span{color:#333;}#mermaidChart5 .label text,#mermaidChart5 span{fill:#333;color:#333;}#mermaidChart5 .node rect,#mermaidChart5 .node circle,#mermaidChart5 .node ellipse,#mermaidChart5 .node polygon,#mermaidChart5 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart5 .node .label{text-align:center;}#mermaidChart5 .node.clickable{cursor:pointer;}#mermaidChart5 .arrowheadPath{fill:#333333;}#mermaidChart5 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart5 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart5 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart5 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart5 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart5 .cluster text{fill:#333;}#mermaidChart5 .cluster span{color:#333;}#mermaidChart5 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart5 :root{--mermaid-font-family:sans-serif;}#mermaidChart5 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-a LE-b" id="L-a-b" style="opacity: 1;"><path class="path" d="M36.90625,30L61.90625,30L86.90625,30" marker-end="url(#arrowhead108)" style="fill:none"></path><defs><marker id="arrowhead108" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-b LE-c" id="L-b-c" style="opacity: 1;"><path class="path" d="M115.8125,30L161.265625,30L206.71875,30" marker-end="url(#arrowhead109)" style="fill:none"></path><defs><marker id="arrowhead109" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-c LE-d" id="L-c-d" style="opacity: 1;"><path class="path" d="M234.71875,30L280.171875,30L325.625,30" marker-end="url(#arrowhead110)" style="fill:none"></path><defs><marker id="arrowhead110" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-a-b" class="edgeLabel L-LS-a' L-LE-b"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(161.265625,30)" style="opacity: 1;"><g transform="translate(-20.453125,-12)" class="label"><rect rx="0" ry="0" width="40.90625" height="24"></rect><foreignObject width="40.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-b-c" class="edgeLabel L-LS-b' L-LE-c">文本1</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(280.171875,30)" style="opacity: 1;"><g transform="translate(-20.453125,-12)" class="label"><rect rx="0" ry="0" width="40.90625" height="24"></rect><foreignObject width="40.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-c-d" class="edgeLabel L-LS-c' L-LE-d">文本2</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-a-84" transform="translate(22.453125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">a</div></foreignObject></g></g></g><g class="node default" id="flowchart-b-85" transform="translate(101.359375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">b</div></foreignObject></g></g></g><g class="node default" id="flowchart-c-86" transform="translate(220.71875,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14" y="-22" width="28" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4,-12)"><foreignObject width="8" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">c</div></foreignObject></g></g></g><g class="node default" id="flowchart-d-87" transform="translate(340.078125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">d</div></foreignObject></g></g></g></g></g></g></svg></div><ul><li><span>粗实线箭头：分为无文本箭头和有文本箭头</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart6" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="68" style="max-width: 241.8125px;" viewBox="-8 -8 241.8125 68"><style>#mermaidChart6 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart6 .error-icon{fill:#552222;}#mermaidChart6 .error-text{fill:#552222;stroke:#552222;}#mermaidChart6 .edge-thickness-normal{stroke-width:2px;}#mermaidChart6 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart6 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart6 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart6 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart6 .marker{fill:#333333;stroke:#333333;}#mermaidChart6 .marker.cross{stroke:#333333;}#mermaidChart6 svg{font-family:sans-serif;font-size:16px;}#mermaidChart6 .label{font-family:sans-serif;color:#333;}#mermaidChart6 .cluster-label text{fill:#333;}#mermaidChart6 .cluster-label span{color:#333;}#mermaidChart6 .label text,#mermaidChart6 span{fill:#333;color:#333;}#mermaidChart6 .node rect,#mermaidChart6 .node circle,#mermaidChart6 .node ellipse,#mermaidChart6 .node polygon,#mermaidChart6 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart6 .node .label{text-align:center;}#mermaidChart6 .node.clickable{cursor:pointer;}#mermaidChart6 .arrowheadPath{fill:#333333;}#mermaidChart6 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart6 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart6 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart6 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart6 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart6 .cluster text{fill:#333;}#mermaidChart6 .cluster span{color:#333;}#mermaidChart6 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart6 :root{--mermaid-font-family:sans-serif;}#mermaidChart6 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-a LE-b" id="L-a-b" style="opacity: 1;"><path class="path" d="M36.90625,30L61.90625,30L86.90625,30" marker-end="url(#arrowhead123)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead123" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-b LE-c" id="L-b-c" style="opacity: 1;"><path class="path" d="M115.8125,30L156.8125,30L197.8125,30" marker-end="url(#arrowhead124)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead124" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-a-b" class="edgeLabel L-LS-a' L-LE-b"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(156.8125,30)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-b-c" class="edgeLabel L-LS-b' L-LE-c">文本</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-a-91" transform="translate(22.453125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">a</div></foreignObject></g></g></g><g class="node default" id="flowchart-b-92" transform="translate(101.359375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">b</div></foreignObject></g></g></g><g class="node default" id="flowchart-c-93" transform="translate(211.8125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14" y="-22" width="28" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4,-12)"><foreignObject width="8" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">c</div></foreignObject></g></g></g></g></g></g></svg></div><ul><li><span>虚线箭头：分为无文本箭头和有文本箭头</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart7" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="68" style="max-width: 241.8125px;" viewBox="-8 -8 241.8125 68"><style>#mermaidChart7 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart7 .error-icon{fill:#552222;}#mermaidChart7 .error-text{fill:#552222;stroke:#552222;}#mermaidChart7 .edge-thickness-normal{stroke-width:2px;}#mermaidChart7 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart7 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart7 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart7 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart7 .marker{fill:#333333;stroke:#333333;}#mermaidChart7 .marker.cross{stroke:#333333;}#mermaidChart7 svg{font-family:sans-serif;font-size:16px;}#mermaidChart7 .label{font-family:sans-serif;color:#333;}#mermaidChart7 .cluster-label text{fill:#333;}#mermaidChart7 .cluster-label span{color:#333;}#mermaidChart7 .label text,#mermaidChart7 span{fill:#333;color:#333;}#mermaidChart7 .node rect,#mermaidChart7 .node circle,#mermaidChart7 .node ellipse,#mermaidChart7 .node polygon,#mermaidChart7 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart7 .node .label{text-align:center;}#mermaidChart7 .node.clickable{cursor:pointer;}#mermaidChart7 .arrowheadPath{fill:#333333;}#mermaidChart7 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart7 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart7 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart7 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart7 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart7 .cluster text{fill:#333;}#mermaidChart7 .cluster span{color:#333;}#mermaidChart7 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart7 :root{--mermaid-font-family:sans-serif;}#mermaidChart7 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-a LE-b" id="L-a-b" style="opacity: 1;"><path class="path" d="M36.90625,30L61.90625,30L86.90625,30" marker-end="url(#arrowhead137)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead137" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-b LE-c" id="L-b-c" style="opacity: 1;"><path class="path" d="M115.8125,30L156.8125,30L197.8125,30" marker-end="url(#arrowhead138)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead138" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-a-b" class="edgeLabel L-LS-a' L-LE-b"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(156.8125,30)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-b-c" class="edgeLabel L-LS-b' L-LE-c">文本</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-a-97" transform="translate(22.453125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">a</div></foreignObject></g></g></g><g class="node default" id="flowchart-b-98" transform="translate(101.359375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">b</div></foreignObject></g></g></g><g class="node default" id="flowchart-c-99" transform="translate(211.8125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14" y="-22" width="28" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4,-12)"><foreignObject width="8" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">c</div></foreignObject></g></g></g></g></g></g></svg></div><ul><li><span>无箭头线：即以上三种连线去掉箭头后的形式</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart8" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="68" style="max-width: 754.609375px;" viewBox="-8 -8 754.609375 68"><style>#mermaidChart8 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart8 .error-icon{fill:#552222;}#mermaidChart8 .error-text{fill:#552222;stroke:#552222;}#mermaidChart8 .edge-thickness-normal{stroke-width:2px;}#mermaidChart8 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart8 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart8 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart8 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart8 .marker{fill:#333333;stroke:#333333;}#mermaidChart8 .marker.cross{stroke:#333333;}#mermaidChart8 svg{font-family:sans-serif;font-size:16px;}#mermaidChart8 .label{font-family:sans-serif;color:#333;}#mermaidChart8 .cluster-label text{fill:#333;}#mermaidChart8 .cluster-label span{color:#333;}#mermaidChart8 .label text,#mermaidChart8 span{fill:#333;color:#333;}#mermaidChart8 .node rect,#mermaidChart8 .node circle,#mermaidChart8 .node ellipse,#mermaidChart8 .node polygon,#mermaidChart8 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart8 .node .label{text-align:center;}#mermaidChart8 .node.clickable{cursor:pointer;}#mermaidChart8 .arrowheadPath{fill:#333333;}#mermaidChart8 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart8 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart8 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart8 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart8 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart8 .cluster text{fill:#333;}#mermaidChart8 .cluster span{color:#333;}#mermaidChart8 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart8 :root{--mermaid-font-family:sans-serif;}#mermaidChart8 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-a LE-b" id="L-a-b" style="opacity: 1;"><path class="path" d="M36.90625,30L61.90625,30L86.90625,30" marker-end="url(#arrowhead179)" style="fill:none"></path><defs><marker id="arrowhead179" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-b LE-c" id="L-b-c" style="opacity: 1;"><path class="path" d="M115.8125,30L161.265625,30L206.71875,30" marker-end="url(#arrowhead180)" style="fill:none"></path><defs><marker id="arrowhead180" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-c LE-d" id="L-c-d" style="opacity: 1;"><path class="path" d="M234.71875,30L280.171875,30L325.625,30" marker-end="url(#arrowhead181)" style="fill:none"></path><defs><marker id="arrowhead181" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-d LE-e" id="L-d-e" style="opacity: 1;"><path class="path" d="M354.53125,30L379.53125,30L404.53125,30" marker-end="url(#arrowhead182)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead182" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-e LE-f" id="L-e-f" style="opacity: 1;"><path class="path" d="M433.4375,30L478.890625,30L524.34375,30" marker-end="url(#arrowhead183)" style=" stroke-width: 3.5px;fill:none"></path><defs><marker id="arrowhead183" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-f LE-g" id="L-f-g" style="opacity: 1;"><path class="path" d="M548.796875,30L573.796875,30L598.796875,30" marker-end="url(#arrowhead184)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead184" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g><g class="edgePath LS-g LE-h" id="L-g-h" style="opacity: 1;"><path class="path" d="M627.703125,30L668.703125,30L709.703125,30" marker-end="url(#arrowhead185)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path><defs><marker id="arrowhead185" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-a-b" class="edgeLabel L-LS-a' L-LE-b"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(161.265625,30)" style="opacity: 1;"><g transform="translate(-20.453125,-12)" class="label"><rect rx="0" ry="0" width="40.90625" height="24"></rect><foreignObject width="40.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-b-c" class="edgeLabel L-LS-b' L-LE-c">文本1</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(280.171875,30)" style="opacity: 1;"><g transform="translate(-20.453125,-12)" class="label"><rect rx="0" ry="0" width="40.90625" height="24"></rect><foreignObject width="40.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-c-d" class="edgeLabel L-LS-c' L-LE-d">文本2</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-d-e" class="edgeLabel L-LS-d' L-LE-e"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(478.890625,30)" style="opacity: 1;"><g transform="translate(-20.453125,-12)" class="label"><rect rx="0" ry="0" width="40.90625" height="24"></rect><foreignObject width="40.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-e-f" class="edgeLabel L-LS-e' L-LE-f">文本3</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-f-g" class="edgeLabel L-LS-f' L-LE-g"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(668.703125,30)" style="opacity: 1;"><g transform="translate(-16,-12)" class="label"><rect rx="0" ry="0" width="32" height="24"></rect><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-g-h" class="edgeLabel L-LS-g' L-LE-h">文本</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-a-114" transform="translate(22.453125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">a</div></foreignObject></g></g></g><g class="node default" id="flowchart-b-115" transform="translate(101.359375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">b</div></foreignObject></g></g></g><g class="node default" id="flowchart-c-117" transform="translate(220.71875,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14" y="-22" width="28" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4,-12)"><foreignObject width="8" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">c</div></foreignObject></g></g></g><g class="node default" id="flowchart-d-119" transform="translate(340.078125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">d</div></foreignObject></g></g></g><g class="node default" id="flowchart-e-121" transform="translate(418.984375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">e</div></foreignObject></g></g></g><g class="node default" id="flowchart-f-123" transform="translate(536.5703125,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-12.2265625" y="-22" width="24.453125" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-2.2265625,-12)"><foreignObject width="4.453125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">f</div></foreignObject></g></g></g><g class="node default" id="flowchart-g-125" transform="translate(613.25,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">g</div></foreignObject></g></g></g><g class="node default" id="flowchart-h-127" transform="translate(724.15625,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">h</div></foreignObject></g></g></g></g></g></g></svg></div><ul><li><span>其他连线：需要将</span><code>graph</code><span>关键字改为</span><code>flowchart</code><span>，除了新增加的连线形式外，上面三种线的渲染效果也会不同</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart9" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="152" style="max-width: 401.125px;" viewBox="0 0 401.125 152"><style>#mermaidChart9 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart9 .error-icon{fill:#552222;}#mermaidChart9 .error-text{fill:#552222;stroke:#552222;}#mermaidChart9 .edge-thickness-normal{stroke-width:2px;}#mermaidChart9 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart9 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart9 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart9 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart9 .marker{fill:#333333;stroke:#333333;}#mermaidChart9 .marker.cross{stroke:#333333;}#mermaidChart9 svg{font-family:sans-serif;font-size:16px;}#mermaidChart9 .label{font-family:sans-serif;color:#333;}#mermaidChart9 .cluster-label text{fill:#333;}#mermaidChart9 .cluster-label span{color:#333;}#mermaidChart9 .label text,#mermaidChart9 span{fill:#333;color:#333;}#mermaidChart9 .node rect,#mermaidChart9 .node circle,#mermaidChart9 .node ellipse,#mermaidChart9 .node polygon,#mermaidChart9 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart9 .node .label{text-align:center;}#mermaidChart9 .node.clickable{cursor:pointer;}#mermaidChart9 .arrowheadPath{fill:#333333;}#mermaidChart9 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart9 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart9 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart9 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart9 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart9 .cluster text{fill:#333;}#mermaidChart9 .cluster span{color:#333;}#mermaidChart9 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart9 :root{--mermaid-font-family:sans-serif;}#mermaidChart9 :root{--mermaid-alt-font-family:sans-serif;}</style><g transform="translate(0, 8)"><marker id="flowchart-pointEnd" class="marker flowchart" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker><marker id="flowchart-pointStart" class="marker flowchart" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker><marker id="flowchart-circleEnd" class="marker flowchart" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></circle></marker><marker id="flowchart-circleStart" class="marker flowchart" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></circle></marker><marker id="flowchart-crossEnd" class="marker cross flowchart" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2px; stroke-dasharray: 1px, 0px;"></path></marker><marker id="flowchart-crossStart" class="marker cross flowchart" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2px; stroke-dasharray: 1px, 0px;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M52.3359375,27.5L112,27.5L179.6640625,27.5" id="L-A-B-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-B" style="fill:none;" marker-start="url(#flowchart-circleStart)" marker-end="url(#flowchart-circleEnd)"></path><path d="M205.3359375,27.5L257,27.5L282,27.5" id="L-B-C-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-B LE-C" style="fill:none;" marker-start="url(#flowchart-pointStart)" marker-end="url(#flowchart-pointEnd)"></path><path d="M308.5625,27.5L333.5625,27.5L358.5625,27.5" id="L-C-D-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-D" style="fill:none;" marker-start="url(#flowchart-crossStart)" marker-end="url(#flowchart-crossEnd)"></path><path d="M71,116.5L112,116.5L153,116.5" id="L-旧连线-也会不同-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-旧连线 LE-也会不同" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(112, 116.5)"><g class="label" transform="translate(-16, -12)"><foreignObject width="32" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">文本</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default default" id="flowchart-A-136" transform="translate(39.5, 27.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-12.8359375" y="-19.5" width="25.671875" height="39"></rect><g class="label" style="" transform="translate(-5.3359375, -12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">A</span></div></foreignObject></g></g><g class="node default default" id="flowchart-B-137" transform="translate(192.5, 27.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-12.8359375" y="-19.5" width="25.671875" height="39"></rect><g class="label" style="" transform="translate(-5.3359375, -12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">B</span></div></foreignObject></g></g><g class="node default default" id="flowchart-C-139" transform="translate(295.28125, 27.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-13.28125" y="-19.5" width="26.5625" height="39"></rect><g class="label" style="" transform="translate(-5.78125, -12)"><foreignObject width="11.5625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">C</span></div></foreignObject></g></g><g class="node default default" id="flowchart-D-141" transform="translate(371.84375, 27.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-13.28125" y="-19.5" width="26.5625" height="39"></rect><g class="label" style="" transform="translate(-5.78125, -12)"><foreignObject width="11.5625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">D</span></div></foreignObject></g></g><g class="node default default" id="flowchart-旧连线-142" transform="translate(39.5, 116.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-31.5" y="-19.5" width="63" height="39"></rect><g class="label" style="" transform="translate(-24, -12)"><foreignObject width="48" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">旧连线</span></div></foreignObject></g></g><g class="node default default" id="flowchart-也会不同-143" transform="translate(192.5, 116.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-39.5" y="-19.5" width="79" height="39"></rect><g class="label" style="" transform="translate(-32, -12)"><foreignObject width="64" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">也会不同</span></div></foreignObject></g></g></g></g></g></svg></div><ul><li><span>延长连线：增加相应字符即可，如下图中的B到E，连线中增加了一个</span><code>-</code><span>。字符可多次添加。</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart10" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="190.5" style="max-width: 459.2984313964844px;" viewBox="-8 -8 459.2984313964844 190.5"><style>#mermaidChart10 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart10 .error-icon{fill:#552222;}#mermaidChart10 .error-text{fill:#552222;stroke:#552222;}#mermaidChart10 .edge-thickness-normal{stroke-width:2px;}#mermaidChart10 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart10 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart10 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart10 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart10 .marker{fill:#333333;stroke:#333333;}#mermaidChart10 .marker.cross{stroke:#333333;}#mermaidChart10 svg{font-family:sans-serif;font-size:16px;}#mermaidChart10 .label{font-family:sans-serif;color:#333;}#mermaidChart10 .cluster-label text{fill:#333;}#mermaidChart10 .cluster-label span{color:#333;}#mermaidChart10 .label text,#mermaidChart10 span{fill:#333;color:#333;}#mermaidChart10 .node rect,#mermaidChart10 .node circle,#mermaidChart10 .node ellipse,#mermaidChart10 .node polygon,#mermaidChart10 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart10 .node .label{text-align:center;}#mermaidChart10 .node.clickable{cursor:pointer;}#mermaidChart10 .arrowheadPath{fill:#333333;}#mermaidChart10 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart10 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart10 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart10 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart10 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart10 .cluster text{fill:#333;}#mermaidChart10 .cluster span{color:#333;}#mermaidChart10 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart10 :root{--mermaid-font-family:sans-serif;}#mermaidChart10 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M61.796875,89.5L86.796875,89.5L112.29687576293942,89.99999999999999" marker-end="url(#arrowhead229)" style="fill:none"></path><defs><marker id="arrowhead229" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-C" id="L-B-C" style="opacity: 1;"><path class="path" d="M181.81695517889787,71.50289191595841L237.8687515258789,30L275.9234390258789,30" marker-end="url(#arrowhead230)" style="fill:none"></path><defs><marker id="arrowhead230" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M319.0484390258789,30L344.0484390258789,30L369.0484390258789,41.46881287726358" marker-end="url(#arrowhead231)" style="fill:none"></path><defs><marker id="arrowhead231" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-D LE-B" id="L-D-B" style="opacity: 1;"><path class="path" d="M369.0484390258789,77.0251509054326L344.0484390258789,89.5L297.4859390258789,89.5L237.8687515258789,89.5L200.31406173706054,89.99999999999999" marker-end="url(#arrowhead232)" style="fill:none"></path><defs><marker id="arrowhead232" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-E" id="L-B-E" style="opacity: 1;"><path class="path" d="M181.20142846662125,109.11263327043932L237.8687515258789,152.5L297.4859390258789,152.5L344.0484390258789,152.5L381.9390640258789,152.5" marker-end="url(#arrowhead233)" style="fill:none"></path><defs><marker id="arrowhead233" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(237.8687515258789,30)" style="opacity: 1;"><g transform="translate(-13.0546875,-12)" class="label"><rect rx="0" ry="0" width="26.109375" height="24"></rect><foreignObject width="26.109375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-C" class="edgeLabel L-LS-B' L-LE-C">Yes</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-D-B" class="edgeLabel L-LS-D' L-LE-B"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(297.4859390258789,152.5)" style="opacity: 1;"><g transform="translate(-10.2265625,-12)" class="label"><rect rx="0" ry="0" width="20.453125" height="24"></rect><foreignObject width="20.453125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-E" class="edgeLabel L-LS-B' L-LE-E">No</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-154" transform="translate(34.8984375,89.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-26.8984375" y="-22" width="53.796875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-16.8984375,-12)"><foreignObject width="33.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Start</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-155" transform="translate(155.80546951293945,89.5)" style="opacity: 1;"><polygon points="44.00859375,0 88.0171875,-44.00859375 44.00859375,-88.0171875 0,-44.00859375" transform="translate(-44.00859375,44.00859375)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-16.8984375,-12)"><foreignObject width="33.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Is it?</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-157" transform="translate(297.4859390258789,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-21.5625" y="-22" width="43.125" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-11.5625,-12)"><foreignObject width="23.125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">OK</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-159" transform="translate(406.1734390258789,58.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-37.125" y="-22" width="74.25" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-27.125,-12)"><foreignObject width="54.25" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rethink</div></foreignObject></g></g></g><g class="node default" id="flowchart-E-163" transform="translate(406.1734390258789,152.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-24.234375" y="-22" width="48.46875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-14.234375,-12)"><foreignObject width="28.46875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">End</div></foreignObject></g></g></g></g></g></g></svg></div><p>&nbsp;</p><h2 id='连线形式'><span>连线形式</span></h2><ul><li><span>直链</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart11" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="60" style="max-width: 269.390625px;" viewBox="0 0 269.390625 60"><style>#mermaidChart11 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart11 .error-icon{fill:#552222;}#mermaidChart11 .error-text{fill:#552222;stroke:#552222;}#mermaidChart11 .edge-thickness-normal{stroke-width:2px;}#mermaidChart11 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart11 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart11 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart11 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart11 .marker{fill:#333333;stroke:#333333;}#mermaidChart11 .marker.cross{stroke:#333333;}#mermaidChart11 svg{font-family:sans-serif;font-size:16px;}#mermaidChart11 .label{font-family:sans-serif;color:#333;}#mermaidChart11 .cluster-label text{fill:#333;}#mermaidChart11 .cluster-label span{color:#333;}#mermaidChart11 .label text,#mermaidChart11 span{fill:#333;color:#333;}#mermaidChart11 .node rect,#mermaidChart11 .node circle,#mermaidChart11 .node ellipse,#mermaidChart11 .node polygon,#mermaidChart11 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart11 .node .label{text-align:center;}#mermaidChart11 .node.clickable{cursor:pointer;}#mermaidChart11 .arrowheadPath{fill:#333333;}#mermaidChart11 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart11 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart11 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart11 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart11 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart11 .cluster text{fill:#333;}#mermaidChart11 .cluster span{color:#333;}#mermaidChart11 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart11 :root{--mermaid-font-family:sans-serif;}#mermaidChart11 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M38.671875,30L76.5703125,30L114.46875,30" marker-end="url(#arrowhead247)" style="fill:none"></path><defs><marker id="arrowhead247" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-C" id="L-B-C" style="opacity: 1;"><path class="path" d="M145.140625,30L187.484375,30L229.828125,30" marker-end="url(#arrowhead248)" style="fill:none"></path><defs><marker id="arrowhead248" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(76.5703125,30)" style="opacity: 1;"><g transform="translate(-12.8984375,-12)" class="label"><rect rx="0" ry="0" width="25.796875" height="24"></rect><foreignObject width="25.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">text</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(187.484375,30)" style="opacity: 1;"><g transform="translate(-17.34375,-12)" class="label"><rect rx="0" ry="0" width="34.6875" height="24"></rect><foreignObject width="34.6875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-C" class="edgeLabel L-LS-B' L-LE-C">text2</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-167" transform="translate(23.3359375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.3359375" y="-22" width="30.671875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.3359375,-12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">A</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-168" transform="translate(129.8046875,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.3359375" y="-22" width="30.671875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.3359375,-12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">B</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-169" transform="translate(245.609375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.78125" y="-22" width="31.5625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.78125,-12)"><foreignObject width="11.5625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">C</div></foreignObject></g></g></g></g></g></g></svg></div><ul><li><span>多重链：可以使用</span><code>&amp;</code><span>字符，或单个描述</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart12" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="256" style="max-width: 496.2578125px;" viewBox="-8 -8 496.2578125 256"><style>#mermaidChart12 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart12 .error-icon{fill:#552222;}#mermaidChart12 .error-text{fill:#552222;stroke:#552222;}#mermaidChart12 .edge-thickness-normal{stroke-width:2px;}#mermaidChart12 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart12 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart12 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart12 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart12 .marker{fill:#333333;stroke:#333333;}#mermaidChart12 .marker.cross{stroke:#333333;}#mermaidChart12 svg{font-family:sans-serif;font-size:16px;}#mermaidChart12 .label{font-family:sans-serif;color:#333;}#mermaidChart12 .cluster-label text{fill:#333;}#mermaidChart12 .cluster-label span{color:#333;}#mermaidChart12 .label text,#mermaidChart12 span{fill:#333;color:#333;}#mermaidChart12 .node rect,#mermaidChart12 .node circle,#mermaidChart12 .node ellipse,#mermaidChart12 .node polygon,#mermaidChart12 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart12 .node .label{text-align:center;}#mermaidChart12 .node.clickable{cursor:pointer;}#mermaidChart12 .arrowheadPath{fill:#333333;}#mermaidChart12 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart12 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart12 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart12 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart12 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart12 .cluster text{fill:#333;}#mermaidChart12 .cluster span{color:#333;}#mermaidChart12 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart12 :root{--mermaid-font-family:sans-serif;}#mermaidChart12 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-a LE-b" id="L-a-b" style="opacity: 1;"><path class="path" d="M47.2265625,47.31726747659829L22.453125,77L22.453125,102" marker-end="url(#arrowhead270)" style="fill:none"></path><defs><marker id="arrowhead270" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-a LE-c" id="L-a-c" style="opacity: 1;"><path class="path" d="M76.1328125,47.31726747659829L100.90625,77L100.90625,102" marker-end="url(#arrowhead271)" style="fill:none"></path><defs><marker id="arrowhead271" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-b LE-d" id="L-b-d" style="opacity: 1;"><path class="path" d="M22.453125,146L22.453125,171L47.2265625,200.6827325234017" marker-end="url(#arrowhead272)" style="fill:none"></path><defs><marker id="arrowhead272" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-c LE-d" id="L-c-d" style="opacity: 1;"><path class="path" d="M100.90625,146L100.90625,171L76.1328125,200.6827325234017" marker-end="url(#arrowhead273)" style="fill:none"></path><defs><marker id="arrowhead273" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-A LE-C" id="L-A-C" style="opacity: 1;"><path class="path" d="M175.3515625,48.069134351743045L150.796875,77L166.69614361702128,102" marker-end="url(#arrowhead274)" style="fill:none"></path><defs><marker id="arrowhead274" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-A LE-D" id="L-A-D" style="opacity: 1;"><path class="path" d="M206.0234375,44.31957162812354L241.0234375,77L265.578125,105.61146620182065" marker-end="url(#arrowhead275)" style="fill:none"></path><defs><marker id="arrowhead275" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-C" id="L-B-C" style="opacity: 1;"><path class="path" d="M256.0234375,44.31957162812354L221.0234375,77L196.46875,105.61146620182065" marker-end="url(#arrowhead276)" style="fill:none"></path><defs><marker id="arrowhead276" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;"><path class="path" d="M286.6953125,47.485264853596135L312.58203125,77L295.97423537234044,102" marker-end="url(#arrowhead277)" style="fill:none"></path><defs><marker id="arrowhead277" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-X LE-M" id="L-X-M" style="opacity: 1;"><path class="path" d="M358.46875,47.485264853596135L332.58203125,77L349.18982712765956,102" marker-end="url(#arrowhead278)" style="fill:none"></path><defs><marker id="arrowhead278" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-X LE-N" id="L-X-N" style="opacity: 1;"><path class="path" d="M389.140625,44.31957162812354L424.140625,77L448.6953125,105.61146620182065" marker-end="url(#arrowhead279)" style="fill:none"></path><defs><marker id="arrowhead279" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-Y LE-M" id="L-Y-M" style="opacity: 1;"><path class="path" d="M439.140625,44.31957162812354L404.140625,77L380.46875,104.58280069726902" marker-end="url(#arrowhead280)" style="fill:none"></path><defs><marker id="arrowhead280" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-Y LE-N" id="L-Y-N" style="opacity: 1;"><path class="path" d="M463.83826462765956,52L474.4765625,77L469.1574135638298,102" marker-end="url(#arrowhead281)" style="fill:none"></path><defs><marker id="arrowhead281" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-a-b" class="edgeLabel L-LS-a' L-LE-b"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-a-c" class="edgeLabel L-LS-a' L-LE-c"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-b-d" class="edgeLabel L-LS-b' L-LE-d"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-c-d" class="edgeLabel L-LS-c' L-LE-d"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-C" class="edgeLabel L-LS-A' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-D" class="edgeLabel L-LS-A' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-C" class="edgeLabel L-LS-B' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-X-M" class="edgeLabel L-LS-X' L-LE-M"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-X-N" class="edgeLabel L-LS-X' L-LE-N"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-Y-M" class="edgeLabel L-LS-Y' L-LE-M"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-Y-N" class="edgeLabel L-LS-Y' L-LE-N"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-a-186" transform="translate(61.6796875,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">a</div></foreignObject></g></g></g><g class="node default" id="flowchart-b-187" transform="translate(22.453125,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">b</div></foreignObject></g></g></g><g class="node default" id="flowchart-c-188" transform="translate(100.90625,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-14" y="-22" width="28" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4,-12)"><foreignObject width="8" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">c</div></foreignObject></g></g></g><g class="node default" id="flowchart-d-189" transform="translate(61.6796875,218)" style="opacity: 1;"><rect rx="0" ry="0" x="-14.453125" y="-22" width="28.90625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-4.453125,-12)"><foreignObject width="8.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">d</div></foreignObject></g></g></g><g class="node default" id="flowchart-A-190" transform="translate(190.6875,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.3359375" y="-22" width="30.671875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.3359375,-12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">A</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-191" transform="translate(271.359375,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.3359375" y="-22" width="30.671875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.3359375,-12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">B</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-192" transform="translate(180.6875,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.78125" y="-22" width="31.5625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.78125,-12)"><foreignObject width="11.5625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">C</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-193" transform="translate(281.359375,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.78125" y="-22" width="31.5625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.78125,-12)"><foreignObject width="11.5625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">D</div></foreignObject></g></g></g><g class="node default" id="flowchart-X-194" transform="translate(373.8046875,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.3359375" y="-22" width="30.671875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.3359375,-12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">X</div></foreignObject></g></g></g><g class="node default" id="flowchart-M-195" transform="translate(363.8046875,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-16.6640625" y="-22" width="33.328125" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-6.6640625,-12)"><foreignObject width="13.328125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">M</div></foreignObject></g></g></g><g class="node default" id="flowchart-N-197" transform="translate(464.4765625,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.78125" y="-22" width="31.5625" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.78125,-12)"><foreignObject width="11.5625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">N</div></foreignObject></g></g></g><g class="node default" id="flowchart-Y-198" transform="translate(454.4765625,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-15.3359375" y="-22" width="30.671875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-5.3359375,-12)"><foreignObject width="10.671875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Y</div></foreignObject></g></g></g></g></g></g></svg></div><h2 id='其他'><span>其他</span></h2><ul><li><span>子图：需要将</span><code>graph</code><span>关键字改为</span><code>flowchart</code><span>，在代码段的开始加入</span><code>subgraph</code><span>，尾部加入</span><code>end</code></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart13" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="361" style="max-width: 276.09375px;" viewBox="0 0 276.09375 361"><style>#mermaidChart13 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart13 .error-icon{fill:#552222;}#mermaidChart13 .error-text{fill:#552222;stroke:#552222;}#mermaidChart13 .edge-thickness-normal{stroke-width:2px;}#mermaidChart13 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart13 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart13 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart13 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart13 .marker{fill:#333333;stroke:#333333;}#mermaidChart13 .marker.cross{stroke:#333333;}#mermaidChart13 svg{font-family:sans-serif;font-size:16px;}#mermaidChart13 .label{font-family:sans-serif;color:#333;}#mermaidChart13 .cluster-label text{fill:#333;}#mermaidChart13 .cluster-label span{color:#333;}#mermaidChart13 .label text,#mermaidChart13 span{fill:#333;color:#333;}#mermaidChart13 .node rect,#mermaidChart13 .node circle,#mermaidChart13 .node ellipse,#mermaidChart13 .node polygon,#mermaidChart13 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart13 .node .label{text-align:center;}#mermaidChart13 .node.clickable{cursor:pointer;}#mermaidChart13 .arrowheadPath{fill:#333333;}#mermaidChart13 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart13 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart13 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart13 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart13 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart13 .cluster text{fill:#333;}#mermaidChart13 .cluster span{color:#333;}#mermaidChart13 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart13 :root{--mermaid-font-family:sans-serif;}#mermaidChart13 :root{--mermaid-alt-font-family:sans-serif;}</style><g transform="translate(0, 8)"><marker id="flowchart-pointEnd" class="marker flowchart" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker><marker id="flowchart-pointStart" class="marker flowchart" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker><marker id="flowchart-circleEnd" class="marker flowchart" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></circle></marker><marker id="flowchart-circleStart" class="marker flowchart" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></circle></marker><marker id="flowchart-crossEnd" class="marker cross flowchart" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2px; stroke-dasharray: 1px, 0px;"></path></marker><marker id="flowchart-crossStart" class="marker cross flowchart" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2px; stroke-dasharray: 1px, 0px;"></path></marker><g class="root"><g class="clusters"><g class="cluster default" id="three"><rect style="" rx="0" ry="0" x="130.796875" y="8" width="116.4296875" height="178"></rect><g class="cluster-label" transform="translate(170.77734375, 13)"><foreignObject width="36.46875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">three</span></div></foreignObject></g></g><g class="cluster default" id="one"><rect style="" rx="0" ry="0" x="8" y="8" width="102.796875" height="178"></rect><g class="cluster-label" transform="translate(46.046875, 13)"><foreignObject width="26.703125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">one</span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M177.50939255617976,72L166.2734375,97L75.796875,134.6721125730994" id="L-c1-a2-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-c1 LE-a2" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M59.3984375,72L59.3984375,97L59.3984375,122" id="L-a1-a2-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-a1 LE-a2" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M190.65545997191012,72L196.2734375,97L196.2734375,122" id="L-c1-c2-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-c1 LE-c2" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M59.3984375,186L59.3984375,211L95.7452750748503,236" id="L-one-two-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-one LE-two" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M186.2734375,186L186.2734375,211L184.63374812874252,236" id="L-three-two-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-three LE-two" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path><path d="M202.48259730538922,236L211.75,211L211.75,186L203.05530196629215,161" id="L-two-c2-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-two LE-c2" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default default" id="flowchart-c2-223" transform="translate(196.2734375, 141.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-15.953125" y="-19.5" width="31.90625" height="39"></rect><g class="label" style="" transform="translate(-8.453125, -12)"><foreignObject width="16.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">c2</span></div></foreignObject></g></g><g class="node default default" id="flowchart-c1-216" transform="translate(186.2734375, 52.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-15.953125" y="-19.5" width="31.90625" height="39"></rect><g class="label" style="" transform="translate(-8.453125, -12)"><foreignObject width="16.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">c1</span></div></foreignObject></g></g><g class="root" transform="translate(86.5, 228)"><g class="clusters"><g class="cluster default" id="two"><rect style="" rx="0" ry="0" x="8" y="8" width="165.59375" height="109"></rect><g class="cluster-label" transform="translate(78.34375, 13)"><foreignObject width="24.90625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">two</span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M65.796875,62.5L90.796875,62.5L115.796875,62.5" id="L-b1-b2-0" class=" edge-thickness-normal edge-pattern-solid flowchart-link LS-b1 LE-b2" style="fill:none;" marker-end="url(#flowchart-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default default" id="flowchart-b2-221" transform="translate(132.1953125, 62.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-16.3984375" y="-19.5" width="32.796875" height="39"></rect><g class="label" style="" transform="translate(-8.8984375, -12)"><foreignObject width="17.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">b2</span></div></foreignObject></g></g><g class="node default default" id="flowchart-b1-220" transform="translate(49.3984375, 62.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-16.3984375" y="-19.5" width="32.796875" height="39"></rect><g class="label" style="" transform="translate(-8.8984375, -12)"><foreignObject width="17.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">b1</span></div></foreignObject></g></g></g></g><g class="node default default" id="flowchart-a2-217" transform="translate(59.3984375, 141.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-16.3984375" y="-19.5" width="32.796875" height="39"></rect><g class="label" style="" transform="translate(-8.8984375, -12)"><foreignObject width="17.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">a2</span></div></foreignObject></g></g><g class="node default default" id="flowchart-a1-218" transform="translate(59.3984375, 52.5)"><rect class="basic label-container" style="" rx="0" ry="0" x="-16.3984375" y="-19.5" width="32.796875" height="39"></rect><g class="label" style="" transform="translate(-8.8984375, -12)"><foreignObject width="17.796875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">a1</span></div></foreignObject></g></g></g></g></g></svg></div><ul><li><span>注释：在行首加入</span><code>%%</code><span>即可。</span></li></ul><div class="md-diagram-panel md-fences-adv-panel"><svg id="mermaidChart14" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="162" style="max-width: 675.0734252929688px;" viewBox="-8 -8 675.0734252929688 162"><style>#mermaidChart14 {font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart14 .error-icon{fill:#552222;}#mermaidChart14 .error-text{fill:#552222;stroke:#552222;}#mermaidChart14 .edge-thickness-normal{stroke-width:2px;}#mermaidChart14 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart14 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart14 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart14 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart14 .marker{fill:#333333;stroke:#333333;}#mermaidChart14 .marker.cross{stroke:#333333;}#mermaidChart14 svg{font-family:sans-serif;font-size:16px;}#mermaidChart14 .label{font-family:sans-serif;color:#333;}#mermaidChart14 .cluster-label text{fill:#333;}#mermaidChart14 .cluster-label span{color:#333;}#mermaidChart14 .label text,#mermaidChart14 span{fill:#333;color:#333;}#mermaidChart14 .node rect,#mermaidChart14 .node circle,#mermaidChart14 .node ellipse,#mermaidChart14 .node polygon,#mermaidChart14 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart14 .node .label{text-align:center;}#mermaidChart14 .node.clickable{cursor:pointer;}#mermaidChart14 .arrowheadPath{fill:#333333;}#mermaidChart14 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart14 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart14 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaidChart14 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaidChart14 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart14 .cluster text{fill:#333;}#mermaidChart14 .cluster span{color:#333;}#mermaidChart14 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart14 :root{--mermaid-font-family:sans-serif;}#mermaidChart14 :root{--mermaid-alt-font-family:sans-serif;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M102.71875,77L157.515625,77L212.3125,77" marker-end="url(#arrowhead371)" style="fill:none"></path><defs><marker id="arrowhead371" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-B LE-C" id="L-B-C" style="opacity: 1;"><path class="path" d="M319.5,77L344.5,77L370.000001525879,77.5" marker-end="url(#arrowhead372)" style="fill:none"></path><defs><marker id="arrowhead372" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M464.3518536632339,59.028414637355L522.4484405517578,30L562.5734405517578,30" marker-end="url(#arrowhead373)" style="fill:none"></path><defs><marker id="arrowhead373" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath LS-C LE-E" id="L-C-E" style="opacity: 1;"><path class="path" d="M464.35185161075077,95.97158436337033L522.4484405517578,124L563.4718780517578,124" marker-end="url(#arrowhead374)" style="fill:none"></path><defs><marker id="arrowhead374" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(157.515625,77)" style="opacity: 1;"><g transform="translate(-29.796875,-12)" class="label"><rect rx="0" ry="0" width="59.59375" height="24"></rect><foreignObject width="59.59375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-C" class="edgeLabel L-LS-B' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(522.4484405517578,30)" style="opacity: 1;"><g transform="translate(-15.125,-12)" class="label"><rect rx="0" ry="0" width="30.25" height="24"></rect><foreignObject width="30.25" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D">One</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(522.4484405517578,124)" style="opacity: 1;"><g transform="translate(-14.6796875,-12)" class="label"><rect rx="0" ry="0" width="29.359375" height="24"></rect><foreignObject width="29.359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-E" class="edgeLabel L-LS-C' L-LE-E">Two</span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-241" transform="translate(55.359375,77)" style="opacity: 1;"><rect rx="0" ry="0" x="-47.359375" y="-22" width="94.71875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-37.359375,-12)"><foreignObject width="74.71875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Hard edge</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-242" transform="translate(265.90625,77)" style="opacity: 1;"><rect rx="5" ry="5" x="-53.59375" y="-22" width="107.1875" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-43.59375,-12)"><foreignObject width="87.1875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round edge</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-244" transform="translate(425.9117202758789,77)" style="opacity: 1;"><polygon points="56.41171875,0 112.8234375,-56.41171875 56.41171875,-112.8234375 0,-56.41171875" transform="translate(-56.41171875,56.41171875)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-30.6796875,-12)"><foreignObject width="61.359375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Decision</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-246" transform="translate(610.8234405517578,30)" style="opacity: 1;"><rect rx="0" ry="0" x="-48.25" y="-22" width="96.5" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-38.25,-12)"><foreignObject width="76.5" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Result one</div></foreignObject></g></g></g><g class="node default" id="flowchart-E-248" transform="translate(610.8234405517578,124)" style="opacity: 1;"><rect rx="0" ry="0" x="-47.3515625" y="-22" width="94.703125" height="44" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-37.3515625,-12)"><foreignObject width="74.703125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Result two</div></foreignObject></g></g></g></g></g></g></svg></div></div></div>
+</body>
+</html>
