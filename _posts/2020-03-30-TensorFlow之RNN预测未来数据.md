@@ -68,6 +68,7 @@ W tensorflow/core/common_runtime/base_collective_executor.cc:217] BaseCollective
          [[IteratorGetNext/_6]]
 2020-03-30 16:07:58.792096: W tensorflow/core/common_runtime/base_collective_executor.cc:217] BaseCollectiveExecutor::StartAbort Out of range: End of sequence
          [[{{node IteratorGetNext}}]]
+         
 ```
 
 > 最后一个`batch`满足`batch_size`要求，其实也会报错……
