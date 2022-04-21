@@ -37,7 +37,25 @@
 
   - Gitgraph(Git) Diagram，git分支图，使用`gitGraph`关键字；
 
+&emsp;&emsp;先看一个示例效果图：
+
+```mermaid
+flowchart TB
+    id0([开始]) --> id1(圆角矩形)
+    id1--普通线-->id2[矩形]
+    subgraph 子图表0
+        id2==粗线==>id3{菱形}
+        id3-.虚线.->id4>右向旗帜]
+        id3--无箭头---id5((圆形))
+    end
+    id4 --> id7{菱形}
+    id7 -- No --> id6[[子程序]]
+    id6 ----> id4
+    id7 ----> |Yes| id8((完成))
+```
+
 ## 2. Flowchart，流程图
+
 &emsp;&emsp;所有流程图都由节点、几何形状和边缘、箭头或线条组成。Mermaid定义了这些节点和边的制作和交互方式。还可以定义不同的箭头类型、多向箭头以及与子图的链接。
 
 > *重要提示*：不要将单词“end”键入为流程图节点。将所有或任何一个字母大写以防止流程图被中断，例如“End”或“END”。
@@ -330,6 +348,9 @@ flowchart LR
 		B <--> C
 		C x--x D
 ```
+### 2.7 连接长度
+
+&emsp;&emsp;可以通过在连接线定义中添加额外的破折线，以使该连接线比其他连接线更长。下面的例子中，节点`B{Is it?}`到节点`E[End]`的连接线`-->`添加了两个额外的破折号`---->`。
 
 ```
 flowchart TD
@@ -339,7 +360,6 @@ flowchart TD
 		D --> B
 		B ----> |No| E[End]
 ```
-
 ```mermaid
 flowchart TD
 		A[Start] --> B{Is it?}
@@ -348,7 +368,7 @@ flowchart TD
 		D --> B
 		B ----> |No| E[End]
 ```
-
+&emsp;&emsp;如果加长的连接线需要带文字，那么额外的破折线需要放在文字右边，如下示例。
 ```
 flowchart TD
 		A[Start] --> B{Is it?}
@@ -366,6 +386,18 @@ flowchart TD
 		D --> B
 		B -- No ----> E[End]
 ```
+
+&emsp;&emsp;对于虚点连接和粗连接，需要添加的字符是`.`和`=`，添加方法汇总如下：
+| Length | 1 | 2 | 3 |
+| :---: | :---: | :---: | :---: |
+| Normal | `---` | `----` | `-----`|
+| Normal with arrow | `-->` | `--->` | `---->` |
+| Thick | `===` | `====` | `=====` |
+| Thick with arrow | `==>` | `===>` | `====>` |
+| Dotted | `-.-` | `-..-` | `-...-` |
+| Dotted with arrow | `-.->` | `-..->` | `-...->` |
+
+
 
 
 
@@ -382,3 +414,5 @@ flowchart TD
 [Mermaid 实用教程](https://blog.csdn.net/fenghuizhidao/article/details/79440583)
 
 [Mermaid：如何在Markdown文本中添加流程图，附支持github的方法](https://blog.csdn.net/weixin_43661154/article/details/112101437)
+
+[markdown 由简入繁，上手跟我做（七）mermaid 画流程图](https://qiankunpingtai.cn/article/1554026326352?p=1&m=0)
