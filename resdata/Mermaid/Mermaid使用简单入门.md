@@ -40,18 +40,20 @@
 &emsp;&emsp;先看一个示例效果图：
 
 ```mermaid
-flowchart TB
-    id0([开始]) --> id1(圆角矩形)
+flowchart TD
+    id0([开始]) ----> id1(圆角矩形)
     id1--普通线-->id2[矩形]
     subgraph 子图表0
         id2==粗线==>id3{菱形}
         id3-.虚线.->id4>右向旗帜]
         id3--无箭头---id5((圆形))
     end
-    id4 --> id7{菱形}
-    id7 -- No --> id6[[子程序]]
-    id6 ----> id4
-    id7 ----> |Yes| id8((完成))
+    subgraph 子图表1
+    		id4 --> id7{菱形}
+    		id7 -- No --> id6[[子程序]]
+    end
+    id6 ----> 子图表0
+    id7 -------> |Yes| id8((完成))
 ```
 
 ## 2. Flowchart，流程图
@@ -397,11 +399,369 @@ flowchart TD
 | Dotted | `-.-` | `-..-` | `-...-` |
 | Dotted with arrow | `-.->` | `-..->` | `-...->` |
 
+### 2.8 特殊字符嵌入
+
+&emsp;&emsp;可以将文本放置于引号`"quotes"`内，包括特殊字符。如下所示：
+
+```
+flowchart LR
+		id1["This is the (text) in the box"]
+```
+
+```mermaid
+flowchart LR
+		id1["This is the (text) in the box"]
+```
+
+**转义字符**
+
+可以使用以下示例的语法来转义字符。
+
+```
+flowchart LR
+		A["A double quote: #quot;"] --> B["A dec char: #9829;"]
+```
+
+```mermaid
+flowchart LR
+		A["A double quote: #quot;"] --> B["A dec char: #9829;"]
+```
+
+给出的数字是以 10 为基数，因此 # 可以编码为 #35;。还支持使用 HTML 字符名称。
+
+`#35;`: #
+
+`#70;`:  F
+
+```mermaid
+flowchart TD
+		A["#35;"]
+		B["#70;"]
+```
+
+### 2.9 子图
+
+&emsp;&emsp;定义子图的语法：
+
+```
+subgraph title
+		graph definition
+end
+```
+
+示例如下：
+
+```
+flowchart TB
+		c1-->a2
+		subgraph one
+				a1-->a2
+		end
+		subgraph two
+				b1-->b2
+		end
+		subgraph three
+				c1-->c2
+		end
+```
+
+```mermaid
+flowchart TB
+		c1-->a2
+		subgraph one
+				a1-->a2
+		end
+		subgraph two
+				b1-->b2
+		end
+		subgraph three
+				c1-->c2
+		end
+```
+
+除设置子图名称（title）外，也可以给子图设置一个显式id。
+
+```
+flowchart TB
+		c1-->a2
+		subgraph ide1 [one]
+				a1-->a2
+		end
+```
+
+```mermaid
+flowchart TB
+		c1-->a2
+		subgraph ide1 [One]
+				a1-->a2
+		end
+```
+
+流程图中，也可以把整个子图作为连接线的起始点或目标点，如下所示：
+
+```
+flowchart TB
+		c1-->a2
+		subgraph one
+				a1-->a2
+		end
+		subgraph two
+				b1-->b2
+		end
+		subgraph three
+				c1-->c2
+		end
+		one-->two
+		three-->two
+		two-->c2
+```
+
+```mermaid
+flowchart TB
+		c1-->a2
+		subgraph one
+				a1-->a2
+		end
+		subgraph two
+				b1-->b2
+		end
+		subgraph three
+				c1-->c2
+		end
+		one-->two
+		three-->two
+		two-->c2
+```
+
+&emsp;&emsp;流程图中，可以使用方向语句来设置子图将呈现的方向，如下例所示：
+
+```
+flowchart LR
+		subgraph TOP
+				direction TB
+				subgraph B1
+						direction RL
+						i1-->f1
+				end
+				subgraph B2
+						direction BT
+						i2-->f2
+				end
+		end
+		A-->TOP-->B
+		B1-->B2
+```
+
+```mermaid
+flowchart LR
+		subgraph TOP
+				direction TB
+				subgraph B1
+						direction RL
+						i1-->f1
+				end
+				subgraph B2
+						direction BT
+						i2-->f2
+				end
+		end
+		A-->TOP-->B
+		B1-->B2
+```
+
+### 2.10 注释
+
+&emsp;&emsp;可以在流程图中输入注释，解析器将忽略这些注释。注释需要单独一行，并且必须以 %%（双百分号）开头。注释开始后到下一个换行符的任何文本都将被视为注释，包括任何工作流语法，
+
+```
+flowchart LR
+%% this is a comment A -- text --> B{node}
+		A -- text --> B{node} -- text2 --> C
+```
+
+```mermaid
+flowchart LR
+%% this is a comment A -- text --> B{node}
+		A -- text --> B{node} -- text2 --> C
+```
+
+### 2.11 样式和类
+
+#### 2.11.1 连接样式
+
+&emsp;&emsp;连接线可以设置样式，例如如果想要对工作流中向后的链接进行样式设置，由于连接线没有与节点相同的 id，因此需要其他方式来确定连接线应添加哪种样式。使用图表中定义连接线时的序号代替 id。
+
+&emsp;&emsp;在下面的示例中，linkStyle 语句中定义的样式将属于图中的第4个链接：
+
+```
+linkStyle 3 stroke:#ff3,stroke-width:4px,color:red;
+```
+
+```
+flowchart TB
+		c1-->a2
+		subgraph one
+				a1-->a2
+		end
+		subgraph two
+				b1-->b2
+		end
+		subgraph three
+				c1-->c2
+		end
+		linkStyle 3 stroke:#ff7f00,stroke-width:4px,color:red;
+```
+
+```mermaid
+flowchart TB
+		c1-->a2
+		subgraph one
+				a1-->a2
+		end
+		subgraph two
+				b1-->b2
+		end
+		subgraph three
+				c1-->c2
+		end
+		linkStyle 3 stroke:#ff7f00,stroke-width:4px,:red;
+```
+
+第**4**条连接线（`c1-->c2`）被添加了样式。一些颜色的十六进制色码表示如下：
+
+```
+flowchart TB
+		id1((白色))
+		id2((墨绿))
+		id3((巧克力色))
+		id4((青铜色))
+		id5((珊瑚色))
+		style id1 fill:#ffffff
+		style id2 fill:#00ffff
+		style id3 fill:#5c3317
+		style id4 fill:#8c7853
+		style id5 fill:#ff7f00
+```
 
 
 
+```mermaid
+flowchart TB
+		id1((白色))
+		id2((墨绿))
+		id3((巧克力色))
+		id4((青铜色))
+		id5((珊瑚色))
+		style id1 fill:#ffffff
+		style id2 fill:#00ffff
+		style id3 fill:#5c3317
+		style id4 fill:#8c7853
+		style id5 fill:#ff7f00
+```
 
+![list-of-s-names-hex-codes](https://www.color-meanings.com/wp-content/uploads/list-of-colors-names-hex-codes.png)
 
+> 常用颜色代码：
+> | **No.** |   **颜色**   | **十六进制颜色码** |
+> | :-----: | :----------: | :----------------: |
+> |    1    |     白色     |    FFFFFF     |
+> |    2    |     红色     |    FF0000     |
+> |    3    |     绿色     |    00FF00     |
+> |    4    |     蓝色     |    0000FF     |
+> |    5    |    牡丹红    |    FF00FF     |
+> |    6    |     青色     |    00FFFF     |
+> |    7    |     黄色     |    FFFF00     |
+> |    8    |     黑色     |    000000     |
+> |    9    |     海蓝     |    70DB93     |
+> |   10    |   巧克力色   |    5C3317     |
+> |   11    |    蓝紫色    |    9F5F9F     |
+> |   12    |    黄铜色    |    B5A642     |
+> |   13    |    亮金色    |    D9D919     |
+> |   14    |     棕色     |    A67D3D     |
+> |   15    |    青铜色    |    8C7853     |
+> |   16    |  2号青铜色   |    A67D3D     |
+> |   17    |  士官服蓝色  |    5F9F9F     |
+> |   18    |    冷铜色    |    D98719     |
+> |   19    |     铜色     |    B87333     |
+> |   20    |    珊瑚红    |    FF7F00     |
+> |   21    |    紫蓝色    |    42426F     |
+> |   22    |     深棕     |    5C4033     |
+> |   23    |     深绿     |    2F4F2F     |
+> |   24    |   深铜绿色   |    4A766E     |
+> |   25    |   深橄榄绿   |    4F4F2F     |
+> |   26    |   深兰花色   |    9932CD     |
+> |   27    |    深紫色    |    871F78     |
+> |   28    |   深石板蓝   |    6B238E     |
+> |   29    |   深铅灰色   |    2F4F4F     |
+> |   30    |   深棕褐色   |    97694F     |
+> |   32    |  深绿松石色  |    7093DB     |
+> |   33    |    暗木色    |    855E42     |
+> |   34    |    淡灰色    |    545454     |
+> |   35    | 土灰玫瑰红色 |    545454     |
+> |   36    |    长石色    |    D19275     |
+> |   37    |    火砖色    |    8E2323     |
+> |   38    |    森林绿    |    238E23     |
+> |   39    |     金色     |    CD7F32     |
+> |   40    |    鲜黄色    |    DBDB70     |
+> |   41    |     灰色     |    C0C0C0     |
+> |   42    |    铜绿色    |    527F76     |
+> |   43    |    青黄色    |    93DB70     |
+> |   44    |    猎人绿    |    215E21     |
+> |   45    |    印度红    |    4E2F2F     |
+> |   46    |    土黄色    |    9F9F5F     |
+> |   47    |    浅蓝色    |    C0D9D9     |
+> |   48    |    浅灰色    |    A8A8A8     |
+> |   49    |   浅钢蓝色   |    8F8FBD     |
+> |   59    |    浅木色    |    E9C2A6     |
+> |   60    |   石灰绿色   |    32CD32     |
+> |   61    |    桔黄色    |    E47833     |
+> |   62    |    褐红色    |    8E236B     |
+> |   63    |   中海蓝色   |    32CD99     |
+> |   64    |    中蓝色    |    3232CD     |
+> |   65    |   中森林绿   |    6B8E23     |
+> |   66    |   中鲜黄色   |    EAEAAE     |
+> |   67    |   中兰花色   |    9370DB     |
+> |   68    |   中海绿色   |    426F42     |
+> |   69    |  中石板蓝色  |    7F00FF     |
+> |   70    |   中春绿色   |    7FFF00     |
+> |   71    |  中绿松石色  |    70DBDB     |
+> |   72    |   中紫红色   |    DB7093     |
+> |   73    |    中木色    |    A68064     |
+> |   74    |   深藏青色   |    2F2F4F     |
+> |   75    |    海军蓝    |    23238E     |
+> |   76    |    霓虹篮    |    4D4DFF     |
+> |   77    |   霓虹粉红   |    FF6EC7     |
+> |   78    |  新深藏青色  |    00009C     |
+> |   79    |   新棕褐色   |    EBC79E     |
+> |   80    |   暗金黄色   |    CFB53B     |
+> |   81    |     橙色     |    FF7F00     |
+> |   82    |    橙红色    |    FF2400     |
+> |   83    |    淡紫色    |    DB70DB     |
+> |   84    |    浅绿色    |    8FBC8F     |
+> |   85    |    粉红色    |    BC8F8F     |
+> |   86    |    李子色    |    EAADEA     |
+> |   87    |    石英色    |    D9D9F3     |
+> |   88    |    艳蓝色    |    5959AB     |
+> |   89    |    鲑鱼色    |    6F4242     |
+> |   90    |    猩红色    |    BC1717     |
+> |   91    |    海绿色    |    238E68     |
+> |   92    | 半甜巧克力色 |    6B4226     |
+> |   93    |     赭色     |    8E6B23     |
+> |   94    |     银色     |    E6E8FA     |
+> |   95    |     天蓝     |    3299CC     |
+> |   96    |    石板蓝    |    007FFF     |
+> |   97    |   艳粉红色   |    FF1CAE     |
+> |   98    |    春绿色    |    00FF7F     |
+> |   99    |    钢蓝色    |    236B8E     |
+> |   100   |   亮天蓝色   |    38B0DE     |
+> |   101   |    棕褐色    |    DB9370     |
+> |   102   |    紫红色    |    D8BFD8     |
+> |   103   |   石板蓝色   |    ADEAEA     |
+> |   104   |   浓深棕色   |    5C4033     |
+> |   105   |   淡浅灰色   |    CDCDCD     |
+> |   106   |   紫罗兰色   |    4F2F4F     |
+> |   107   |  紫罗兰红色  |    CC3299     |
+> |   108   |    麦黄色    |    D8D8BF     |
 
 ## References
 
