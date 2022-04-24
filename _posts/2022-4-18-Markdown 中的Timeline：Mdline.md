@@ -1,6 +1,6 @@
 ---
 title: Markdown 中的Timeline：Mdline
-author: 赵旭山
+author: Chaos Clarity
 tags: 杂谈 Markdown Mdline
 typora-root-url: ..
 ---

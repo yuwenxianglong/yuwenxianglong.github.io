@@ -607,9 +607,9 @@ flowchart TB
 				b1-->b2
 		end
 		subgraph three
-				c1-->c2
+				c1--text-->c2
 		end
-		linkStyle 3 stroke:#ff7f00,stroke-width:4px,color:red;
+		linkStyle 3 stroke:#ff7f00,stroke-width:4px,color:blue;
 ```
 
 ```mermaid
@@ -622,12 +622,12 @@ flowchart TB
 				b1-->b2
 		end
 		subgraph three
-				c1-->c2
+				c1--text-->c2
 		end
-		linkStyle 3 stroke:#ff7f00,stroke-width:4px,:red;
+		linkStyle 3 stroke:#ff7f00,stroke-width:4px,color:blue;
 ```
 
-第**4**条连接线（`c1-->c2`）被添加了样式。一些颜色的十六进制色码表示如下：
+第**4**条连接线（`c1-->c2`）被添加了样式，`color`定义了连接线上文字的颜色。一些颜色的十六进制色码表示如下：
 
 ```
 flowchart TB
@@ -638,7 +638,7 @@ flowchart TB
 		id5((珊瑚色))
 		style id1 fill:#ffffff
 		style id2 fill:#00ffff
-		style id3 fill:#5c3317
+		style id3 fill:#5c3317,color:#ffffff
 		style id4 fill:#8c7853
 		style id5 fill:#ff7f00
 ```
@@ -654,7 +654,7 @@ flowchart TB
 		id5((珊瑚色))
 		style id1 fill:#ffffff
 		style id2 fill:#00ffff
-		style id3 fill:#5c3317
+		style id3 fill:#5c3317,color:#ffffff
 		style id4 fill:#8c7853
 		style id5 fill:#ff7f00
 ```
@@ -763,16 +763,99 @@ flowchart TB
 > |   107   |  紫罗兰红色  |    CC3299     |
 > |   108   |    麦黄色    |    D8D8BF     |
 
-## References
+> ***Convert Excel to Markdown Table**: [https://tableconvert.com/excel-to-markdown](https://tableconvert.com/excel-to-markdown)
 
-[Mermaid从入门到入土——Markdown进阶语法](https://zhuanlan.zhihu.com/p/355997933)
+#### 2.11.2 节点样式
 
-[Mermaid从入门到入土](https://www.jianguoyun.com/p/Dfun4HUQlP2vCRiC7vwD)
+&emsp;&emsp;可以对节点应用特定样式，例如较粗的边框或不同的背景颜色。
 
-[Mermaid document](https://mermaid-js.github.io/mermaid)
+```
+flowchart LR
+		id1([Start])-->id2((Stop))
+		style id1 fill:#38b0de,stroke:#d8d8bf,stroke-width:4px
+		style id2 fill:#00ff7f,stroke:#d8bfd8,stroke-width:6px,color:#ff1cae,stroke-dasharray: 5 5
+```
 
-[Mermaid 实用教程](https://blog.csdn.net/fenghuizhidao/article/details/79440583)
+```mermaid
+flowchart LR
+		id1([Start])-->id2((Stop))
+		style id1 fill:#38b0de,stroke:#d8d8bf,stroke-width:4px
+		style id2 fill:#00ff7f,stroke:#d8bfd8,stroke-width:6px,color:#ff1cae,stroke-dasharray: 5 5
+```
 
-[Mermaid：如何在Markdown文本中添加流程图，附支持github的方法](https://blog.csdn.net/weixin_43661154/article/details/112101437)
+#### 2.11.3 类
 
-[markdown 由简入繁，上手跟我做（七）mermaid 画流程图](https://qiankunpingtai.cn/article/1554026326352?p=1&m=0)
+&emsp;&emsp;比每次都定义样式更方便的是定义一个样式类，并附加到需要定义样式的Node节点上。
+
+&emsp;&emsp;类定义如下例所示：
+
+```
+classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+```
+
+将类附加到节点按以下方式完成：
+
+```
+class nodeId1 className;
+```
+
+也可以在一个语句中将一个类附加到节点列表：
+
+```
+class nodeId1,nodeId2 className;
+```
+
+&emsp;&emsp;一个完整的示例如下：
+
+```
+flowchart LR
+		nodeId1-->nodeId2-->nodeId3
+		classDef className0 fill:#f9f,stroke:#333,stroke-width:4px;
+		classDef className1 fill:#8E6B23,stroke:#93DB70,stroke-width:10px,color:white,stroke-dasharray: 5 5;
+		class nodeId1,nodeId2 className0;
+		class nodeId3 className1;
+```
+
+```mermaid
+flowchart LR
+		nodeId1-->nodeId2-->nodeId3
+		classDef className0 fill:#f9f,stroke:#333,stroke-width:4px;
+		classDef className1 fill:#8e6b23,stroke:#93db70,stroke-width:10px,color:white,stroke-dasharray:5 5;
+		class nodeId1,nodeId2 className0;
+		class nodeId3 className1;
+```
+
+&emsp;&emsp;添加类的更简短形式是使用 `:::operator` 将类名附加到节点，如下所示：
+
+```
+flowchart LR
+		A:::someclass --> B
+		classDef someclass fill:#f96
+```
+
+```mermaid
+flowchart LR
+		A:::someclass --> B
+		classDef someclass fill:#f96
+```
+#### 2.11.4 默认类
+如果一个类被命名为`default`，它将被分配给所有没有特别定义的类。
+
+```
+classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+```
+```
+flowchart LR
+		id1([Start])-->id2-->id3{if...else}
+		id3--yes-->id4((End))
+		id3--No-->id2
+		classDef default fill:#f9f,stroke:#333,stroke-width:4px
+```
+```mermaid
+flowchart LR
+		id1([Start])-->id2-->id3{if...else}
+		id3--yes-->id4((End))
+		id3--No-->id2
+		classDef default fill:#f9f,stroke:#333,stroke-width:4px
+```
+
